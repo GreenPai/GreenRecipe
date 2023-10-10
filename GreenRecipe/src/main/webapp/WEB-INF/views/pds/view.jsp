@@ -45,7 +45,7 @@
 	  $("#replyForm").submit(function (e) {
 	      e.preventDefault(); // 폼의 기본 동작 방지
 	      e.stopPropagation();	     
-	    //  alert('0');
+	    //  alert('0');     
 	      $.ajax({
 	          url: "/Reply/Write", // 댓글 저장 URL
 	          type: "POST",	         

@@ -78,10 +78,7 @@
     <br><br><br><br><br><br><br>
     
     <img src="/img/pot2.png" alt="Pot Image"  style="display: block; margin: 0 auto;"> 
-    <!--  <div><a href="/Menus/List">메뉴 목록</a></div>
-    <div><a href="/Pds/List?menu_id=MENU01">자료실 목록</a></div>
-     <div><a href="/Pds/WriteForm?menu_id=MENU01&bnum=0">자료실 등록</a></div>
--->
+
 
 
 
