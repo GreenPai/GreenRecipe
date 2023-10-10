@@ -2,21 +2,25 @@
     pageEncoding="UTF-8"%>   
   <%@taglib  prefix="c"  uri="http://java.sun.com/jsp/jstl/core" %>  
     
-	<section>				
+<section>				
 	<!-- 댓글목록 -->
 	<div id="replyList">
 	<c:forEach  var="reply"  items="${ replyList }">
 	  <div class="replytitle"> 
 	     작성자 : ${ reply.replywriter}  작성일자 : ${ reply.replydate }
       </div> 
+      <div class="col-sm-2">
+		<button name="btn_reply_edit" type="button"
+				class=" btn btn-sm btn-info" onclick="fn_modify()">수정</button>
+		<button name="btn_reply_delete" type="button"
+				class="btn btn-sm btn-danger">삭제</button>
+	  </div>
 	  <div class="replycontent"> 
 	     내용 : ${ reply.reply}
       </div>    
 	</c:forEach>	
 	</div>	
-</section>
 
-   <section>
   <form id="replyForm"  method="POST">
   <input type="hidden" name="rno"     value="${ vo.rno }" />
   <input type="hidden" name="idx"     value="${ vo.idx }" />

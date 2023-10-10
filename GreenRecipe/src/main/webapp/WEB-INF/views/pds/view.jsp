@@ -70,8 +70,12 @@
 	  				console.log(data);
 	  				let str="";
 	  				$.each(data, function(index, element) {
-	  					 str+= '<div class="replytitle">'
+	  					str+= '<div class="replytitle">'
 	  					    +' 작성자 : '+ element.replywriter +' 작성일자 : ' + element.replydate
+	  				        +'</div>'
+	  				        +'<div class="col-sm-2">'
+	  				        +'<button name="btn_reply_edit" type="button" class=" btn btn-sm btn-info" onclick="fn_modify()">수정</button>'
+	  				        +'<button name="btn_reply_delete" type="button" class="btn btn-sm btn-danger">삭제</button>'
 	  				        +'</div>'
 	  				        +'<div class="replycontent">'
 	  				        +' 내용 : '+ element.reply
