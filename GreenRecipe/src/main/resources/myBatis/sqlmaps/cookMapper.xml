@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Cook">  
+
+   <select id         = "RecipeList"
+           resultType = "com.green.recipe.vo.RecipeVo">
+           
+          SELECT   
+          RE_NO
+         ,RE_TITLE
+         ,RE_INGRED
+         ,RE_CONT
+         ,RE_IMG
+         ,RE_CATEGORY
+         ,READCOUNT
+         ,KCAL
+          FROM RECIPE_TBL
+          ORDER BY RE_NO ASC
+           
+           
+           
+           
+           </select>
+  
+  
+ 
+ 
+</mapper>
+
+
+
+
+
+   

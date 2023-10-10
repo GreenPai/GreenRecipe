@@ -1,0 +1,135 @@
+*{
+	margin:0px;
+	padding: 0px;
+	list-style:none;
+	text-decoration: none;
+	color: black;	
+}
+
+body { 
+    background-color: #D6F3ED; 
+}
+
+
+
+.header {
+	height: 100px;
+	text-align: center;
+	box-sizing: border-box;
+	border-bottom: 1px solid #999;
+}
+
+.header_title h1{
+ text-align: left;
+    font: bold 30px 'arial';
+    padding-top: 14px;
+    letter-spacing: 2px;
+    color: #999;
+    position: relative;
+    left: 40px; 
+}
+
+.header_login ul {
+    margin-top: 20px; 
+}
+
+.header_login ul{
+    margin-top::;
+}
+
+.header_login ul li {
+	display:inline-block;
+}
+
+.header_login ul li a{
+    display:block;
+    font: bold 14px 'arial';
+    color: #999;
+    margin: 0px 16px;
+    letter-spacing: 1px;
+}
+
+header{display: flex;justify-content: space-between;}
+
+.menu {
+  width: auto;
+  overflow: hidden;
+  margin: 0px auto;
+}
+	
+.menu > li {
+  width: 25%; /*25*4=100%*/
+  float: left;
+  text-align: center;
+  line-height: 40px;
+  background-color: #9EE0C8;
+}
+
+.menu a {
+  color: #fff;
+}
+
+.menu > li:hover {
+  background-color: #9EE0C8;
+  transition-duration: 0.5s;
+}
+
+.submenu1 > li {
+  line-height: 50px;
+  background-color: #CBEE99;
+}
+
+.submenu1 {
+  height: 0; /*ul의 높이를 안보이게 처리*/
+  overflow: hidden;
+}
+
+.menu > li:hover .submenu1 {
+  height: 250px;
+  transition-duration: 1s;
+}
+
+.submenu2 > li {
+  line-height: 50px;
+  background-color: #CBEE99;
+}
+
+.submenu2 {
+  height: 0; /*ul의 높이를 안보이게 처리*/
+  overflow: hidden;
+}
+
+.menu > li:hover .submenu2 {
+  height: 50px;
+  transition-duration: 1s;
+}
+
+.submenu3 > li {
+  line-height: 50px;
+  background-color: #CBEE99;
+}
+
+.submenu3 {
+  height: 0; /*ul의 높이를 안보이게 처리*/
+  overflow: hidden;
+}
+
+.menu > li:hover .submenu3 {
+  height: 150px;
+  transition-duration: 1s;
+}
+
+.submenu4 > li {
+  line-height: 50px;
+  background-color: #CBEE99;
+}
+
+.submenu4{
+  height: 0; /*ul의 높이를 안보이게 처리*/
+  overflow: hidden;
+}
+
+.menu > li:hover .submenu4 {
+  height: 100px;
+  transition-duration: 1s;
+}
