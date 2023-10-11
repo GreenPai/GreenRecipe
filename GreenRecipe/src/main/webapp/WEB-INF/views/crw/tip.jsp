@@ -66,8 +66,9 @@
     <header class="header">
     
         <div class="header_title">      
-        <h1> 그린 밥상을 부탁해~!</h1>
         </div>
+        
+    
     
         <div class="header_logo">
         	<img class="head_logo"  src="img/logo.png" >

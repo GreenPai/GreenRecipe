@@ -24,5 +24,15 @@ public class RecipeDaoImpl implements RecipeDao {
 		return recipeList;
 	}
 
+	@Override
+	public List<RecipeVo> getRecipeByHashTag(String hashTag) {
+		 List<RecipeVo> recipeList = sqlSession.selectList("Cook.RecipeHan", hashTag);
+
+		    return recipeList;
+	}
+
+	
+	
+	  
 
 }
