@@ -10,7 +10,7 @@
    <!-- 새 게시글 추가 -->
    <insert id="InsertCrawling">
    
-     INSERT  INTO  RECIPE (
+     INSERT  INTO  crawl (
       TITLE, 
       INGREDIENT, 
       CONT, 

@@ -8,4 +8,7 @@ public interface RecipeDao {
 
 	List<RecipeVo> getRecipeList(String re_no);
 
+	List<RecipeVo> getRecipeByHashTag(String hashTag);
+
+
 }

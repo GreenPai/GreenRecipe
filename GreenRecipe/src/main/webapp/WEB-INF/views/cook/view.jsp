@@ -1,104 +1,181 @@
+<%@page import="javax.servlet.descriptor.TaglibDescriptor"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+ 
+ <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    
 <!DOCTYPE html>
 <html>
 <head>
+<title>레시피 선택</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="icon" type="image/x-icon" href="/img/favicon.ico">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-<link rel="stylesheet" href="/css/common.css" />
+<link rel="icon" type="image/x-icon" href="/img/favicon1.png">
+<link rel="stylesheet"  href="/css/common.css" />
 <style>
-   td[colspan] { text-align: center;}
-   td[colspan] > a:hover {  text-decoration: none;  }
+   .boxMatarial { float:left; width:300px;margin:30px; } 
+   input[type="submit"]::before {
+     content: '';
+     display: block;
+     clear: both;
+   }
+
 </style>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  window.onload = function() {   
+      //  alert('formEl');
+        const   formEl        = document.querySelector('#form');
+        let     chkList       = null;
+         const   meatsEl       = document.querySelector('#meats');
+         const   madesEl       = document.querySelector('#mades');
+         const   grainsEl      = document.querySelector('#grains');
+         const   seefoodsEl    = document.querySelector('#seefoods');
+         const   spicesEl      = document.querySelector('#spices');
+         const   vegitablesEl  = document.querySelector('#vegitables');
+          
+        formEl.addEventListener('submit', (e) => {
+           e.preventDefault();
+        
+        //btn1El.addEventListener('click', (e) => {
+           let  arrData = [];                  
+           meatList = document.querySelectorAll('input[name="meat"]:checked');           
+           for(let i=0;i<meatList.length;i++) {
+              arrData.push( meatList[i].value );
+           }
+           meatsEl.value = arrData;
+           alert(meatsEl.value);
+           
+           //-----------------------------------------
+           arrData = [];
+           madeList = document.querySelectorAll('input[name="made"]:checked');
+           for(let i=0;i<madeList.length;i++) {
+              arrData.push( madeList[i].value );
+           }   
+           madesEl.value = arrData;
+           alert(madesEl.value);
+           //-----------------------------------------
+           
+           arrData = [];
+           grainList = document.querySelectorAll('input[name="grain"]:checked');
+           for(let i=0;i<grainList.length;i++) {
+              arrData.push( grainList[i].value );
+           }   
+           grainsEl.value = arrData;
+           alert(grainsEl.value);
+           //-----------------------------------------
+           
+           arrData = [];
+           seefoodList = document.querySelectorAll('input[name="seefood"]:checked');
+           for(let i=0;i<seefoodList.length;i++) {
+              arrData.push( seefoodList[i].value );
+           }   
+           seefoodsEl.value = arrData;
+           alert(seefoodsEl.value);
+           //-----------------------------------------
+           
+           arrData = [];
+           spiceList = document.querySelectorAll('input[name="spice"]:checked');
+           for(let i=0;i<spiceList.length;i++) {
+              arrData.push( spiceList[i].value );
+           }   
+           spicesEl.value = arrData;
+           alert(spicesEl.value);
+           //-----------------------------------------
+           
+         arrData = [];
+           vegitableList = document.querySelectorAll('input[name="vegitable"]:checked');
+           for(let i=0;i<vegitableList.length;i++) {
+              arrData.push( vegitableList[i].value );
+           }   
+           vegitablesEl.value = arrData;
+           alert(vegitablesEl.value);
+           //-----------------------------------------
+           
+           
+           }
+           
+        });
+     }
+        
 
-<title>회원정보조회</title>
-
-</head>
+      
+</script>
+</head> 
 <body>
   <main>
-  <h2>회원정보</h2> 
-  <table  class="table table-striped-columns">
-   <tr>
-    <td>아이디</td>
-    <td>${ user.userid }</td>
-   </tr>
-   <tr>
-    <td>암호</td>
-    <td>${ user.passwd }</td>
-   </tr>
-   <tr>
-    <td>이름</td>
-    <td>${ user.username }</td>
-   </tr>
-   <tr>
-    <td>이메일</td>
-    <td>${ user.email }</td>
-   </tr>
-   <tr>
-    <td>가입일</td>
-    <td>${ user.indate }</td>
-   </tr>
-   <tr>
-    <td colspan="2">
-      <a  class="btn btn-primary btn-sm" 
-           href="/User/WriteForm" >회원추가</a>
-      <a  class="btn btn-warning btn-sm" 
-           href="/User/UpdateForm?userid=${ user.userid }">회원수정</a>
-      <a  class="btn btn-danger btn-sm"
-          data-bs-toggle="modal" data-bs-target="#exampleModal" 
-           href="/User/Delete/${ user.userid }" >회원삭제</a>
-      <a  class="btn btn-success btn-sm"
-           href="/User/List">회원목록</a>
-      <a  class="btn btn-info btn-sm"   
-           href="/">홈으로</a>            
-    </td>
-   </tr>
-    
-  </table>
-  
-  <!-- Modal -->
-	<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-	  <div class="modal-dialog">
-	    <div class="modal-content">
-	      <div class="modal-header">
-	        <h5 class="modal-title" id="exampleModalLabel">삭제 확인</h5>
-	        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-	      </div>
-	      <div class="modal-body">
-	         ${ user.userid } 를  삭제하시겠습니까?
-	      </div>
-	      <div class="modal-footer">
-	        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
-	        <button type="button" class="btn btn-primary" 
-	           id="deleteOk">확인</button>
-	      </div>
-	    </div>
-	  </div>
-	</div>
- 
-  </main>
-  
-  <script>
-     const deleteOkEl = document.querySelector('#deleteOk');
-     deleteOkEl.addEventListener('click', function() {
-    	 const   aDeleteEl = document.querySelector('[href*=Delete]');
-    	 console.dir(aDeleteEl)
-    	 location.href = aDeleteEl.href;
-     })
-  
-  </script>
-  
-  
-  
+     <h2>재료를 선택하세요(여기)</h2>
+     <br>
+     <form action="/Cook/Menu" method="POST" id="form">
+       <input type="hidden"   id="meats"      name="meats"/>
+       <input type="hidden"   id="mades"      name="mades"/> 
+       <input type="hidden"   id="grains"     name="grains"/>
+       <input type="hidden"   id="seefoods"   name="seefoods"/> 
+       <input type="hidden"   id="spices"     name="spices"/> 
+       <input type="hidden"   id="vegitables" name="vegitables"/>
+        
+       <div id="matarialChoice"> 
+       <div class="boxMatarial">     
+      <h3>육류</h3>
+       <hr>
+       <c:forEach var="meat" items="${ meatList }">
+         <input type="checkbox" name="meat" value="${ meat.menu_name }" id="${ meat.menu_id }" />
+         <label for="${ meat.menu_id }">${ meat.menu_name }</label>
+         <br>
+       </c:forEach>
+       </div>
+       <div class="boxMatarial">
+       <h3> 가공식품 </h3>
+       <hr>
+       <c:forEach var="made" items="${ madeList }">
+         <input type="checkbox" name="made" value="${ made.menu_name }" id="${ made.menu_id }" />
+         <label for="${ made.menu_id }">${ made.menu_name }</label>
+         <br>
+       </c:forEach>
+       </div>
+       <div class="boxMatarial">
+       <h3> 곡물류 </h3>
+       <hr>
+       <c:forEach var="grain" items="${ grainList }">
+         <input type="checkbox" name="grain" value="${ grain.menu_name }" id="${ grain.menu_id }" />
+         <label for="${ grain.menu_id }">${ grain.menu_name }</label>
+         <br>
+       </c:forEach>
+       </div>
+       <div class="boxMatarial">
+       <h3>해산물</h3>
+       <hr>
+       <c:forEach var="seefood" items="${ seefoodList }">
+         <input type="checkbox" name="seefood" value="${ seefood.menu_name }" id="${ seefood.menu_id }" />
+         <label for="${ seefood.menu_id }">${ seefood.menu_name }</label>
+         <br>
+       </c:forEach>
+       </div>
+       <div class="boxMatarial">
+       <h3>향신료</h3>
+       <hr>
+       <c:forEach var="spice" items="${ spiceList }">
+         <input type="checkbox" name="spice" value="${ spice.menu_name }" id="${ spice.menu_id }" />
+         <label for="${ spice.menu_id }">${spice.menu_name }</label>
+         <br>
+       </c:forEach>
+       </div>
+       <div class="boxMatarial">
+       <h3>채소</h3>
+       <hr>
+       <c:forEach var="vegitable" items="${ vegitableList }">
+         <input type="checkbox" name="vegitable" value="${ vegitable.menu_name }" id="${ vegitable.menu_id }" />
+         <label for="${ vegitable.menu_id }">${ vegitable.menu_name }</label>
+         <br>
+       </c:forEach>
+       </div>
+       </div>
+       <input type="submit"   value="전송" />
+     </form>
+  </main> 
 </body>
 </html>
-
-
-
 
 
 

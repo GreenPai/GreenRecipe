@@ -21,4 +21,10 @@ public class RecipeServiceImpl implements RecipeService{
 		
 		return recipeList;
 	}
+
+	@Override
+	public List<RecipeVo> getRecipeByHashTag(String hashTag) {
+		List<RecipeVo>  recipeList  =  recipeDao.getRecipeByHashTag(hashTag);
+		return recipeList;
+	}
 }
