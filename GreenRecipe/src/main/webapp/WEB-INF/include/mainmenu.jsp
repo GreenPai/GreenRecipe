@@ -54,7 +54,7 @@
       <li>
         <a href="#">리빙팁</a>
         <ul class="submenu2">
-          <li><a href="https://ottogi.okitchen.co.kr/category/tip.asp">계량팁</a></li>        
+          <li><a href="/Tip">계량팁</a></li>        
         </ul>
       </li>
       <li>
@@ -74,7 +74,7 @@
       </li>
     </ul>
 
-</table>
+
 
 
 

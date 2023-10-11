@@ -10,6 +10,10 @@
 <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
 <link rel="stylesheet"  href="/css/homepage.css" />
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 <title>그린 밥상을 부탁해</title>
 
 <style>
@@ -84,25 +88,22 @@ body {
     <h1 class="text-center" style="color: #AE9175;">한식 레시피</h1>
     <br>
     
-    <div class="container">
-        <div class="row">
-            <c:forEach items="${recipeList}" var="recipe">
-                <div class="col-md-4 mb-4">
-                    <div class="card">
-                        <img src="${recipe.ATT_FILE_NO_MAIN}" class="card-img-top" alt="${recipe.RCP_NM}">
-                        <div class="card-body">
-                            <h5 class="card-title">${recipe.RCP_NM}</h5>
-                            <p class="card-text">${recipe.RCP_PARTS_DTLS}</p>
-                        </div>
+    <div class="container w-100">
+    <div class="row">
+        <c:forEach items="${recipeList}" var="recipe">
+            <div class="col-md-3 mb-4">
+                <div class="card h-100" >
+                    <a href="/Tip">
+                    <img src="${recipe.ATT_FILE_NO_MAIN}" class="card-img-top" alt="${recipe.RCP_NM}">
+                    </a>
+                    <div class="card-body">
+                        <h5 class="card-title">${recipe.RCP_NM}</h5>
                     </div>
                 </div>
-            </c:forEach>
-        </div>
+            </div>
+        </c:forEach>
     </div>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
+</div>
 
 
     
