@@ -1,4 +1,4 @@
- <%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
    <%@taglib  prefix="c"  uri="http://java.sun.com/jsp/jstl/core" %> 
@@ -71,14 +71,15 @@
 	  				console.log(data);
 	  				let str="";
 	  				$.each(data, function(index, element) {
-	  					str+= '<div class="replytitle">'
+	  					str+= '<div class="col-8 replytitle"> '
 	  					    +' 작성자 : '+ element.replywriter +' 작성일자 : ' + element.replydate
 	  				        +'</div>'
-	  				        +'<div class="col-sm-2">'
-	  				        +'<button name="btn_reply_edit" type="button" class=" btn btn-sm btn-info" onclick="fn_modify()">수정</button>'
-	  				        +'<button name="btn_reply_delete" type="button" class="btn btn-sm btn-danger">삭제</button>'
+	  				        +'<div class="col-4">'
+	  				        +'<button name="btn_reply_delete" type="button" class="btn btn-outline-danger" style="float: right;">삭제</button>'
+	  				        +'<button name="btn_reply_edit" type="button" class="btn btn-outline-info" '
+	  				        +'onclick="openEditModal(${reply.rno}, ${reply.reply}) " style="float: right;">수정</button>'
 	  				        +'</div>'
-	  				        +'<div class="replycontent">'
+	  				        +'<div class="col-12 replycontent">'
 	  				        +' 내용 : '+ element.reply
 	  				        +'</div>'
 	  				});
@@ -92,44 +93,33 @@
 	 //     alert('end')      
 	  }); // submit end
 
-	  $("#replyList").on("click", 'button("#replyedit")', function (e) {
-		    var $btn = $(this); // 수정버튼
-		    var $div = $btn.closest('.row');
-		    var $modal = $('#replyedit'); 
-		    var $content = $div.find('.replycontent'); // 댓글 내용 요소
-		    var content = $content.text().trim(); // 댓글 내용 텍스트
-		    var $textarea = $modal.find('textarea');
-		    $textarea.val(content);
-
-		    var rno = $div.data('rno');
-		    $modal.find('input[name=rno]').val(rno);
-		    $modal.modal('show');
-		});//수정버튼
-
+	  
+	  // Ajax 수정버튼
+	   function UpdateForm(rno, reply) {
+		    $(".editRno").val(rno); 
+		    $(".editReply").val(reply); 
+		    $(".replyEditModal").modal("show");
+		}
 
 		$("#btn_replyupdate").on("click", function (e) {
 		    e.preventDefault();
-		    var $form = $(this).closest('form[name="replyupdate"]');
+		    var $modal = $(".replyEditModal");
 		    $.ajax({
-		        url: "/Reply/Update",
+		        url: "/Reply/Update", 
 		        type: "POST",
 		        dataType: "JSON",
-		        data: $ {
-		        	  idx         : $("[name='idx']").val(), 
-		        	  replywriter : $("[name='replywriter']").val(), 
-		        	  reply       : $("[name='reply']").val()	        	  
-		          },
-		          }).done( function(data) {
-		            var rno = $modal.find('input[name=rno]').val();
-		            var reply = $modal.find('textarea[name=reply]').val();
-		            $("#replyList").find('.row[data-rno="' + rno + '"]').find('.replycontent').text(reply);
-		            $modal.modal('hide');
-		             }) // done end
-		             .fail(function(data, textStatus, errorThrown){
-		                 console.log("fail in get addr");
-		                 alert(data + ':' + textStatus)
-		             });    
-		   	  }); // submit end
+		        data: {
+		            rno: $modal.find(".editRno").val(),
+		            reply: $modal.find(".editReply").val()
+		        },
+		    }).done(function (data) {
+		        $("#replyList").html('');
+		        $modal.modal("hide"); // 모달 창 닫기
+		    }).fail(function (data, textStatus, errorThrown) {
+		        console.log("fail in reply update");
+		        alert(data + ':' + textStatus);
+		    });
+		});
  }); //window onload
 
 </script>
@@ -208,5 +198,3 @@
   </main>
 </body>
 </html>
-
-

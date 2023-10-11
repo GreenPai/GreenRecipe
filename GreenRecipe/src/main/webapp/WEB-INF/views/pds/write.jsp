@@ -42,7 +42,7 @@
   <main>
   
   <!-- 메뉴 목록 -->
-  <%@include file="/WEB-INF/include/pdsmenus.jsp" %>
+	<%@include file="/WEB-INF/include/mainmenu.jsp" %>
 
    <c:choose>
     <c:when test="${  map.bnum eq 0 }">    

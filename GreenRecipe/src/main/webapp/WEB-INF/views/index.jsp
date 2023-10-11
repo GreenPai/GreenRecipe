@@ -69,7 +69,7 @@
         <a href="#">공지사항</a>
         <ul class="submenu4">
           <li><a href="/Pds/List?menu_id=MENU06">공지사항</a></li>
-          <li><a href="#">이벤트</a></li>
+          <li><a href="/Pds/List?menu_id=MENU04">이벤트</a></li>
           </ul>
       </li>
     </ul>
