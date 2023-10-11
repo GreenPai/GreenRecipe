@@ -33,4 +33,9 @@ public class ReplyDaoImpl implements ReplyDao {
 		return replyList;
 	}
 
+	@Override
+	public void updateReply(ReplyVo vo) {
+		sqlSession.update("Reply.updateReply",vo);
+	}
+
 }

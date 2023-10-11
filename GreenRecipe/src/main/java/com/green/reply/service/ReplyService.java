@@ -12,6 +12,6 @@ public interface ReplyService {
 
 	List<ReplyVo> getReplyList(int idx);
 
-
+	void replyUpdate(ReplyVo vo);
 
 }

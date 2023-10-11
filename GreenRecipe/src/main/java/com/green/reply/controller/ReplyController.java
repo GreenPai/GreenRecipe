@@ -3,13 +3,9 @@ package com.green.reply.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.green.pds.service.PdsService;
-import com.green.pds.vo.PdsVo;
 import com.green.reply.service.ReplyService;
 import com.green.reply.vo.ReplyVo;
 
@@ -29,16 +25,25 @@ public class ReplyController {
 		System.out.println("reply :" + replyList);
 		return  replyList; 
 	}
-   			
+   	
+	// 댓글 추가
 	@RequestMapping("/Write")
 	@ResponseBody
 	public String write(ReplyVo vo) {
-	    System.out.println(vo);
 	    replyService.insertReply(vo);
 	    String result = "{\"result\":1}";
 	    		
 	    return result;
 	}	
-
+	
+	// 댓글 수정
+	@RequestMapping("/Update")
+	@ResponseBody
+	public String update(ReplyVo vo) {
+		replyService.replyUpdate(vo);
+	    String result = "{\"result\":1}";
+		
+	    return result;
+	}
  }
 

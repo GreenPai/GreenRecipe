@@ -14,6 +14,7 @@
 <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
 <link rel="stylesheet" href="/css/common.css" />
 
+
 <style>
    input  { height: 32px;  }
    
@@ -91,6 +92,44 @@
 	 //     alert('end')      
 	  }); // submit end
 
+	  $("#replyList").on("click", 'button("#replyedit")', function (e) {
+		    var $btn = $(this); // 수정버튼
+		    var $div = $btn.closest('.row');
+		    var $modal = $('#replyedit'); 
+		    var $content = $div.find('.replycontent'); // 댓글 내용 요소
+		    var content = $content.text().trim(); // 댓글 내용 텍스트
+		    var $textarea = $modal.find('textarea');
+		    $textarea.val(content);
+
+		    var rno = $div.data('rno');
+		    $modal.find('input[name=rno]').val(rno);
+		    $modal.modal('show');
+		});//수정버튼
+
+
+		$("#btn_replyupdate").on("click", function (e) {
+		    e.preventDefault();
+		    var $form = $(this).closest('form[name="replyupdate"]');
+		    $.ajax({
+		        url: "/Reply/Update",
+		        type: "POST",
+		        dataType: "JSON",
+		        data: $ {
+		        	  idx         : $("[name='idx']").val(), 
+		        	  replywriter : $("[name='replywriter']").val(), 
+		        	  reply       : $("[name='reply']").val()	        	  
+		          },
+		          }).done( function(data) {
+		            var rno = $modal.find('input[name=rno]').val();
+		            var reply = $modal.find('textarea[name=reply]').val();
+		            $("#replyList").find('.row[data-rno="' + rno + '"]').find('.replycontent').text(reply);
+		            $modal.modal('hide');
+		             }) // done end
+		             .fail(function(data, textStatus, errorThrown){
+		                 console.log("fail in get addr");
+		                 alert(data + ':' + textStatus)
+		             });    
+		   	  }); // submit end
  }); //window onload
 
 </script>

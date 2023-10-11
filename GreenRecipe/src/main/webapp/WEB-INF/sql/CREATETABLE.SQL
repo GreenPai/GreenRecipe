@@ -115,11 +115,7 @@ CREATE TABLE G_REPLY(
     IDX            INT               NOT NULL,
     REPLYWRITER    VARCHAR2(300)     NOT NULL,
     REPLY          VARCHAR2(4000)    NOT NULL,
-    REPLYDATE      DATE              DEFAULT  SYSDATE,
-    RNUM           NUMBER( 5, 0 )    DEFAULT  0,
-    RLVL           NUMBER( 5, 0 )    DEFAULT  0,
-    RSTEP          NUMBER( 5, 0 )    DEFAULT  0,
-    RNREF          NUMBER( 5, 0 )    DEFAULT  0,
+    REPLYDATE      DATE              DEFAULT  SYSDATE
     FOREIGN KEY(IDX) REFERENCES BOARD(IDX));
 
  INSERT  INTO  G_REPLY (

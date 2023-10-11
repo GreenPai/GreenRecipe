@@ -32,6 +32,13 @@
       SYSDATE )
    </insert>
    
+   <update id="updateReply">
+   UPDATE G_REPLY 
+      SET REPLY = #{ reply }
+    WHERE RNO = #{ idx }
+      AND IDX = #{ rno };
+   </update>
+   
 </mapper>
 
 
