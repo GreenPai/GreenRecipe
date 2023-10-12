@@ -14,4 +14,6 @@ public interface ReplyService {
 
 	void replyUpdate(ReplyVo vo);
 
+	void deleteReply(int rno);
+
 }

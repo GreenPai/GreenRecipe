@@ -32,15 +32,18 @@
 </style>
 
 <script src="https://code.jquery.com/jquery.min.js"></script>
-<script>
-   
-   $( function() {
-	   let num = 1;
-	   $('#btnAddFile').on('click', function() {		   
-		   let tag = '<input type="file" name="upfile' + num + '" class="upfile" /><br>';
-		   $('#tdfile').append( tag );
-		   num++;
-	   })
+
+<script>   
+$(function() {
+    $('.replyEditModal').css('display', 'none');
+    $('#replyList [name=btn-edit-reply-cancle]').css('display', 'none');
+
+    let num = 1;
+    $('#btnAddFile').on('click', function() {
+        let tag = '<input type="file" name="upfile' + num + '" class="upfile"><br>';
+        $('#tdfile').append(tag);
+        num++;
+    });
 	   
 	     // 폼 제출 시 AJAX를 사용하여 댓글 저장
 	  $("#replyForm").submit(function (e) {
@@ -71,19 +74,21 @@
 	  				console.log(data);
 	  				let str="";
 	  				$.each(data, function(index, element) {
-	  					str+= '<div class="col-4 replytitle"> '
-	  					    +' 작성자 : '+ element.replywriter +' 작성일자 : ' + element.replydate
-	  				        +'</div>'
-	  				        +'<div class="col-2">'
-	  				        +'<button name="btn_reply_delete" type="button" class="btn btn-outline-danger" style="float: right;">삭제</button>'
-	  				        +'<button name="btn_reply_edit" type="button" class="btn btn-outline-info btn-edit-reply" style="float: right;" '
-	  				        +'data-rno="${reply.rno}" data-reply="${reply.reply}">수정</button>'
-	  				        +'</div>'
-	  				        +'<div class="col-6 replycontent">'
-	  				        +' 내용 : '+ element.reply
-	  				        +'</div>'
+						str+= '<div class="col-4 replytitle"> '
+						    +' 작성자 : '+ element.replywriter +' 작성일자 : ' + element.replydate
+					        +'</div>'
+					        +'<div class="col-2">'
+					        +'<button name="btn_reply_delete" type="button" class="btn btn-outline-danger" style="float: right;">삭제</button>'
+					        +'<button name="btn_reply_edit" type="button" class="btn btn-outline-info btn-edit-reply" style="float: right;" '
+					        +'data-rno="${reply.rno}" data-reply="${reply.reply}">수정</button>'
+					        +'<button type="button" name="btn-edit-reply-cancle" class="btn btn-outline-warning" data-dismiss="modal" style="float: right;">취소</button>'
+					        +'</div>'
+					        +'<div class="col-6 replycontent">'
+					        +' 내용 : '+ element.reply
+					        +'</div>'
 	  				});
 	                $('#replyList').html(str);
+	  	          $('.replyEditModal').modal('hide');
 	  		  })          
 	      })
 	      .fail(function(data, textStatus, errorThrown){
@@ -102,26 +107,70 @@
 	      $('.replyEditForm [name=rno]').val(rno);
 	      $('.replyEditForm [name=reply]').val(reply);
 	      
-	      $('.replyEditModal').modal('show');
+	      $('.replyEditModal').css('display', 'block');
+	      $('#replyList [name=btn-edit-reply-cancle]').css('display', 'block');
+	  });
+	  
+	  $(document).on('click', '#replyList [name=btn-edit-reply-cancle]', function() {
+	      $('.replyEditModal').css('display', 'none');
+	      $('#replyList [name=btn-edit-reply-cancle]').css('display', 'none');
 	  });
 
+	    // 댓글 삭제
+		$(document).on('click', '.btn_reply_delete', function() {
+			    var rno = $(this).data('rno');
+			    $('#replyList [name=rno]').val(rno);
+		        $.ajax({
+		            url: '/Reply/Delete',
+		            type: 'POST',
+		            data: { rno: rno },
+		        }).done(function(result) {
+		                $("[name=idx]").val('');
+		                $("[name=replywriter], [name=reply]").val('');
+		                $("#replyList").html('');
+		
+		                console.log(result);
+		                let str = "";
+		                $.each(result, function(index, element) {
+							str+= '<div class="col-4 replytitle"> '
+							    +' 작성자 : '+ element.replywriter +' 작성일자 : ' + element.replydate
+						        +'</div>'
+						        +'<div class="col-2">'
+						        +'<button name="btn_reply_delete" type="button" class="btn btn-outline-danger" style="float: right;">삭제</button>'
+						        +'<button name="btn_reply_edit" type="button" class="btn btn-outline-info btn-edit-reply" style="float: right;" '
+						        +'data-rno="${reply.rno}" data-reply="${reply.reply}">수정</button>'
+						        +'<button type="button" name="btn-edit-reply-cancle" class="btn btn-outline-warning" data-dismiss="modal" style="float: right;">취소</button>'
+						        +'</div>'
+						        +'<div class="col-6 replycontent">'
+						        +' 내용 : '+ element.reply
+						        +'</div>'
+		               });
+		               $('#replyList').html(str);
+		           })
+		           .fail(function(data, textStatus, errorThrown) {
+		               console.log("fail in get addr");
+		               alert(data.status+':'+textStatus);
+		           })
+		})
+	  
 	  // 댓글 수정 저장
 	  $('.replyEditForm').submit(function(e) {
 	      e.preventDefault();
 	      e.stopPropagation();
-	      //alert('0');	      
+	            
 	      var idx = $('#replyForm [name=idx]').val();
 	      var rno = $('.replyEditModal [name=rno]').val();
 	      var reply = $('.replyEditModal [name=reply]').val();
+	      
 	      $.ajax({    // 댓글 수정 URL
 	          url: '/Reply/Update',
 	          type: 'POST',
 	          data: {idx: idx, rno: rno, reply: reply },
           }).done( function(result){
-        	    $("#replyForm [name=idx]").val();
-	            $("[name=replywriter]").val('');
-	            $("[name=reply]").val('');
-	            $("#replyList").html('');
+                $("[name=idx]").val('');
+                $("[name=replywriter], [name=reply]").val('');
+                $("#replyList").html('');
+                
 	            console.log(result);
 				let str="";
 				$.each(result, function(index, element) {
@@ -132,12 +181,12 @@
 				        +'<button name="btn_reply_delete" type="button" class="btn btn-outline-danger" style="float: right;">삭제</button>'
 				        +'<button name="btn_reply_edit" type="button" class="btn btn-outline-info btn-edit-reply" style="float: right;" '
 				        +'data-rno="${reply.rno}" data-reply="${reply.reply}">수정</button>'
+				        +'<button type="button" name="btn-edit-reply-cancle" class="btn btn-outline-warning" data-dismiss="modal" style="float: right;">취소</button>'
 				        +'</div>'
 				        +'<div class="col-6 replycontent">'
 				        +' 내용 : '+ element.reply
 				        +'</div>'
 				});
-	          $('.replyEditModal').modal('hide');
               $('#replyList').html(str);
 		  })          
 		      .fail(function(data, textStatus, errorThrown){
@@ -146,7 +195,7 @@
 		      }) //ajax end
 	    })// submit end
  }); //window onload
-
+ 
 </script>
 
 </head>

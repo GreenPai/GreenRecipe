@@ -39,6 +39,11 @@
       AND RNO = #{ rno }
    </update>
    
+   <delete id="deleteReply">
+     DELETE FROM G_REPLY
+     WHERE RNO = #{ rno }
+   </delete>
+   
 </mapper>
 
 
