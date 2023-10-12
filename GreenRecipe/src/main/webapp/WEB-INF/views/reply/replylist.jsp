@@ -4,44 +4,43 @@
     
 <section>				
 	<!-- 댓글목록 -->
-	<div id="replyList">
+    <div class="row" id="replyList">
 	    <c:forEach  var="reply"  items="${ replyList }">
-	        <div class="col-8 replytitle"> 
+	        <div class="col-4 replytitle"> 
 	            작성자 : ${ reply.replywriter}  작성일자 : ${ reply.replydate }
 	        </div> 
-	        <div class="col-sm-4">
+	        <div class="col-sm-2">
 	            <button name="btn_reply_delete" type="button" class="btn btn-outline-danger" style="float: right;">삭제</button>
-                <button name="btn_reply_edit" type="button" class="btn btn-outline-info"  
-                        onclick="UpdateFrom(${reply.rno}, '${reply.reply}') " style="float: right;">수정</button>
+                <button name="btn_reply_edit" type="button" class="btn btn-outline-info btn-edit-reply" style="float: right;"
+                    data-rno="${reply.rno}" data-reply="${reply.reply}">수정</button>
 	        </div>
 	        <div class="col-sm-6 replycontent"> 
 	            내용 : ${ reply.reply}
 	        </div>    
 	        
 	        <!-- 수정/삭제 -->
-			<div class="replyEditModal" role="dialog">
+			<div class="replyEditModal" tabindex="-1" role="dialog">
 			    <div class="modal-dialog">
+			      <form class="replyEditForm" method="post">
 			        <div class="modal-content">
-			            <form class="replyEditForm" method="post">
 			                <div class="modal-header">
-			                    <h4 class="modal-title">댓글 수정</h4>
+			                    <h5 class="modal-title">댓글 수정</h5>
 			                </div>
 			                <div class="modal-body">
-			                    <input type="hidden" name="rno"     value="${ vo.rno }" />
-			                    <input type="hidden" class="editRno" name="rno" value="${ vo.rno }" />
+			                    <input type="hidden" class="editRno" name="rno" value="${ reply.rno }" />
 			                    <textarea rows="3" class="editReply" name="reply" class="form-control"></textarea>
 			                </div>
 			                <div class="modal-footer">
-			                    <button name="btn_replyupdate" type="button" class="btn btn-sm btn-info">저장</button>
-			                    <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">닫기</button>
+			                    <button type='submit' class='btn btn-primary'>저장</button>
+			                    <button type='button' class='btn btn-secondary' data-dismiss='modal'>취소</button>
 			                </div>
-			            </form>
-			        </div>
+			           </div>
+			       </form>
 			    </div>
 			</div>
 	    </c:forEach>	
 	</div>
-
+	
   <form id="replyForm"  method="POST">
   <input type="hidden" name="rno"     value="${ vo.rno }" />
   <input type="hidden" name="idx"     value="${ vo.idx }" />

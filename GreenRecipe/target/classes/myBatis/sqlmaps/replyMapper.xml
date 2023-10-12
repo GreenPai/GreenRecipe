@@ -35,8 +35,8 @@
    <update id="updateReply">
    UPDATE G_REPLY 
       SET REPLY = #{ reply }
-    WHERE RNO = #{ idx }
-      AND IDX = #{ rno };
+    WHERE IDX = #{ idx }
+      AND RNO = #{ rno }
    </update>
    
 </mapper>

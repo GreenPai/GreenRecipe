@@ -71,15 +71,15 @@
 	  				console.log(data);
 	  				let str="";
 	  				$.each(data, function(index, element) {
-	  					str+= '<div class="col-8 replytitle"> '
+	  					str+= '<div class="col-4 replytitle"> '
 	  					    +' 작성자 : '+ element.replywriter +' 작성일자 : ' + element.replydate
 	  				        +'</div>'
-	  				        +'<div class="col-4">'
+	  				        +'<div class="col-2">'
 	  				        +'<button name="btn_reply_delete" type="button" class="btn btn-outline-danger" style="float: right;">삭제</button>'
-	  				        +'<button name="btn_reply_edit" type="button" class="btn btn-outline-info" '
-	  				        +'onclick="openEditModal(${reply.rno}, ${reply.reply}) " style="float: right;">수정</button>'
+	  				        +'<button name="btn_reply_edit" type="button" class="btn btn-outline-info btn-edit-reply" style="float: right;" '
+	  				        +'data-rno="${reply.rno}" data-reply="${reply.reply}">수정</button>'
 	  				        +'</div>'
-	  				        +'<div class="col-12 replycontent">'
+	  				        +'<div class="col-6 replycontent">'
 	  				        +' 내용 : '+ element.reply
 	  				        +'</div>'
 	  				});
@@ -94,32 +94,57 @@
 	  }); // submit end
 
 	  
-	  // Ajax 수정버튼
-	   function UpdateForm(rno, reply) {
-		    $(".editRno").val(rno); 
-		    $(".editReply").val(reply); 
-		    $(".replyEditModal").modal("show");
-		}
+	  // 댓글 수정 모달 표시
+	  $(document).on('click', '.btn-edit-reply', function() {
+	      var rno = $(this).data('rno');
+	      var reply = $(this).data('reply');
 
-		$("#btn_replyupdate").on("click", function (e) {
-		    e.preventDefault();
-		    var $modal = $(".replyEditModal");
-		    $.ajax({
-		        url: "/Reply/Update", 
-		        type: "POST",
-		        dataType: "JSON",
-		        data: {
-		            rno: $modal.find(".editRno").val(),
-		            reply: $modal.find(".editReply").val()
-		        },
-		    }).done(function (data) {
-		        $("#replyList").html('');
-		        $modal.modal("hide"); // 모달 창 닫기
-		    }).fail(function (data, textStatus, errorThrown) {
-		        console.log("fail in reply update");
-		        alert(data + ':' + textStatus);
-		    });
-		});
+	      $('.replyEditForm [name=rno]').val(rno);
+	      $('.replyEditForm [name=reply]').val(reply);
+	      
+	      $('.replyEditModal').modal('show');
+	  });
+
+	  // 댓글 수정 저장
+	  $('.replyEditForm').submit(function(e) {
+	      e.preventDefault();
+	      e.stopPropagation();
+	      //alert('0');	      
+	      var idx = $('#replyForm [name=idx]').val();
+	      var rno = $('.replyEditModal [name=rno]').val();
+	      var reply = $('.replyEditModal [name=reply]').val();
+	      $.ajax({    // 댓글 수정 URL
+	          url: '/Reply/Update',
+	          type: 'POST',
+	          data: {idx: idx, rno: rno, reply: reply },
+          }).done( function(result){
+        	    $("#replyForm [name=idx]").val();
+	            $("[name=replywriter]").val('');
+	            $("[name=reply]").val('');
+	            $("#replyList").html('');
+	            console.log(result);
+				let str="";
+				$.each(result, function(index, element) {
+					str+= '<div class="col-4 replytitle"> '
+					    +' 작성자 : '+ element.replywriter +' 작성일자 : ' + element.replydate
+				        +'</div>'
+				        +'<div class="col-2">'
+				        +'<button name="btn_reply_delete" type="button" class="btn btn-outline-danger" style="float: right;">삭제</button>'
+				        +'<button name="btn_reply_edit" type="button" class="btn btn-outline-info btn-edit-reply" style="float: right;" '
+				        +'data-rno="${reply.rno}" data-reply="${reply.reply}">수정</button>'
+				        +'</div>'
+				        +'<div class="col-6 replycontent">'
+				        +' 내용 : '+ element.reply
+				        +'</div>'
+				});
+	          $('.replyEditModal').modal('hide');
+              $('#replyList').html(str);
+		  })          
+		      .fail(function(data, textStatus, errorThrown){
+	              console.log("fail in get addr");
+	              alert(data + ':' + textStatus);
+		      }) //ajax end
+	    })// submit end
  }); //window onload
 
 </script>

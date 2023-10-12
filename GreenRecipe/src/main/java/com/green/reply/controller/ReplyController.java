@@ -42,6 +42,7 @@ public class ReplyController {
 	public String update(ReplyVo vo) {
 		replyService.replyUpdate(vo);
 	    String result = "{\"result\":1}";
+		System.out.println("reply :" + vo);
 		
 	    return result;
 	}
