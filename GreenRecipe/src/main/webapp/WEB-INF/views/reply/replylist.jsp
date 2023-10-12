@@ -9,7 +9,7 @@
 	        <div class="col-4 replytitle"> 
 	            작성자 : ${ reply.replywriter}  작성일자 : ${ reply.replydate }
 	        </div> 
-	        <div class="col-sm-2">
+	        <div class="col-sm-2 replybody">
 	            <button name="btn_reply_delete" type="button" class="btn btn-outline-danger" data-rno="${reply.rno}" style="float: right;">삭제</button>
                 <button name="btn_reply_edit" type="button" class="btn btn-outline-info btn-edit-reply" style="float: right;"
                     data-rno="${reply.rno}" data-reply="${reply.reply}">수정</button>
@@ -19,7 +19,7 @@
 	            내용 : ${ reply.reply}
 	        </div>    
 	        
-	        <!-- 수정/삭제 -->
+	        <!-- 댓글 수정 -->
 			<div class="replyEditModal" tabindex="-1" role="dialog">
 			    <div class="modal-dialog">
 			      <form class="replyEditForm" method="post">

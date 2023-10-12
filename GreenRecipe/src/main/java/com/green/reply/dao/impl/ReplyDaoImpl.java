@@ -38,4 +38,10 @@ public class ReplyDaoImpl implements ReplyDao {
 		sqlSession.update("Reply.updateReply",vo);
 	}
 
+	@Override
+	public void deleteReply(ReplyVo vo) {
+		sqlSession.delete("Reply.deleteReply",vo);
+		
+	}
+
 }

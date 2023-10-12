@@ -34,16 +34,16 @@
 <script src="https://code.jquery.com/jquery.min.js"></script>
 
 <script>   
-$(function() {
-    $('.replyEditModal').css('display', 'none');
-    $('#replyList [name=btn-edit-reply-cancle]').css('display', 'none');
-
-    let num = 1;
-    $('#btnAddFile').on('click', function() {
-        let tag = '<input type="file" name="upfile' + num + '" class="upfile"><br>';
-        $('#tdfile').append(tag);
-        num++;
-    });
+	$(function() {
+	    $('.replyEditModal').css('display', 'none');
+	    $('#replyList [name=btn-edit-reply-cancle]').css('display', 'none');
+	
+	    let num = 1;
+	    $('#btnAddFile').on('click', function() {
+	        let tag = '<input type="file" name="upfile' + num + '" class="upfile"><br>';
+	        $('#tdfile').append(tag);
+	        num++;
+	    });
 	   
 	     // 폼 제출 시 AJAX를 사용하여 댓글 저장
 	  $("#replyForm").submit(function (e) {
@@ -88,14 +88,12 @@ $(function() {
 					        +'</div>'
 	  				});
 	                $('#replyList').html(str);
-	  	          $('.replyEditModal').modal('hide');
 	  		  })          
 	      })
 	      .fail(function(data, textStatus, errorThrown){
               console.log("fail in get addr");
               alert(data + ':' + textStatus)
-          });
-	 //     alert('end')      
+          }); //     alert('end')    
 	  }); // submit end
 
 	  
@@ -117,41 +115,49 @@ $(function() {
 	  });
 
 	    // 댓글 삭제
-		$(document).on('click', '.btn_reply_delete', function() {
-			    var rno = $(this).data('rno');
-			    $('#replyList [name=rno]').val(rno);
+		$(document).on('click', '[name=btn_reply_delete]', function() {
+			    $('#replybody [name=rno]').val(rno);
 		        $.ajax({
 		            url: '/Reply/Delete',
 		            type: 'POST',
-		            data: { rno: rno },
-		        }).done(function(result) {
-		                $("[name=idx]").val('');
-		                $("[name=replywriter], [name=reply]").val('');
-		                $("#replyList").html('');
-		
-		                console.log(result);
-		                let str = "";
-		                $.each(result, function(index, element) {
-							str+= '<div class="col-4 replytitle"> '
-							    +' 작성자 : '+ element.replywriter +' 작성일자 : ' + element.replydate
-						        +'</div>'
-						        +'<div class="col-2">'
-						        +'<button name="btn_reply_delete" type="button" class="btn btn-outline-danger" style="float: right;">삭제</button>'
-						        +'<button name="btn_reply_edit" type="button" class="btn btn-outline-info btn-edit-reply" style="float: right;" '
-						        +'data-rno="${reply.rno}" data-reply="${reply.reply}">수정</button>'
-						        +'<button type="button" name="btn-edit-reply-cancle" class="btn btn-outline-warning" data-dismiss="modal" style="float: right;">취소</button>'
-						        +'</div>'
-						        +'<div class="col-6 replycontent">'
-						        +' 내용 : '+ element.reply
-						        +'</div>'
-		               });
-		               $('#replyList').html(str);
-		           })
-		           .fail(function(data, textStatus, errorThrown) {
-		               console.log("fail in get addr");
-		               alert(data.status+':'+textStatus);
-		           })
-		})
+		            data : { rno : $("[name='rno']").val() },
+			      }).done( function (result) {
+				      //    alert('1');
+				          // 저장 후 목록을 업데이트하는 함수
+				          console.log(result);
+				          $("[name='replywriter']").val('');
+				          $("[name='reply']").val('');
+				          $("#replyList").html('');
+				          
+				          $.ajax({
+				  			url : "/Reply/ReplyList"
+				  			,data : { idx : $("[name='idx']").val()  }
+				  			,type: "POST"
+				          }).done( function(data){
+				  				console.log(data);
+				  				let str="";
+				  				$.each(data, function(index, element) {
+									str+= '<div class="col-4 replytitle"> '
+									    +' 작성자 : '+ element.replywriter +' 작성일자 : ' + element.replydate
+								        +'</div>'
+								        +'<div class="col-2">'
+								        +'<button name="btn_reply_delete" type="button" class="btn btn-outline-danger" style="float: right;">삭제</button>'
+								        +'<button name="btn_reply_edit" type="button" class="btn btn-outline-info btn-edit-reply" style="float: right;" '
+								        +'data-rno="${reply.rno}" data-reply="${reply.reply}">수정</button>'
+								        +'<button type="button" name="btn-edit-reply-cancle" class="btn btn-outline-warning" data-dismiss="modal" style="float: right;">취소</button>'
+								        +'</div>'
+								        +'<div class="col-6 replycontent">'
+								        +' 내용 : '+ element.reply
+								        +'</div>'
+				  				});
+				                $('#replyList').html(str);
+				  		  })          
+				      })
+				      .fail(function(data, textStatus, errorThrown){
+			              console.log("fail in get addr");
+			              alert(data + ':' + textStatus)
+			          }); //     alert('end')    
+				  }); // submit end
 	  
 	  // 댓글 수정 저장
 	  $('.replyEditForm').submit(function(e) {
@@ -166,34 +172,43 @@ $(function() {
 	          url: '/Reply/Update',
 	          type: 'POST',
 	          data: {idx: idx, rno: rno, reply: reply },
-          }).done( function(result){
-                $("[name=idx]").val('');
-                $("[name=replywriter], [name=reply]").val('');
-                $("#replyList").html('');
-                
-	            console.log(result);
-				let str="";
-				$.each(result, function(index, element) {
-					str+= '<div class="col-4 replytitle"> '
-					    +' 작성자 : '+ element.replywriter +' 작성일자 : ' + element.replydate
-				        +'</div>'
-				        +'<div class="col-2">'
-				        +'<button name="btn_reply_delete" type="button" class="btn btn-outline-danger" style="float: right;">삭제</button>'
-				        +'<button name="btn_reply_edit" type="button" class="btn btn-outline-info btn-edit-reply" style="float: right;" '
-				        +'data-rno="${reply.rno}" data-reply="${reply.reply}">수정</button>'
-				        +'<button type="button" name="btn-edit-reply-cancle" class="btn btn-outline-warning" data-dismiss="modal" style="float: right;">취소</button>'
-				        +'</div>'
-				        +'<div class="col-6 replycontent">'
-				        +' 내용 : '+ element.reply
-				        +'</div>'
-				});
-              $('#replyList').html(str);
-		  })          
+	      }).done( function (result) {
+		      //    alert('1');
+		          // 저장 후 목록을 업데이트하는 함수
+		          console.log(result);
+		          $("[name='replywriter']").val('');
+		          $("[name='reply']").val('');
+		          $("#replyList").html('');
+		          
+		          $.ajax({
+		  			url : "/Reply/ReplyList"
+		  			,data : { idx : $("[name='idx']").val()  }
+		  			,type: "POST"
+		          }).done( function(data){
+		  				console.log(data);
+		  				let str="";
+		  				$.each(data, function(index, element) {
+							str+= '<div class="col-4 replytitle"> '
+							    +' 작성자 : '+ element.replywriter +' 작성일자 : ' + element.replydate
+						        +'</div>'
+						        +'<div class="col-2">'
+						        +'<button name="btn_reply_delete" type="button" class="btn btn-outline-danger" style="float: right;">삭제</button>'
+						        +'<button name="btn_reply_edit" type="button" class="btn btn-outline-info btn-edit-reply" style="float: right;" '
+						        +'data-rno="${reply.rno}" data-reply="${reply.reply}">수정</button>'
+						        +'<button type="button" name="btn-edit-reply-cancle" class="btn btn-outline-warning" data-dismiss="modal" style="float: right;">취소</button>'
+						        +'</div>'
+						        +'<div class="col-6 replycontent">'
+						        +' 내용 : '+ element.reply
+						        +'</div>'
+		  				});
+		                $('#replyList').html(str);
+		  		  })          
+		      })
 		      .fail(function(data, textStatus, errorThrown){
 	              console.log("fail in get addr");
-	              alert(data + ':' + textStatus);
-		      }) //ajax end
-	    })// submit end
+	              alert(data + ':' + textStatus)
+	          }); //     alert('end')    
+		  }); // submit end
  }); //window onload
  
 </script>

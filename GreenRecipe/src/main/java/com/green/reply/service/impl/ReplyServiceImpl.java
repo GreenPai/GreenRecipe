@@ -40,8 +40,8 @@ public class ReplyServiceImpl implements ReplyService {
 	}
 
 	@Override
-	public void deleteReply(int rno) {
-		replyDao.deleteReply(rno);
+	public void deleteReply(ReplyVo vo) {
+		replyDao.deleteReply(vo);
 		
 	}
     

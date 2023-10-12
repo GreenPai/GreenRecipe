@@ -42,9 +42,18 @@ public class ReplyController {
 	public String update(ReplyVo vo) {
 		replyService.replyUpdate(vo);
 	    String result = "{\"result\":1}";
-		System.out.println("reply :" + vo);
 		
 	    return result;
+	}
+	
+	// 댓글 삭제
+	@RequestMapping("/Delete")
+	@ResponseBody
+	public String delete(ReplyVo vo) {
+		replyService.deleteReply(vo);
+		String result = "{\"result\":1}";
+		
+		return result;
 	}
  }
 
