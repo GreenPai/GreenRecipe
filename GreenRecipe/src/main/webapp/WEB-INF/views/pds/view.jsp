@@ -13,21 +13,27 @@
 
 <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
 <link rel="stylesheet" href="/css/common.css" />
+<link rel="stylesheet" href="/css/replyform.css" />
 
 
 <style>
-   input  { height: 32px;  }
+   #table  td:first-child   { width : 15%;  }  
+   #table  td:nth-child(2)  { width : 35%;  }  
+   #table  td:nth-child(3)  { width : 15%;  }  
+   #table  td:last-child    { width : 35%;  }  
    
-   #table  th                      {  width  : 15%;  }  
-   #table  td                      {  width  : 35%;  }  
-   #table  tr:nth-of-type(3)  td   {  text-align: right; }  
-   #table  tr:nth-of-type(5)       {  height : 300px;  vertical-align: top; }  
-   #table  tr:nth-of-type(6)       {  height : 200px;  vertical-align: top; }  
-   #table  tr:nth-of-type(7)  td   {  text-align: center;  }  
-     
-   #replyList    { margin :  20px 0px;  }
-   .replytitle   { border :  1px solid black; padding: 5px; border-collapse: collapse; }   
-   .replycontent { border :  1px solid black; padding: 5px; border-collapse: collapse;  height:100px;}   
+   #table  tr:nth-child(4)  { height : 400px; 
+       vertical-align: top;
+   }
+       
+   #table  td:last-child    { text-align: center;  }
+   
+   span { display:inline-block; width:15px;  }
+   
+   /* class="btn btn-primary btn-sm" */
+   .btn:hover                    { background : lightgreen;  }   
+   .btn-primary:hover            { background : lightgreen;  }   
+   .btn.btn-primary.btn-sm:hover { background : lightgreen;  }    
      
 </style>
 
@@ -77,8 +83,8 @@
 						str+= '<div class="col-4 replytitle"> '
 						    +' 작성자 : '+ element.replywriter +' 작성일자 : ' + element.replydate
 					        +'</div>'
-					        +'<div class="col-2">'
-					        +'<button name="btn_reply_delete" type="button" class="btn btn-outline-danger" style="float: right;">삭제</button>'
+					        +'<div class="col-sm-2 replybody">'
+					        +'<button name="btn_reply_delete" type="button" class="btn btn-outline-danger" data-rno="${reply.rno}" style="float: right;">삭제</button>'
 					        +'<button name="btn_reply_edit" type="button" class="btn btn-outline-info btn-edit-reply" style="float: right;" '
 					        +'data-rno="${reply.rno}" data-reply="${reply.reply}">수정</button>'
 					        +'<button type="button" name="btn-edit-reply-cancle" class="btn btn-outline-warning" data-dismiss="modal" style="float: right;">취소</button>'
@@ -93,30 +99,13 @@
 	      .fail(function(data, textStatus, errorThrown){
               console.log("fail in get addr");
               alert(data + ':' + textStatus)
-          }); //     alert('end')    
+          });      alert('end')    
 	  }); // submit end
-
-	  
-	  // 댓글 수정 모달 표시
-	  $(document).on('click', '.btn-edit-reply', function() {
-	      var rno = $(this).data('rno');
-	      var reply = $(this).data('reply');
-
-	      $('.replyEditForm [name=rno]').val(rno);
-	      $('.replyEditForm [name=reply]').val(reply);
-	      
-	      $('.replyEditModal').css('display', 'block');
-	      $('#replyList [name=btn-edit-reply-cancle]').css('display', 'block');
-	  });
-	  
-	  $(document).on('click', '#replyList [name=btn-edit-reply-cancle]', function() {
-	      $('.replyEditModal').css('display', 'none');
-	      $('#replyList [name=btn-edit-reply-cancle]').css('display', 'none');
-	  });
 
 	    // 댓글 삭제
 		$(document).on('click', '[name=btn_reply_delete]', function() {
-			    $('#replybody [name=rno]').val(rno);
+			    var rno = $('#replyList [name=rno]').val();
+		    			    
 		        $.ajax({
 		            url: '/Reply/Delete',
 		            type: 'POST',
@@ -140,8 +129,8 @@
 									str+= '<div class="col-4 replytitle"> '
 									    +' 작성자 : '+ element.replywriter +' 작성일자 : ' + element.replydate
 								        +'</div>'
-								        +'<div class="col-2">'
-								        +'<button name="btn_reply_delete" type="button" class="btn btn-outline-danger" style="float: right;">삭제</button>'
+								        +'<div class="col-sm-2 replybody">'
+								        +'<button name="btn_reply_delete" type="button" class="btn btn-outline-danger" data-rno="${reply.rno}" style="float: right;">삭제</button>'
 								        +'<button name="btn_reply_edit" type="button" class="btn btn-outline-info btn-edit-reply" style="float: right;" '
 								        +'data-rno="${reply.rno}" data-reply="${reply.reply}">수정</button>'
 								        +'<button type="button" name="btn-edit-reply-cancle" class="btn btn-outline-warning" data-dismiss="modal" style="float: right;">취소</button>'
@@ -158,6 +147,25 @@
 			              alert(data + ':' + textStatus)
 			          }); //     alert('end')    
 				  }); // submit end
+	  
+	  // 댓글 수정 모달 표시
+	  $(document).on('click', '.btn-edit-reply', function() {
+	      var rno = $(this).data('rno');
+	      var reply = $(this).data('reply');
+
+	      $('.replyEditForm [name=rno]').val(rno);
+	      $('.replyEditForm [name=reply]').val(reply);
+	      
+	      $('.replyEditModal').css('display', 'block');
+	      $('#replyList [name=btn-edit-reply-cancle]').css('display', 'block');
+	      $('#replyList [name=btn_reply_edit]').css('display', 'none');
+	  });
+	  
+	  $(document).on('click', '#replyList [name=btn-edit-reply-cancle]', function() {
+	      $('.replyEditModal').css('display', 'none');
+	      $('#replyList [name=btn-edit-reply-cancle]').css('display', 'none');
+	      $('#replyList [name=btn_reply_edit]').css('display', 'block');
+	  });
 	  
 	  // 댓글 수정 저장
 	  $('.replyEditForm').submit(function(e) {
@@ -191,8 +199,8 @@
 							str+= '<div class="col-4 replytitle"> '
 							    +' 작성자 : '+ element.replywriter +' 작성일자 : ' + element.replydate
 						        +'</div>'
-						        +'<div class="col-2">'
-						        +'<button name="btn_reply_delete" type="button" class="btn btn-outline-danger" style="float: right;">삭제</button>'
+						        +'<div class="col-sm-2 replybody">'
+						        +'<button name="btn_reply_delete" type="button" class="btn btn-outline-danger" data-rno="${reply.rno}" style="float: right;">삭제</button>'
 						        +'<button name="btn_reply_edit" type="button" class="btn btn-outline-info btn-edit-reply" style="float: right;" '
 						        +'data-rno="${reply.rno}" data-reply="${reply.reply}">수정</button>'
 						        +'<button type="button" name="btn-edit-reply-cancle" class="btn btn-outline-warning" data-dismiss="modal" style="float: right;">취소</button>'
@@ -220,66 +228,63 @@
     <!-- 메뉴 목록 -->
 	<%@include file="/WEB-INF/include/mainmenu.jsp" %>
   
-  <table id="table">
-   <caption>
-     <h2>${ menuname } 자료실 내용 보기</h2>
-   </caption>
+  <table id="table">   
+   <tr>
+     <td class="center">글번호</td>
+     <td class="center">${ vo.idx  }</td>
+     <td class="center">조회수</td>
+     <td class="center">${ vo.readcount  }</td>
+   </tr> 
+   <tr>
+     <td class="center">작성자</td>
+     <td class="center">${ vo.writer }</td>
+     <td class="center">작성일</td>
+     <td class="center">${ vo.regdate }</td>
+   </tr> 
+   <tr>
+     <td class="center">제목</td>
+     <td colspan="3" style="text-align:left">${ vo.title     }</td>    
+   </tr> 
+   <tr>
+     <td class="center">내용</td>
+     <td colspan="3" style="text-align:left">${ vo.cont }</td>
+   </tr>
+      
+   <tr>
+     <td class="center">첨부파일</td>
+     <td colspan="3" style="text-align:left;padding:30px 10px; ">
+   	    <c:forEach var="file"  items="${ fileList }" >
+   	       <div>
+
+   	         <a href="/Pds/download/external/${ file.sfilename }">
+   	           ${ file.filename }
+   	         </a>   	       
+   	       </div>
+   	    </c:forEach>  
+     </td>
    
-   <tr>
-   	<th>글번호</th>
-   	<td>${ map.idx }</td>
-   	<th>조회수</th>
-   	<td>${ map.readcount }</td>
-   </tr>
-   <tr>
-   	<th>작성자</th>
-   	<td>${ map.writer }</td>
-   	<th>작성일</th>
-   	<td>${ map.regdate }</td>
-   </tr>
-      <tr>
+   </tr>   
+   <tr>     
      <td colspan="4">
      <a class="btn btn-primary btn-sm"
         href="/Pds/WriteForm?menu_id=${vo.menu_id}&bnum=0&lvl=0&step=0&nref=0&nowpage=1">새글쓰기</a><span></span>
      <a class="btn btn-primary btn-sm"
         href="/Pds/WriteForm?menu_id=${vo.menu_id}&idx=${vo.idx}&bnum=${vo.bnum}&lvl=${vo.lvl}&step=${vo.step}&nref=${vo.nref}&nowpage=${map.nowpage}">답글쓰기</a><span></span>
+ 
+     <%--<c:if test="${ login.username == vo.writer }">  
      <a class="btn btn-primary btn-sm"
         href="/Pds/UpdateForm?menu_id=${vo.menu_id}&idx=${vo.idx}&nowpage=${map.nowpage}">수정</a><span></span>
      <a class="btn btn-primary btn-sm"
         href="/Pds/Delete?menu_id=${vo.menu_id}&idx=${ vo.idx }&nowpage=${map.nowpage}">삭제</a><span></span>
      <a class="btn btn-primary btn-sm"
         href="/Pds/List?menu_id=${vo.menu_id}&nowpage=${map.nowpage}">목록으로</a><span></span>
+     </c:if>
      <a class="btn btn-primary btn-sm"
         href="javascript:history.back()">이전으로</a><span></span>
      <a class="btn btn-primary btn-sm"
-        href="/">Home</a>
-    </td>
-   </tr>
-   <tr>
-    <th>제목</th>
-    <td colspan="3">
-       ${ vo.title }
-    </td>
-   </tr>   
-   <tr>
-    <th>내용</th>
-    <td colspan="3">
-       ${ vo.cont }
-    </td>
-   </tr>  
-   <tr>
-    <th>파일</th>
-    <td id="tdfile" colspan="3">
-      
-      <c:forEach var="file" items="${ fileList }">
-        <div>
-          <a href="/Pds/download/external/${ file.sfilename }">
-            ${ file.filename } 
-          </a>        
-        </div>
-      </c:forEach>   
-    </td>
-   </tr>           
+        href="/">Home</a> --%>
+     </td>
+   </tr> 
   </table>
   
   <%@include file="/WEB-INF/views/reply/replylist.jsp" %>
