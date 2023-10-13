@@ -44,19 +44,13 @@
   <form id="replyForm"  method="POST">
   <input type="hidden" name="rno"     value="${ vo.rno }" />
   <input type="hidden" name="idx"     value="${ vo.idx }" />
-  <table id="table">
+  <table id="replytable">
    <tr>
-    <th>작성자</th>
-    <td><input type="text" name="replywriter" /></td>
+    <th style="width: 5%; height: 20px;">작성자</th>
+    <td><input type="text" name="replywriter" style="float: left; height:25px; width: 50%"/><input type="submit"  value="등록" style="float: right;" /></td>
    </tr>
    <tr>
-    <th>내용</th>
-    <td><textarea name="reply"></textarea></td>
-   </tr>  
-   <tr>
-    <td colspan="2">
-      <input type="submit"  value="등록" />
-    </td>
+    <td colspan="2"><textarea name="reply"></textarea></td>
    </tr> 
   </table>
   </form>   

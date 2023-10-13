@@ -14,7 +14,7 @@ table , th, td {
 }
 
 main   { width: 80%; margin : 0 auto 50px auto; }
-table  { width : 100%; }
+table  { width : 100%; margin-top:20px;}
 td,th  { padding :10px; }
 
 h2 {  margin : 20px 10px;  }

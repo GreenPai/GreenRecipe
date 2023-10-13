@@ -12,29 +12,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
-<link rel="stylesheet" href="/css/common.css" />
 <link rel="stylesheet" href="/css/replyform.css" />
 
 
 <style>
-   #table  td:first-child   { width : 15%;  }  
-   #table  td:nth-child(2)  { width : 35%;  }  
-   #table  td:nth-child(3)  { width : 15%;  }  
-   #table  td:last-child    { width : 35%;  }  
-   
-   #table  tr:nth-child(4)  { height : 400px; 
-       vertical-align: top;
-   }
-       
-   #table  td:last-child    { text-align: center;  }
-   
-   span { display:inline-block; width:15px;  }
-   
-   /* class="btn btn-primary btn-sm" */
-   .btn:hover                    { background : lightgreen;  }   
-   .btn-primary:hover            { background : lightgreen;  }   
-   .btn.btn-primary.btn-sm:hover { background : lightgreen;  }    
-     
 </style>
 
 <script src="https://code.jquery.com/jquery.min.js"></script>
@@ -55,7 +36,6 @@
 	  $("#replyForm").submit(function (e) {
 	      e.preventDefault(); // 폼의 기본 동작 방지
 	      e.stopPropagation();	     
-	    //  alert('0');
 	      $.ajax({
 	          url: "/Reply/Write", // 댓글 저장 URL
 	          type: "POST",	         
@@ -65,7 +45,6 @@
 	        	  reply       : $("[name='reply']").val()	        	  
 	          }
 	      }).done( function (result) {
-	      //    alert('1');
 	          // 저장 후 목록을 업데이트하는 함수
 	          console.log(result);
 	          $("[name='replywriter']").val('');
@@ -97,9 +76,9 @@
 	  		  })          
 	      })
 	      .fail(function(data, textStatus, errorThrown){
-              console.log("fail in get addr");
+              console.log("입력해 주세요.");
               alert(data + ':' + textStatus)
-          });      alert('end')    
+          });    
 	  }); // submit end
 
 	    // 댓글 삭제
@@ -228,44 +207,33 @@
     <!-- 메뉴 목록 -->
 	<%@include file="/WEB-INF/include/mainmenu.jsp" %>
   
-  <table id="table">   
+  <table id="tablereply">   
    <tr>
-     <td class="center">글번호</td>
-     <td class="center">${ vo.idx  }</td>
-     <td class="center">조회수</td>
-     <td class="center">${ vo.readcount  }</td>
+     <td class="titlereply" colspan="4" />${ vo.title }</td>    
+   </tr> 
+   <tr class="subcontentdata">
+     <td class="writerreply">${ vo.writer }</td>
+     <td></td>
+     <td class="subreply">조회수 : ${ vo.readcount  }   작성일 : ${ vo.regdate }</td>
    </tr> 
    <tr>
-     <td class="center">작성자</td>
-     <td class="center">${ vo.writer }</td>
-     <td class="center">작성일</td>
-     <td class="center">${ vo.regdate }</td>
-   </tr> 
-   <tr>
-     <td class="center">제목</td>
-     <td colspan="3" style="text-align:left">${ vo.title     }</td>    
-   </tr> 
-   <tr>
-     <td class="center">내용</td>
-     <td colspan="3" style="text-align:left">${ vo.cont }</td>
+     <td class="contreply" colspan="4" >${ vo.cont }</td>
    </tr>
       
    <tr>
-     <td class="center">첨부파일</td>
-     <td colspan="3" style="text-align:left;padding:30px 10px; ">
+     <td class="fileplus">첨부파일</td>
+     <td class="filelist" colspan="3">
    	    <c:forEach var="file"  items="${ fileList }" >
    	       <div>
-
    	         <a href="/Pds/download/external/${ file.sfilename }">
    	           ${ file.filename }
    	         </a>   	       
    	       </div>
    	    </c:forEach>  
-     </td>
-   
+     </td>  
    </tr>   
    <tr>     
-     <td colspan="4">
+     <td colspan="4" class="buttons">
      <a class="btn btn-primary btn-sm"
         href="/Pds/WriteForm?menu_id=${vo.menu_id}&bnum=0&lvl=0&step=0&nref=0&nowpage=1">새글쓰기</a><span></span>
      <a class="btn btn-primary btn-sm"
