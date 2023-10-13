@@ -14,6 +14,19 @@
 
 <style>
 
+.submenu1 > li {
+  line-height: 50px;
+  background-color: #CBEE99;
+}
+.menu > li:hover .submenu1 {
+  height: 300px;
+  transition-duration: 1s;
+}
+
+.submenu1 > li:nth-child(6) {
+  height: 50px;
+  background-color: #CBEE99;
+}
 
 </style>
 
@@ -32,7 +45,7 @@
         
         <div class="header_login">
            <ul>
-              <li><a href="/User/List">로그인</a></li>
+              <li><a href="/User/Login">로그인</a></li>
               <li><a href="/User/Agree">회원가입</a></li>
            </ul>
         </div>

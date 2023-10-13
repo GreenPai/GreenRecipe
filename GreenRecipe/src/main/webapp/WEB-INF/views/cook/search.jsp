@@ -43,12 +43,12 @@ body {
     }
     
 
+
 </style>
 
 </head>
 <body>
-      
-         
+            
     <header class="header" style="display: flex;">
     
         <div class="header_title">      
@@ -115,7 +115,7 @@ body {
  
       <br><br><br><br><br>
     
-    <h1 class="text-center" style="color: #AE9175;">한식 레시피</h1>
+    <h1 class="text-center" style="color: #AE9175;">검색 레시피</h1>
     <br>
     
     <div class="container w-100">

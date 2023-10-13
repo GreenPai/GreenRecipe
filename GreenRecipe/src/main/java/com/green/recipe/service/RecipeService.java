@@ -14,6 +14,10 @@ public interface RecipeService {
 	
 	List<RecipeVo> getRecipeByHashTag(String hashTag);
 
+	List<RecipeVo> getRecipeByTitle(String recipeTitle);
+
+	List<RecipeVo> getRecipeByquery(String query);
+
 }
 
 

@@ -18,7 +18,6 @@
 
 <style>
 
-
 body { 
     background-color: #D6F3ED; 
 }
@@ -48,7 +47,6 @@ body {
 </head>
 <body>
       
-         
     <header class="header" style="display: flex;">
     
         <div class="header_title">      
@@ -115,25 +113,54 @@ body {
  
       <br><br><br><br><br>
     
-    <h1 class="text-center" style="color: #AE9175;">한식 레시피</h1>
     <br>
     
-    <div class="container w-100">
+   
+	<div class="container mt-5 rounded-container">
     <div class="row">
-        <c:forEach items="${recipeList}" var="recipe">
-            <div class="col-md-3 mb-4">
-                <div class="card h-100" >
-                    <a href="/Cook/Select?title=${recipe.RCP_NM}">
-                    <img src="${recipe.ATT_FILE_NO_MAIN}" class="card-img-top" alt="${recipe.RCP_NM}" style="width: 253px; height: 200px;">
-                    </a>
-                    <div class="card-body">
-                        <h5 class="card-title">${recipe.RCP_NM}</h5>
-                    </div>
-                </div>
+        <div class="col-md-6">
+            <img src="${recipeList[0].ATT_FILE_NO_MAIN}" class="img-fluid border-image" alt="${recipeList[0].RCP_NM}">
+        </div>
+        <div class="col-md-6" style="background-color: white;"> 
+            <div style="margin-bottom: 20px;">
+                <h1>${recipeList[0].RCP_NM} 레시피</h1>
             </div>
-        </c:forEach>
+            <div style="background-color: #f2f2f2; padding: 10px; border: 2px solid #E7E7E7; border-radius: 10px; margin-bottom: 20px;">
+                <h4>재료</h4>
+                <ul class="list-group">
+                    <c:forEach items="${recipeList[0].RCP_PARTS_DTLS.split('●')}" var="ingredient">
+                        <li class="list-group-item">${ingredient}</li>
+                    </c:forEach>
+                </ul>
+            </div>
+            <div style="background-color: #f2f2f2; padding: 10px; border: 2px solid #E7E7E7; border-radius: 10px; margin-bottom: 20px;">
+                <h4>영양 정보</h4>
+                <ul class="list-group">
+                <p class="list-group-item">칼로리: ${recipeList[0].INFO_CAR}</p>
+                <p class="list-group-item">지방: ${recipeList[0].INFO_FAT}</p>
+                <p class="list-group-item">나트륨: ${recipeList[0].INFO_NA}</p>
+                <p class="list-group-item">단백질: ${recipeList[0].INFO_PRO}</p>              
+                </ul>
+            </div>
+            <div style="background-color: #f2f2f2; padding: 10px; border: 2px solid #E7E7E7; border-radius: 10px;">
+                <h4>요리 팁</h4>
+                <ul class="list-group">
+                <p class="list-group-item"> ${recipeList[0].RCP_NA_TIP} </p>
+                </ul>
+            </div>
+        </div>
     </div>
 </div>
+
+
+
+ 
+
+
+
+
+
+
 
 
     

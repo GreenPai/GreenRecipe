@@ -41,6 +41,18 @@ public class RecipeDaoImpl implements RecipeDao {
 		    return recipeList;
 	}
 
+	@Override
+	public List<RecipeVo> getRecipeByTitle(String recipeTitle) {
+		List<RecipeVo> recipeList = sqlSession.selectList("Cook.RecipeTitle", recipeTitle);
+		return recipeList;
+	}
+
+	@Override
+	public List<RecipeVo> getRecipeByquery(String query) {
+		List<RecipeVo> recipeList = sqlSession.selectList("Cook.RecipeQuery", query);
+		return recipeList;
+	}
+
 
 }
 

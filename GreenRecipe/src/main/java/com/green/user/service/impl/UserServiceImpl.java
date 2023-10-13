@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.green.recipe.vo.RecipeVo;
 import com.green.user.dao.UserDao;
 import com.green.user.service.UserService;
 import com.green.user.vo.UserVo;
@@ -47,7 +48,6 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public int dupCheck(UserVo vo) {
-		// TODO Auto-generated method stub
 		int cnt = userDao.dupCheck(vo);
 		
 		return  cnt;
@@ -57,6 +57,28 @@ public class UserServiceImpl implements UserService {
 	public void userUpdate(UserVo vo) {
 		userDao.updateUser(vo);		
 	}
+
+	@Override
+	public String loginCheck(String userid, String passwd) {
+		UserVo user = userDao.userCheck(userid);
+
+	    if (user == null) {
+	        // 사용자를 찾을 수 없음
+	        return "user_not_found";
+	    }
+
+	    if (user.getPasswd().equals(passwd)) {
+	        // 비밀번호 일치
+	        return "login_success";
+	    } else {
+	        // 비밀번호 불일치
+	        return "wrong_password";
+	    }
+	}
+
+	
+
+	
 }
 
 

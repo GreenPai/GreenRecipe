@@ -81,14 +81,81 @@
             
             
            FROM  RECIPE
-           WHERE HASH_TAG = '한식'       
+           WHERE HASH_TAG = #{hashTag}       
                    
     
             </select>
   
   
+  <select id = "RecipeTitle"
+            resultType = "com.green.recipe.vo.RecipeVo">
+            
+            select 
+            RCP_NM,
+			RCP_PARTS_DTLS,
+			ATT_FILE_NO_MAIN,
+			ATT_FILE_NO_MK,
+			HASH_TAG,
+			INFO_CAR,
+			INFO_FAT,
+			INFO_NA,
+			INFO_PRO,
+			INFO_WGT,
+			MANUAL01,
+			MANUAL_IMG01,
+			MANUAL02,
+			MANUAL_IMG02,
+			MANUAL03,
+			MANUAL_IMG03,
+			MANUAL04,
+			MANUAL_IMG04,
+			MANUAL05,
+			MANUAL_IMG05,
+			MANUAL06,
+			MANUAL_IMG06,
+			RCP_NA_TIP 
+            
+            
+           FROM  RECIPE
+           WHERE RCP_NM = #{recipeTitle}      
+                   
+    
+            </select>
   
-  
+  <select id = "RecipeQuery"
+            resultType = "com.green.recipe.vo.RecipeVo">
+            
+            select 
+            RCP_NM,
+			RCP_PARTS_DTLS,
+			ATT_FILE_NO_MAIN,
+			ATT_FILE_NO_MK,
+			HASH_TAG,
+			INFO_CAR,
+			INFO_FAT,
+			INFO_NA,
+			INFO_PRO,
+			INFO_WGT,
+			MANUAL01,
+			MANUAL_IMG01,
+			MANUAL02,
+			MANUAL_IMG02,
+			MANUAL03,
+			MANUAL_IMG03,
+			MANUAL04,
+			MANUAL_IMG04,
+			MANUAL05,
+			MANUAL_IMG05,
+			MANUAL06,
+			MANUAL_IMG06,
+			RCP_NA_TIP 
+            
+            
+           FROM  RECIPE
+           WHERE RCP_NM LIKE '%' || #{query} || '%'      
+                   
+    
+            </select>
 
  
  

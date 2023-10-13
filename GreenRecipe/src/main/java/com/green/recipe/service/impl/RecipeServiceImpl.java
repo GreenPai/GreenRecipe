@@ -45,6 +45,21 @@ public class RecipeServiceImpl implements RecipeService{
 	}
 
 
+	@Override
+	public List<RecipeVo> getRecipeByTitle(String recipeTitle) {
+		List<RecipeVo>  recipeList  =  recipeDao.getRecipeByTitle(recipeTitle);
+		return recipeList;
+	}
+
+
+
+	@Override
+	public List<RecipeVo> getRecipeByquery(String query) {
+		List<RecipeVo>  recipeList  =  recipeDao.getRecipeByquery(query);
+		return recipeList;
+	}
+
+
 
 
 

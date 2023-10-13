@@ -43,6 +43,20 @@ body {
     }
     
 
+.submenu1 > li {
+  line-height: 50px;
+  background-color: #CBEE99;
+}
+.menu > li:hover .submenu1 {
+  height: 300px;
+  transition-duration: 1s;
+}
+
+.submenu1 > li:nth-child(6) {
+  height: 50px;
+  background-color: #CBEE99;
+}
+
 </style>
 
 </head>
@@ -115,7 +129,7 @@ body {
  
       <br><br><br><br><br>
     
-    <h1 class="text-center" style="color: #AE9175;">한식 레시피</h1>
+    <h1 class="text-center" style="color: #AE9175;">양식 레시피</h1>
     <br>
     
     <div class="container w-100">

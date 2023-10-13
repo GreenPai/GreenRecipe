@@ -13,6 +13,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.green.recipe.vo.RecipeVo;
 import com.green.user.dao.UserDao;
 import com.green.user.vo.UserVo;
 
@@ -68,6 +69,20 @@ public class UserDaoImpl implements UserDao {
 		
 		return  cnt;
 	}
+
+
+	@Override
+	public UserVo userCheck(String userid) {
+		
+		UserVo user = sqlSession.selectOne("User.UserCheck", userid);
+	    return user;
+	}
+
+
+	
+
+
+	
 
 }
 
