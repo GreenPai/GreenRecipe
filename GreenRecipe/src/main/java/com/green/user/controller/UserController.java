@@ -15,6 +15,8 @@ import com.green.user.service.UserService;
 import com.green.user.vo.UserVo;
 import javax.servlet.http.HttpSession;
 
+
+
 @Controller
 public class UserController {
 	
@@ -125,7 +127,7 @@ public class UserController {
 		 // userService.loginCheck 메서드를 호출하여 로그인 검사
 	    String loginResult = userService.loginCheck(userid, passwd);
       
-	    System.out.println(loginResult);
+	    
 	    	 
 	    if ("login_success".equals(loginResult)) {
 	        // 로그인 성공 처리 
