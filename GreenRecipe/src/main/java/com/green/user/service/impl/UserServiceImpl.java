@@ -47,7 +47,6 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public int dupCheck(UserVo vo) {
-		// TODO Auto-generated method stub
 		int cnt = userDao.dupCheck(vo);
 		
 		return  cnt;

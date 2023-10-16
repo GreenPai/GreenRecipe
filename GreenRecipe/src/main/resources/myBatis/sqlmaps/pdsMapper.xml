@@ -43,7 +43,9 @@
 	    BNUM,
 	    LVL,
 	    STEP,
-	    NREF
+	    NREF,
+	    BOARDBOOMUP,
+	    BOARDBOOMDOWN
 	 FROM
         BOARD
      WHERE
@@ -58,6 +60,30 @@
           FILE_NUM,  IDX,  FILENAME,  FILEEXT,  SFILENAME
        FROM
           FILES
+       WHERE   
+          IDX   =   #{ idx }          
+        
+   </select>
+   
+   <select id="PdsGetBoom"
+           resultType="com.green.pds.vo.PdsVo">
+      
+      SELECT   
+          BOARDBOOMUP
+       FROM
+          BOARD
+       WHERE   
+          IDX   =   #{ idx }          
+        
+   </select>
+   
+   <select id="PdsGetBoom2"
+           resultType="com.green.pds.vo.PdsVo">
+      
+      SELECT   
+          BOARDBOOMDOWN
+       FROM
+          BOARD
        WHERE   
           IDX   =   #{ idx }          
         
@@ -103,6 +129,36 @@
 	    AND    NREF     =  #{ nref    }
 	    AND    STEP     >  #{ step }  
    
+   </update>
+   
+      <update id="PdsUpdate">
+      
+      UPDATE  BOARD
+       SET    TITLE  =  #{ title },
+              CONT   =  #{ cont }
+       WHERE  IDX    =  #{ idx } 	 
+   
+   </update>
+
+   
+   <update id="ReadcountUpdate">
+   
+   UPDATE  BOARD
+    SET    READCOUNT = READCOUNT + 1
+    WHERE  IDX = #{ idx }
+   
+   </update>
+   
+   <update id="BoardBoomUp">
+     UPDATE   BOARD
+        SET   BOARDBOOMUP  = BOARDBOOMUP +1
+      WHERE   IDX          = #{idx}
+   </update>
+   
+   <update id="BoardBoomDown">
+     UPDATE   BOARD
+        SET   BOARDBOOMDOWN  = BOARDBOOMDOWN +1
+      WHERE   IDX          = #{idx}
    </update>
    
    <insert id="PdsReply">
@@ -199,23 +255,6 @@
       WHERE  FILE_NUM = #{ file_num  }
    
    </delete>
-   
-   <update id="PdsUpdate">
-      
-      UPDATE  BOARD
-       SET    TITLE  =  #{ title },
-              CONT   =  #{ cont }
-       WHERE  IDX    =  #{ idx } 	 
-   
-   </update>
-
-   
-   <update id="ReadcountUpdate">
-   
-   UPDATE  BOARD
-    SET    READCOUNT = READCOUNT + 1
-    WHERE  IDX = #{ idx }
-   
-   </update>
+  
   
 </mapper>

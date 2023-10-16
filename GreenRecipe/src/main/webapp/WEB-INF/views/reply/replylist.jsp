@@ -16,7 +16,7 @@
 	            <button type='button' name="btn-edit-reply-cancle" class='btn btn-outline-warning' data-dismiss='modal' style="float: right;">취소</button>
 	        </div>
 	        <div class="col-sm-6 replycontent"> 
-	            내용 : ${ reply.reply}
+	            <pre>내용 : ${ reply.reply}</pre>
 	        </div>    
 	        
 	        <!-- 댓글 수정 -->

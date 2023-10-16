@@ -123,6 +123,19 @@ public class PdsServiceImpl implements PdsService {
 		return pdsVo;
 	}
 
+	@Override
+	public PdsVo   boardBoomUp(PdsVo vo) {
+		PdsVo    pdsVo = pdsDao.boardBoomUp(vo);
+		return pdsVo;
+		
+	}
+
+	@Override
+	public PdsVo boardBoomDown(PdsVo vo) {
+		PdsVo    pdsVo = pdsDao.boardBoomDown(vo);
+		return pdsVo;
+	}
+
 }
 
 

@@ -12,12 +12,14 @@ public class BoardVo {
 	private int      bnum;
 	private int      lvl;
 	private int      step;
-	private int      nref;	
+	private int      nref;
+	private int      replyboomup;
+	private int      replyboomdown;
 	
 	// Constructor
 	public BoardVo() {}
 	public BoardVo(int idx, String menu_id, String title, String cont, String writer, String regdate, int readcount,
-			int bnum, int lvl, int step, int nref) {
+			int bnum, int lvl, int step, int nref, int replyboomup, int replyboomdown) {
 		super();
 		this.idx = idx;
 		this.menu_id = menu_id;
@@ -30,9 +32,13 @@ public class BoardVo {
 		this.lvl = lvl;
 		this.step = step;
 		this.nref = nref;
+		this.replyboomup = replyboomup;
+		this.replyboomdown = replyboomdown;
 	}
 	
 	// Getter /Setter
+
+	
 	public int getIdx() {
 		return idx;
 	}
@@ -99,12 +105,24 @@ public class BoardVo {
 	public void setNref(int nref) {
 		this.nref = nref;
 	}
-	
+	public int getReplyboomup() {
+		return replyboomup;
+	}
+	public void setReplyboomup(int replyboomup) {
+		this.replyboomup = replyboomup;
+	}
+	public int getReplyboomdown() {
+		return replyboomdown;
+	}
+	public void setReplyboomdown(int replyboomdown) {
+		this.replyboomdown = replyboomdown;
+	}
 	// toString
 	@Override
 	public String toString() {
 		return "BoardVo [idx=" + idx + ", menu_id=" + menu_id + ", title=" + title + ", cont=" + cont + ", writer="
 				+ writer + ", regdate=" + regdate + ", readcount=" + readcount + ", bnum=" + bnum + ", lvl=" + lvl
-				+ ", step=" + step + ", nref=" + nref + "]";
-	}	
+				+ ", step=" + step + ", nref=" + nref + ", replyboomup=" + replyboomup + ", replyboomdown="
+				+ replyboomdown + "]";
+	}
 }

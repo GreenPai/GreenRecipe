@@ -15,6 +15,10 @@ public class PdsVo {
 	private  int      step;
 	private  int      nref;
 	
+	// Board 추천 관련 자료
+	private int      boardboomup;
+	private int      boardboomdown;
+	
 	// File 정보 - 파일 자료수
 	private  int      filescount;
 	
@@ -32,8 +36,8 @@ public class PdsVo {
 	public PdsVo() {}
 	// Constructor
 	public PdsVo(int idx, String title, String cont, String writer, String regdate, int readcount, int bnum, int lvl,
-			int step, int nref, int filescount, String menu_id, String menu_name, int menu_seq, int rno,
-			String replywriter, String reply, String replydate) {
+			int step, int nref, int boardboomup, int boardboomdown, int filescount, String menu_id, String menu_name,
+			int menu_seq, int rno, String replywriter, String reply, String replydate) {
 		super();
 		this.idx = idx;
 		this.title = title;
@@ -45,6 +49,8 @@ public class PdsVo {
 		this.lvl = lvl;
 		this.step = step;
 		this.nref = nref;
+		this.boardboomup = boardboomup;
+		this.boardboomdown = boardboomdown;
 		this.filescount = filescount;
 		this.menu_id = menu_id;
 		this.menu_name = menu_name;
@@ -53,8 +59,8 @@ public class PdsVo {
 		this.replywriter = replywriter;
 		this.reply = reply;
 		this.replydate = replydate;
-	    }
-	
+	}
+
 	// getter/ setter
 	public int getIdx() {
 		return idx;
@@ -116,6 +122,18 @@ public class PdsVo {
 	public void setNref(int nref) {
 		this.nref = nref;
 	}
+	public int getBoardboomup() {
+		return boardboomup;
+	}
+	public void setBoardboomup(int replyboomup) {
+		this.boardboomup = replyboomup;
+	}
+	public int getBoardboomdown() {
+		return boardboomdown;
+	}
+	public void setBoardboomdown(int replyboomdown) {
+		this.boardboomdown = replyboomdown;
+	}
 	public int getFilescount() {
 		return filescount;
 	}
@@ -165,14 +183,15 @@ public class PdsVo {
 		this.replydate = replydate;
 	}
 	
-	// toString
 	@Override
+	// toString
 	public String toString() {
 		return "PdsVo [idx=" + idx + ", title=" + title + ", cont=" + cont + ", writer=" + writer + ", regdate="
 				+ regdate + ", readcount=" + readcount + ", bnum=" + bnum + ", lvl=" + lvl + ", step=" + step
-				+ ", nref=" + nref + ", filescount=" + filescount + ", menu_id=" + menu_id + ", menu_name=" + menu_name
-				+ ", menu_seq=" + menu_seq + ", rno=" + rno + ", replywriter=" + replywriter + ", reply=" + reply
-				+ ", replydate=" + replydate + "]";
+				+ ", nref=" + nref + ", boardboomup=" + boardboomup + ", boardboomdown=" + boardboomdown
+				+ ", filescount=" + filescount + ", menu_id=" + menu_id + ", menu_name=" + menu_name + ", menu_seq="
+				+ menu_seq + ", rno=" + rno + ", replywriter=" + replywriter + ", reply=" + reply + ", replydate="
+				+ replydate + "]";
 	}
 	
 }

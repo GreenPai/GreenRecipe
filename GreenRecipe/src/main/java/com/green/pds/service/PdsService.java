@@ -28,4 +28,9 @@ public interface PdsService {
 
 	List<PdsVo> getPdsList();
 
+	PdsVo boardBoomUp(PdsVo vo);
+
+	PdsVo boardBoomDown(PdsVo vo);
+
+
 }
