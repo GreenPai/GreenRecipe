@@ -32,5 +32,17 @@ public class ReplyServiceImpl implements ReplyService {
 		List<ReplyVo> replyList = replyDao.getReplyList(idx);
 		return replyList;
 	}
+
+	@Override
+	public void replyUpdate(ReplyVo vo) {
+		replyDao.updateReply(vo);
+		
+	}
+
+	@Override
+	public void deleteReply(ReplyVo vo) {
+		replyDao.deleteReply(vo);
+		
+	}
     
 }

@@ -29,16 +29,35 @@ public class ReplyController {
 		System.out.println("reply :" + replyList);
 		return  replyList; 
 	}
-   			
+   	
+	// 댓글 추가
 	@RequestMapping("/Write")
 	@ResponseBody
 	public String write(ReplyVo vo) {
-	    System.out.println(vo);
 	    replyService.insertReply(vo);
 	    String result = "{\"result\":1}";
 	    		
 	    return result;
 	}	
-
+	
+	// 댓글 수정
+	@RequestMapping("/Update")
+	@ResponseBody
+	public String update(ReplyVo vo) {
+		replyService.replyUpdate(vo);
+	    String result = "{\"result\":1}";
+		
+	    return result;
+	}
+	
+	// 댓글 삭제
+	@RequestMapping("/Delete")
+	@ResponseBody
+	public String delete(ReplyVo vo) {
+		replyService.deleteReply(vo);
+		String result = "{\"result\":1}";
+		
+		return result;
+	}
  }
 

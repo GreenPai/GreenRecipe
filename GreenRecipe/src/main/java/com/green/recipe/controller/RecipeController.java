@@ -90,43 +90,37 @@ public class RecipeController {
 	 }
 	
 	
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
 	 @RequestMapping("/Cook/Menu")
-	 public ModelAndView menu(
-			 @RequestParam HashMap<String, Object> map) {
+     public ModelAndView menu(
+    		 @RequestParam("title") String recipeTitle) {
+        
+        List<RecipeVo> recipeList = recipeService.getRecipeByTitle(recipeTitle);
+            
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("cook/menu");
+        mv.addObject("recipeList", recipeList);
+          //System.out.println(recipeList);
+        return mv;
+     }
 		
-		 System.out.println(map);
-		
-		
-
-		 String meats              = String.valueOf(map.get("meats"));
-		 String mades              = String.valueOf(map.get("mades"));
-		 String grains             = String.valueOf(map.get("grains"));
-		 String seefoods           = String.valueOf(map.get("seefoods"));
-		 String vegitables         = String.valueOf(map.get("vegitables"));
-		
-		 String materials          =    meats    + "," + mades  + "," + grains + ","
-				                      + seefoods + "," + "," + vegitables;
-		
-		 System.out.println(materials);
-		 List<String> mList = new ArrayList<>();
-		 for (String mat : materials.split(",")) {
-			 if(  !mat.equals("") )
-			    mList.add( mat );
-         }
-		 System.out.println(mList);
-		
-		 		
-		 List<RecipeVo> recipeList = recipeService.getRecipeList(mList);
-		 System.out.println(recipeList);
-		
-		 ModelAndView  mv          = new ModelAndView();
-		 mv.setViewName("cook/menu"); // 레시피 목록 페이지로 이동
-		 mv.addObject("recipeList", recipeList);
-		 mv.addObject("map",map);
-		
-		 return mv;
-		
-	 }
+	
 	
 
 	 // 한식
@@ -195,9 +189,9 @@ public class RecipeController {
 	    public ModelAndView han2(@RequestParam("title") String recipeTitle) {
 	    	
 	    	List<RecipeVo> recipeList = recipeService.getRecipeByTitle(recipeTitle);
-	        	
+	    	System.out.println(recipeList);	
 	    	ModelAndView mv = new ModelAndView();
-	    	mv.setViewName("cook/select");
+	    	mv.setViewName("cook/menu");
 	    	mv.addObject("recipeList", recipeList);
 	   //   	System.out.println(recipeList);
 	    	return mv;
@@ -216,6 +210,41 @@ public class RecipeController {
 	    //	System.out.println(recipeList);
 	    	return mv;
 	        }
+	 // 카드
+		 @RequestMapping("/Cook/Test")
+		 public ModelAndView test(
+				 @RequestParam HashMap<String, Object> map) {
+
+			 String meats              = String.valueOf(map.get("meats"));
+			 String mades              = String.valueOf(map.get("mades"));
+			 String grains             = String.valueOf(map.get("grains"));
+			 String seefoods           = String.valueOf(map.get("seefoods"));
+			 String vegitables         = String.valueOf(map.get("vegitables"));
+			 //String noodles            = String.valueOf(map.get("noodles"));
+			 
+			 String materials          =    meats    + "," + mades   + "," + grains + ","
+						                  + seefoods + "," /* + noodles + "," */ + vegitables ;
+			 
+			 
+			 List<String> mList = new ArrayList<>();
+			 for (String mat : materials.split(",")) {
+				 if(  !mat.equals("") )
+				    mList.add( mat );
+	         }
+			 
+			 
+			 		 
+			 List<RecipeVo> recipeList = recipeService.getRecipeList(mList);
+			 // System.out.println(recipeList);
+			 
+			 ModelAndView  mv          = new ModelAndView();
+			 mv.setViewName("cook/test"); 
+			 mv.addObject("recipeList", recipeList);
+			 mv.addObject("map",map);
+			 
+			 return mv;
+		 }
+	    
 }
 
 

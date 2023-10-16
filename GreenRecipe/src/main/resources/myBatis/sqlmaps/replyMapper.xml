@@ -32,6 +32,18 @@
       SYSDATE )
    </insert>
    
+   <update id="updateReply">
+   UPDATE G_REPLY 
+      SET REPLY = #{ reply }
+    WHERE IDX = #{ idx }
+      AND RNO = #{ rno }
+   </update>
+   
+   <delete id="deleteReply">
+     DELETE FROM G_REPLY
+     WHERE RNO = #{ rno }
+   </delete>
+   
 </mapper>
 
 

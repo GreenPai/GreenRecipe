@@ -136,10 +136,10 @@ body {
             <div style="background-color: #f2f2f2; padding: 10px; border: 2px solid #E7E7E7; border-radius: 10px; margin-bottom: 20px;">
                 <h4>영양 정보</h4>
                 <ul class="list-group">
-                <p class="list-group-item">칼로리: ${recipeList[0].INFO_CAR}</p>
+                <p class="list-group-item">탄수화물: ${recipeList[0].INFO_CAR}</p>
                 <p class="list-group-item">지방: ${recipeList[0].INFO_FAT}</p>
-                <p class="list-group-item">나트륨: ${recipeList[0].INFO_NA}</p>
                 <p class="list-group-item">단백질: ${recipeList[0].INFO_PRO}</p>              
+                <p class="list-group-item">나트륨: ${recipeList[0].INFO_NA}</p>
                 </ul>
             </div>
             <div style="background-color: #f2f2f2; padding: 10px; border: 2px solid #E7E7E7; border-radius: 10px;">
@@ -151,6 +151,69 @@ body {
         </div>
     </div>
 </div>
+<div class="container mt-8 rounded-container">
+	 <div class="row"> 
+	  <div style="margin-bottom: 20px; width:100%;"> 
+                <h2 style="text-align: center;">${recipeList[0].RCP_NM} 조리 방법</h2>
+      </div>
+     <div id="imageContainer">         
+     <div style="display: flex; align-items: center; width:100%;" >     	
+     <!-- 이미지 출력 -->
+     <img id="stepImage" src="${recipeList[0].MANUAL_IMG01}" alt="Step 1"  width="200" height="150" style="float: left; margin-right: 10px; border-radius: 10px;" />
+     
+     <!-- 설명 출력 -->
+     <p id="stepDescription">${recipeList[0].MANUAL01}</p>
+     </div>
+     <br><br>
+     
+     <div style="display: flex; align-items: center; width:100%;">  
+      <!-- 이미지 출력 --> 
+     <img id="stepImage" src="${recipeList[0].MANUAL_IMG02}" alt="Step 2" width="200" height="150" style="float: left; margin-right: 10px; border-radius: 10px; "/>
+     
+     <!-- 설명 출력 --> 
+     <p id="stepDescription">${recipeList[0].MANUAL02}</p>
+     </div>
+     <br><br>
+     
+     <div style="display: flex; align-items: center; width:100%;">  
+      <!-- 이미지 출력 -->
+     <img id="stepImage" src="${recipeList[0].MANUAL_IMG03}" alt="Step 3" width="200" height="150" style="float: left; margin-right: 10px; border-radius: 10px;"/>
+     
+     <!-- 설명 출력 -->
+     <p id="stepDescription">${recipeList[0].MANUAL03}</p>
+     </div>
+    <br><br>
+    
+     <div style="display: flex; align-items: center; width:100%;">  
+      <!-- 이미지 출력 -->
+     <img id="stepImage" src="${recipeList[0].MANUAL_IMG04}" alt="Step 4" width="200" height="150" style="float: left; margin-right: 10px; border-radius: 10px;"/>
+     
+     <!-- 설명 출력 -->
+     <p id="stepDescription">${recipeList[0].MANUAL04}</p>
+     </div> 
+     <br><br>
+     
+     <div style="display: flex; align-items: center; width:100%;">   
+      <!-- 이미지 출력 -->
+     <img id="stepImage" src="${recipeList[0].MANUAL_IMG05}" alt="Step 5" width="200" height="150" style="float: left; margin-right: 10px; border-radius: 10px;"/>
+       
+     <!-- 설명 출력 -->
+     <p id="stepDescription">${recipeList[0].MANUAL05}</p>
+     </div>
+     <br><br>
+      
+     <div style="display: flex; align-items: center; width:100%;">        
+      <!-- 이미지 출력 -->
+     <img id="stepImage" src="${recipeList[0].MANUAL_IMG06}" alt="Step 6"  width="200" height="150" style="float: left; margin-right: 10px; border-radius: 10px;"/>
+     
+     <!-- 설명 출력 -->
+     <p id="stepDescription">${recipeList[0].MANUAL06}</p>
+     </div>
+      </div>
+     <br><br> 
+	 </div>
+
+	</div>
 
 
 

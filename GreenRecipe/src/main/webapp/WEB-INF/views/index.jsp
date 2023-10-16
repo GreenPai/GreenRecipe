@@ -56,8 +56,8 @@
       <li>
         <a href="#">레시피</a>
         <ul class="submenu1">
-          <li><a href="/Cook/List">재료등록</a></li>
-          <li><a href="/Cook/Recipe1">추천레시피</a></li>
+          <li><a href="/Cook/View">재료등록</a></li>
+          <li><a href="/Cook/Show">추천레시피</a></li>
           <li><a href="/Cook/Han">한식레시피</a></li>
           <li><a href="/Cook/Jap">일식레시피</a></li>
           <li><a href="/Cook/Chi">중식레시피</a></li>

@@ -12,5 +12,8 @@ public interface ReplyDao {
 
 	List<ReplyVo> getReplyList(int idx);
 
+	void updateReply(ReplyVo vo);
+
+	void deleteReply(ReplyVo vo);
 
 }
