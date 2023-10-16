@@ -18,4 +18,9 @@ public interface UserService {
 
 	void userUpdate(UserVo vo);
 
+	String loginCheck(String userid, String passwd);
+
+	UserVo username(String userid);
+
+
 }

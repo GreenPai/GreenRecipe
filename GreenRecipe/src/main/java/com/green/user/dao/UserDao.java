@@ -18,4 +18,10 @@ public interface UserDao {
 
 	int dupCheck(UserVo vo);
 
+	UserVo userCheck(String userid);
+
+	UserVo userName(String userid);
+
+
+
 }

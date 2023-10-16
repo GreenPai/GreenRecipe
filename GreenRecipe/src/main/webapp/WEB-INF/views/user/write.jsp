@@ -68,7 +68,7 @@ $(function() {
        <td><input type="password" name="passwd" id="pwd1"  placeholder="비밀번호 : 영문숫자조합 5자리이상" minlength="5" maxlength="20"  required/></td>
      </tr> 
      <tr>
-       <td><input type="password" name="passwd" id="pwd2"  placeholder="비밀번호 확인" minlength="5" maxlength="20"  required/>
+       <td><input type="password" name="passwd2" id="pwd2"  placeholder="비밀번호 확인" minlength="5" maxlength="20"  required/>
        <br><span id="configMSG"></span></td>
      </tr> 
      <tr>

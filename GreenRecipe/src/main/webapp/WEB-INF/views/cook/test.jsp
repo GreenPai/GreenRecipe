@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
+<%@taglib  prefix="c"  uri="http://java.sun.com/jsp/jstl/core" %>     
    
 <!DOCTYPE html>
 <html>
@@ -9,25 +9,19 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
 <link rel="stylesheet"  href="/css/homepage.css" />
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 <title>그린 밥상을 부탁해</title>
 
 <style>
 
-.submenu1 > li {
-  line-height: 50px;
-  background-color: #CBEE99;
-}
-.menu > li:hover .submenu1 {
-  height: 300px;
-  transition-duration: 1s;
+body { 
+    background-color: #D6F3ED; 
 }
 
-.submenu1 > li:nth-child(6) {
-  height: 50px;
-  background-color: #CBEE99;
-}
 
 
 </style>
@@ -37,15 +31,15 @@
       
     <header class="header">
     
-        <div class="header_title">      
-        <h1> 그린 밥상을 부탁해~!</h1>
-        </div>
-    
-        <div class="header_logo">
-        	<a href="/"><img class="head_logo"  src="/img/logo.png" ></a>
+        <div class="header_title">
+        <h1>그린 밥상을 부탁해~!</h1> 
         </div>
         
-    <div class="header_login">
+        <div class="header_logo">
+           <a href="/"><img class="head_logo"  src="/img/logo.png" ></a>
+        </div>
+        
+          <div class="header_login">
     <ul>
         <li>
             <c:choose>
@@ -66,7 +60,6 @@
         </li>
     </ul>
 </div>
-
                
     </header>
 
@@ -75,11 +68,10 @@
         <a href="#">레시피</a>
         <ul class="submenu1">
           <li><a href="/Cook/View">재료등록</a></li>
-          <li><a href="/Cook/Show">추천레시피</a></li>
+          <li><a href="/Cook/Recipe1">추천레시피</a></li>
           <li><a href="/Cook/Han">한식레시피</a></li>
           <li><a href="/Cook/Jap">일식레시피</a></li>
           <li><a href="/Cook/Chi">중식레시피</a></li>
-          <li><a href="/Cook/Yang">양식레시피</a></li>
           <li><a href="/Cook/Yang">양식레시피</a></li>
         </ul>
       </li>
@@ -106,18 +98,32 @@
       </li>
     </ul>
  
-
-    <br><br><br><br><br><br><br>
+      <br><br><br><br><br>
     
-    <img src="/img/pot2.png" alt="Pot Image"  style="display: block; margin: 0 auto;"> 
-
-
+    <h1 class="text-center" style="color: #AE9175;">추천 레시피</h1>
+    <br>
+    
+    <div class="container w-100">
+    <div class="row">
+        <c:forEach items="${recipeList}" var="recipe">
+            <div class="col-md-3 mb-4">
+                <div class="card h-100" >
+                    <a href="/Cook/Menu?title=${recipe.RCP_NM}">
+                    <img src="${recipe.ATT_FILE_NO_MAIN}" class="card-img-top" alt="${recipe.RCP_NM}" style="width: 253px; height: 200px;">
+                    </a>
+                    <div class="card-body">
+                        <h5 class="card-title">${recipe.RCP_NM}</h5>
+                    </div>
+                </div>
+            </div>
+        </c:forEach>
+    </div>
+</div>
 
 
     
 </body>
 </html>
-
 
 
 

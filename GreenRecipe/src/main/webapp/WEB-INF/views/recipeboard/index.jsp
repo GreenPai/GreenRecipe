@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
-   
+ <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,25 +9,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
 <link rel="stylesheet"  href="/css/homepage.css" />
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <title>그린 밥상을 부탁해</title>
 
 <style>
-
-.submenu1 > li {
-  line-height: 50px;
-  background-color: #CBEE99;
-}
-.menu > li:hover .submenu1 {
-  height: 300px;
-  transition-duration: 1s;
-}
-
-.submenu1 > li:nth-child(6) {
-  height: 50px;
-  background-color: #CBEE99;
-}
 
 
 </style>
@@ -45,7 +30,7 @@
         	<a href="/"><img class="head_logo"  src="/img/logo.png" ></a>
         </div>
         
-    <div class="header_login">
+      <div class="header_login">
     <ul>
         <li>
             <c:choose>
@@ -66,7 +51,6 @@
         </li>
     </ul>
 </div>
-
                
     </header>
 
@@ -75,11 +59,10 @@
         <a href="#">레시피</a>
         <ul class="submenu1">
           <li><a href="/Cook/View">재료등록</a></li>
-          <li><a href="/Cook/Show">추천레시피</a></li>
+          <li><a href="/Cook/Recipe1">추천레시피</a></li>
           <li><a href="/Cook/Han">한식레시피</a></li>
           <li><a href="/Cook/Jap">일식레시피</a></li>
           <li><a href="/Cook/Chi">중식레시피</a></li>
-          <li><a href="/Cook/Yang">양식레시피</a></li>
           <li><a href="/Cook/Yang">양식레시피</a></li>
         </ul>
       </li>
