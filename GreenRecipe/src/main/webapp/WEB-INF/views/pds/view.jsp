@@ -29,7 +29,7 @@
 	        type: "POST",
 	        data: { idx: idx },
 	        success: function(result) {
-	            alert(result.boardboomup);
+	            alert("추천했습니다");
 	            $('#goodCheck').html(result.boardboomup);
 	        }
 	    });
@@ -43,7 +43,7 @@
 	        type: "POST",
 	        data: { idx: idx },
 	        success: function(result) {
-	            alert(result.boardboomdown);
+	            alert("비추천했습니다.");
 	            $('#badCheck').html(result.boardboomdown);
 	        }
 	    });
@@ -243,8 +243,8 @@
    <tr class="subcontentdata">
      <td class="writerreply">${vo.writer}</td>
      <td class="boomcheck">
-      <input type="button" name="upcheck" value="👍" onclick="goodCheck()"/><label id="goodCheck" >${vo.boardboomup}</label> 
-      <input type="button" name="downcheck" value="👎" onclick="badcheck()"/><label id="badCheck" >${vo.boardboomdown}</label>  
+      <input type="button" value="👍" onclick="goodCheck()"/><label id="goodCheck" >${vo.boardboomup}</label> 
+      <input type="button" value="👎" onclick="badCheck()"/><label id="badCheck" >${vo.boardboomdown}</label>  
      </td>
      <td class= "subreply">조회수: ${vo.readcount} 작성일: ${vo.regdate}</td>
    </tr> 

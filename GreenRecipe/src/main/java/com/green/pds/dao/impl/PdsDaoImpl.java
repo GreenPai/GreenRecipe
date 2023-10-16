@@ -132,10 +132,10 @@ public class PdsDaoImpl implements PdsDao {
 	@Override
 	public PdsVo boardBoomDown(PdsVo vo) {
 		sqlSession.update("Pds.BoardBoomDown", vo);
-		PdsVo  pdsVo = sqlSession.selectOne("Pds.PdsGetBoom2", vo);
-		
+		PdsVo pdsVo = sqlSession.selectOne("Pds.PdsLostBoom",vo);
 		return pdsVo;
 	}
+
 
 
 }

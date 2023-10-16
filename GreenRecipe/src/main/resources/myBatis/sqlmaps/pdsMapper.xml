@@ -77,7 +77,7 @@
         
    </select>
    
-   <select id="PdsGetBoom2"
+   <select id="PdsLostBoom"
            resultType="com.green.pds.vo.PdsVo">
       
       SELECT   

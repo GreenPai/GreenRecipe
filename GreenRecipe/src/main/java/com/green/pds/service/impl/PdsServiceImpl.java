@@ -131,11 +131,10 @@ public class PdsServiceImpl implements PdsService {
 	}
 
 	@Override
-	public PdsVo boardBoomDown(PdsVo vo) {
+	public PdsVo   boardBoomDown(PdsVo vo) {
 		PdsVo    pdsVo = pdsDao.boardBoomDown(vo);
 		return pdsVo;
 	}
-
 }
 
 

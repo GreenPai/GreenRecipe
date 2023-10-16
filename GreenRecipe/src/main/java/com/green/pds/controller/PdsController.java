@@ -229,10 +229,9 @@ public class PdsController {
 	@RequestMapping("/BoardBoomDown")
 	@ResponseBody
 	public PdsVo boardBoomDown(
-			PdsVo vo) {
-		
-		PdsVo  pdsVo = pdsService.boardBoomDown(vo);
-		return pdsVo;  
+		PdsVo vo) {
+		PdsVo pdsVo = pdsService.boardBoomDown(vo);
+		return pdsVo;
 	}
 	
 	
