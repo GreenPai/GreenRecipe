@@ -39,12 +39,27 @@ body {
            <a href="/"><img class="head_logo"  src="/img/logo.png" ></a>
         </div>
         
-        <div class="header_login">
-           <ul>
-              <li><a href="/User/List">로그인</a></li>
-              <li><a href="/User/Agree">회원가입</a></li>
-           </ul>
-        </div>
+          <div class="header_login">
+    <ul>
+        <li>
+            <c:choose>
+                <c:when test="${not empty sessionScope['loginMember']}">
+                    <div class="left-content">
+                        <img src="/img/user.jpg" alt="" class="left-image" width="40" height="40">
+                        <c:set var="userName" value="${sessionScope['loginMember']}" />
+                        <p>${userName}</p>
+                    </div>
+                    <a href="/logout" class="right-logout">로그아웃</a>
+                </c:when>
+                <c:otherwise>
+                    <!-- 세션이 없을 때, 로그인 링크 -->
+                    <a href="/User/List">로그인</a>
+                    <li><a href="/User/Agree">회원가입</a></li>
+                </c:otherwise>
+            </c:choose>
+        </li>
+    </ul>
+</div>
                
     </header>
 
@@ -53,7 +68,7 @@ body {
         <a href="#">레시피</a>
         <ul class="submenu1">
           <li><a href="/Cook/View">재료등록</a></li>
-          <li><a href="/Cook/Recipe1">추천레시피</a></li>
+          <li><a href="/Cook/Show">추천레시피</a></li>
           <li><a href="/Cook/Han">한식레시피</a></li>
           <li><a href="/Cook/Jap">일식레시피</a></li>
           <li><a href="/Cook/Chi">중식레시피</a></li>
@@ -90,14 +105,17 @@ body {
     
     <div class="container w-100">
     <div class="row">
-        <c:forEach items="${recipeList}" var="recipe">
+         <c:forEach items="${recipeList}" var="recipe">
             <div class="col-md-3 mb-4">
                 <div class="card h-100" >
-                    <a href="/Cook/Menu?title=${recipe.RCP_NM}">
+                    <a href="/Cook/Menu?idx=${recipe.IDX }&recipeTitle=${recipe.RCP_NM}">
                     <img src="${recipe.ATT_FILE_NO_MAIN}" class="card-img-top" alt="${recipe.RCP_NM}" style="width: 253px; height: 200px;">
                     </a>
                     <div class="card-body">
                         <h5 class="card-title">${recipe.RCP_NM}</h5>
+                    </div>
+                    <div class="view-count">
+                    <span class="count" style="vertical-align: middle;">조회수: ${recipe.RECIPECOUNT}</span>
                     </div>
                 </div>
             </div>

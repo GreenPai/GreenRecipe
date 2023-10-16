@@ -90,6 +90,23 @@
    </select>
  
  
+    <select id="UserName"
+           resultType="com.green.user.vo.UserVo">
+   SELECT *
+   FROM   GREENUSERS
+   WHERE USERID = #{ userid }
+   
+   
+   </select>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
  
 </mapper>
 

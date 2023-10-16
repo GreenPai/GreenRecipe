@@ -1,5 +1,6 @@
 package com.green.user.controller;
 
+import java.lang.reflect.Member;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.green.recipe.vo.RecipeVo;
 import com.green.user.service.UserService;
 import com.green.user.vo.UserVo;
+
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 
@@ -117,23 +120,36 @@ public class UserController {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("user/login");		
 		
+
 		return mv;
 	}
    
 	//로그인 아이디/비밀번호 적고 로그인 눌렀을때 검사 
 	@RequestMapping("/User/Login2")
-	public ModelAndView login2(@RequestParam("userid") String userid, @RequestParam("passwd") String passwd) {
+	public ModelAndView login2(@RequestParam("userid") String userid, @RequestParam("passwd") String passwd, HttpServletRequest request) {
 	
 		 // userService.loginCheck 메서드를 호출하여 로그인 검사
+		UserVo username= userService.username(userid);
 	    String loginResult = userService.loginCheck(userid, passwd);
-      
-	    
-	    	 
+        
+	    String name=username.getUsername();
+	    String email=username.getEmail();
+	    System.out.println(name);
+	    System.out.println(email);
+        
 	    if ("login_success".equals(loginResult)) {
 	        // 로그인 성공 처리 
 	        ModelAndView mv = new ModelAndView();
 	        mv.setViewName("index");
+	        
+	        HttpSession session = request.getSession();
+	        session.setAttribute("userid", userid); // 아이디
+	        session.setAttribute("userpw", passwd); // 비밀번호
+	        session.setAttribute("loginMember", name); // 유저이름
+	        session.setAttribute("useremail", email); // 이메일
 	        return mv;
+	        
+	        
 	    } else if ("wrong_password".equals(loginResult)) {
 	        // 비밀번호가 일치하지 않는 경우 
 	        ModelAndView mv = new ModelAndView();
@@ -148,25 +164,23 @@ public class UserController {
 	        return mv;
 	    }		
 		
-  
-	/*
-		System.out.println(userid);
-		System.out.println(passwd);
 	
-		List<UserVo> userinfo = userService.loginCheck(userid);
-    	
-        System.out.println(userinfo);
-	
-		
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("index");		
-		
-		return mv;
-	}
-	*/
-		
 }
 
+	@RequestMapping("/logout")
+	public String logout(HttpServletRequest request) {
+	    HttpSession session = request.getSession();
+	    if (session != null) {
+	        session.invalidate(); // 세션 무효화
+	    }
+	    return "/index"; 
+	}	
+	
+	
+	
+	
+	
+	
 }
 
 

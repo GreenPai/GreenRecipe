@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -41,9 +42,6 @@ public class PdsController {
 	
 	@Autowired
 	private   PdsService   pdsService;
-	
-	@Autowired
-	private   ReplyService   replyService;
 	
 	// /Pds/List?menu_id=MENU01
 	@RequestMapping("/List")
@@ -141,19 +139,13 @@ public class PdsController {
 		// 현재 글 번호
 		int            idx       =  Integer.parseInt(String.valueOf(pdsVo.getIdx()));
 		pdsVo.setIdx(idx);
-
-		// 댓글 목록
-		List<ReplyVo> replyList  =  replyService.getReplyList(idx); 
 		
 		ModelAndView   mv  =   new ModelAndView();
 		mv.setViewName("pds/view");
 		mv.addObject("menuList",  menuList );
 		mv.addObject("vo",        pdsVo );
 		mv.addObject("fileList",  fileList );
-		mv.addObject("menuname",  menuname );
-		
-		mv.addObject("replyList", replyList);
-		
+		mv.addObject("menuname",  menuname );		
 		mv.addObject("map", map );
 		
 		
@@ -223,6 +215,26 @@ public class PdsController {
 		
 	}
 		
+	// 추천
+	@RequestMapping("/BoardBoomUp")
+	@ResponseBody
+	public PdsVo boardBoomUp(
+		PdsVo vo) {
+		
+		PdsVo  pdsVo = pdsService.boardBoomUp(vo);
+		return pdsVo;  
+	}
+	
+	// 비추천
+	@RequestMapping("/BoardBoomDown")
+	@ResponseBody
+	public PdsVo boardBoomDown(
+		PdsVo vo) {
+		PdsVo pdsVo = pdsService.boardBoomDown(vo);
+		return pdsVo;
+	}
+	
+	
    //---------------------------------------------------
    // 다운로드
    // type : external, internal

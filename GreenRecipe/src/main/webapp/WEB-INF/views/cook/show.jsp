@@ -18,92 +18,33 @@
 
 <style>
 
-
 body { 
     background-color: #D6F3ED; 
 }
 
- .border-image {
-    border: 1px solid #069574; 
-    border-radius: 20px; 
-    padding: 6px; 
-    background-color: #069574; 
-  }
-  
-   .rounded-container {
-    border: 2px solid #069574; 
-    border-radius: 20px; /* 둥글게 처리하는 부분 */
-    padding: 20px;
-    background-color: #fff; 
-    margin-top: 5px; /* 원하는 여백을 조정하세요 */
-  }
 
- .navbar-light .navbar-collapse {
-        background-color: #D6F3ED; /* 검색창 배경색 */
-    }
-    
-
-.submenu1 > li {
-  line-height: 50px;
-  background-color: #CBEE99;
-}
-.menu > li:hover .submenu1 {
-  height: 300px;
-  transition-duration: 1s;
-}
-
-.submenu1 > li:nth-child(6) {
-  height: 50px;
-  background-color: #CBEE99;
-}
 
 </style>
 
 </head>
 <body>
       
-         
-    <header class="header" style="display: flex;">
+    <header class="header">
     
-        <div class="header_title">      
-        <h1> 그린 밥상을 부탁해~!</h1> 
+        <div class="header_title">
+        <h1>그린 밥상을 부탁해~!</h1> 
         </div>
-	  
-    
-    <nav class="navbar">
-  <div class="container-fluid">
-    <form class="d-flex" action="/Cook/Search" method="get">
-      <input class="form-control me-2" type="search" name="query" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success" type="submit">Search</button>
-    </form>
-  </div>
-</nav>
-    
+        
         <div class="header_logo">
-        	<a href="/"><img class="head_logo"  src="/img/logo.png" ></a>
+           <a href="/"><img class="head_logo"  src="/img/logo.png" ></a>
         </div>
         
         <div class="header_login">
-    <ul>
-        <li>
-            <c:choose>
-                <c:when test="${not empty sessionScope['loginMember']}">
-                    <div class="left-content">
-                        <img src="/img/user.jpg" alt="" class="left-image" width="40" height="40">
-                        <c:set var="userName" value="${sessionScope['loginMember']}" />
-                        <p>${userName}</p>
-                    </div>
-                    <a href="/logout" class="right-logout">로그아웃</a>
-                </c:when>
-                <c:otherwise>
-                    <!-- 세션이 없을 때, 로그인 링크 -->
-                    <a href="/User/List">로그인</a>
-                    <li><a href="/User/Agree">회원가입</a></li>
-                </c:otherwise>
-            </c:choose>
-        </li>
-    </ul>
-</div>
+           <ul>
+              <li><a href="/User/List">로그인</a></li>
+              <li><a href="/User/Agree">회원가입</a></li>
+           </ul>
+        </div>
                
     </header>
 
@@ -112,7 +53,7 @@ body {
         <a href="#">레시피</a>
         <ul class="submenu1">
           <li><a href="/Cook/View">재료등록</a></li>
-          <li><a href="/Cook/SHOW">추천레시피</a></li>
+          <li><a href="/Cook/Show">추천레시피</a></li>
           <li><a href="/Cook/Han">한식레시피</a></li>
           <li><a href="/Cook/Jap">일식레시피</a></li>
           <li><a href="/Cook/Chi">중식레시피</a></li>
@@ -144,7 +85,7 @@ body {
  
       <br><br><br><br><br>
     
-    <h1 class="text-center" style="color: #AE9175;">양식 레시피</h1>
+    <h1 class="text-center" style="color: #AE9175;">추천 레시피</h1>
     <br>
     
     <div class="container w-100">
@@ -152,12 +93,16 @@ body {
         <c:forEach items="${recipeList}" var="recipe">
             <div class="col-md-3 mb-4">
                 <div class="card h-100" >
-                    <a href="/Cook/Select?title=${recipe.RCP_NM}">
+                     <a href="/Cook/Menu?idx=${recipe.IDX }&recipeTitle=${recipe.RCP_NM}">
                     <img src="${recipe.ATT_FILE_NO_MAIN}" class="card-img-top" alt="${recipe.RCP_NM}" style="width: 253px; height: 200px;">
                     </a>
                     <div class="card-body">
-                        <h5 class="card-title">${recipe.RCP_NM}</h5>
+                        <h5 class="card-title" style="text-align: center;">${recipe.RCP_NM}</h5>
                     </div>
+                    <div class="common_sp_caption_rv">
+                    <span class="common_sp_caption_buyer" style="vertical-align: middle;">조회수:${recipe.RECIPECOUNT}</span>
+                    </div>
+                    
                 </div>
             </div>
         </c:forEach>
@@ -168,7 +113,6 @@ body {
     
 </body>
 </html>
-
 
 
 

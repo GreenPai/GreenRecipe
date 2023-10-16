@@ -26,4 +26,9 @@ public interface PdsDao {
 
 	List<PdsVo> getPdsList();
 
+    PdsVo  boardBoomUp(PdsVo vo);
+
+	PdsVo boardBoomDown(PdsVo vo);
+
+
 }

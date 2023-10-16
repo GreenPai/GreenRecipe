@@ -76,6 +76,12 @@ public class UserServiceImpl implements UserService {
 	    }
 	}
 
+	@Override
+	public UserVo username(String userid) {
+		UserVo username = userDao.userName(userid);
+		return username;
+	}
+
 	
 
 	

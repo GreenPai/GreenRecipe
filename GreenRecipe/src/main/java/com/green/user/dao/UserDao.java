@@ -20,6 +20,8 @@ public interface UserDao {
 
 	UserVo userCheck(String userid);
 
+	UserVo userName(String userid);
+
 
 
 }

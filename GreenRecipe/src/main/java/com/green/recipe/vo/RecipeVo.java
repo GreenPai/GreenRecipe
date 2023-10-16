@@ -7,11 +7,11 @@ public class RecipeVo {
 	private String ATT_FILE_NO_MAIN;
 	private String ATT_FILE_NO_MK;
 	private String HASH_TAG;
-	private String INFO_CAR;
-	private String INFO_FAT;
-	private String INFO_NA;
-	private String INFO_PRO;
-	private String INFO_WGT;
+	private int    INFO_CAR;
+	private int    INFO_FAT;
+	private int    INFO_NA;
+	private int    INFO_PRO;
+	private int    INFO_WGT;
 	private String MANUAL01;
 	private String MANUAL_IMG01;
 	private String MANUAL02;
@@ -25,6 +25,41 @@ public class RecipeVo {
 	private String MANUAL06;
 	private String MANUAL_IMG06;
 	private String RCP_NA_TIP;
+	private int    RECIPECOUNT;
+	private int    IDX;
+	
+	public RecipeVo() {}
+	public RecipeVo(String rCP_NM, String rCP_PARTS_DTLS, String aTT_FILE_NO_MAIN, String aTT_FILE_NO_MK,
+			String hASH_TAG, int iNFO_CAR, int iNFO_FAT, int iNFO_NA, int iNFO_PRO, int iNFO_WGT, String mANUAL01,
+			String mANUAL_IMG01, String mANUAL02, String mANUAL_IMG02, String mANUAL03, String mANUAL_IMG03,
+			String mANUAL04, String mANUAL_IMG04, String mANUAL05, String mANUAL_IMG05, String mANUAL06,
+			String mANUAL_IMG06, String rCP_NA_TIP, int rECIPECOUNT, int iDX) {
+		RCP_NM = rCP_NM;
+		RCP_PARTS_DTLS = rCP_PARTS_DTLS;
+		ATT_FILE_NO_MAIN = aTT_FILE_NO_MAIN;
+		ATT_FILE_NO_MK = aTT_FILE_NO_MK;
+		HASH_TAG = hASH_TAG;
+		INFO_CAR = iNFO_CAR;
+		INFO_FAT = iNFO_FAT;
+		INFO_NA = iNFO_NA;
+		INFO_PRO = iNFO_PRO;
+		INFO_WGT = iNFO_WGT;
+		MANUAL01 = mANUAL01;
+		MANUAL_IMG01 = mANUAL_IMG01;
+		MANUAL02 = mANUAL02;
+		MANUAL_IMG02 = mANUAL_IMG02;
+		MANUAL03 = mANUAL03;
+		MANUAL_IMG03 = mANUAL_IMG03;
+		MANUAL04 = mANUAL04;
+		MANUAL_IMG04 = mANUAL_IMG04;
+		MANUAL05 = mANUAL05;
+		MANUAL_IMG05 = mANUAL_IMG05;
+		MANUAL06 = mANUAL06;
+		MANUAL_IMG06 = mANUAL_IMG06;
+		RCP_NA_TIP = rCP_NA_TIP;
+		RECIPECOUNT = rECIPECOUNT;
+		IDX = iDX;
+	}
 	public String getRCP_NM() {
 		return RCP_NM;
 	}
@@ -55,34 +90,34 @@ public class RecipeVo {
 	public void setHASH_TAG(String hASH_TAG) {
 		HASH_TAG = hASH_TAG;
 	}
-	public String getINFO_CAR() {
+	public int getINFO_CAR() {
 		return INFO_CAR;
 	}
-	public void setINFO_CAR(String iNFO_CAR) {
+	public void setINFO_CAR(int iNFO_CAR) {
 		INFO_CAR = iNFO_CAR;
 	}
-	public String getINFO_FAT() {
+	public int getINFO_FAT() {
 		return INFO_FAT;
 	}
-	public void setINFO_FAT(String iNFO_FAT) {
+	public void setINFO_FAT(int iNFO_FAT) {
 		INFO_FAT = iNFO_FAT;
 	}
-	public String getINFO_NA() {
+	public int getINFO_NA() {
 		return INFO_NA;
 	}
-	public void setINFO_NA(String iNFO_NA) {
+	public void setINFO_NA(int iNFO_NA) {
 		INFO_NA = iNFO_NA;
 	}
-	public String getINFO_PRO() {
+	public int getINFO_PRO() {
 		return INFO_PRO;
 	}
-	public void setINFO_PRO(String iNFO_PRO) {
+	public void setINFO_PRO(int iNFO_PRO) {
 		INFO_PRO = iNFO_PRO;
 	}
-	public String getINFO_WGT() {
+	public int getINFO_WGT() {
 		return INFO_WGT;
 	}
-	public void setINFO_WGT(String iNFO_WGT) {
+	public void setINFO_WGT(int iNFO_WGT) {
 		INFO_WGT = iNFO_WGT;
 	}
 	public String getMANUAL01() {
@@ -163,6 +198,18 @@ public class RecipeVo {
 	public void setRCP_NA_TIP(String rCP_NA_TIP) {
 		RCP_NA_TIP = rCP_NA_TIP;
 	}
+	public int getRECIPECOUNT() {
+		return RECIPECOUNT;
+	}
+	public void setRECIPECOUNT(int rECIPECOUNT) {
+		RECIPECOUNT = rECIPECOUNT;
+	}
+	public int getIDX() {
+		return IDX;
+	}
+	public void setIDX(int iDX) {
+		IDX = iDX;
+	}
 	@Override
 	public String toString() {
 		return "RecipeVo [RCP_NM=" + RCP_NM + ", RCP_PARTS_DTLS=" + RCP_PARTS_DTLS + ", ATT_FILE_NO_MAIN="
@@ -172,43 +219,12 @@ public class RecipeVo {
 				+ MANUAL02 + ", MANUAL_IMG02=" + MANUAL_IMG02 + ", MANUAL03=" + MANUAL03 + ", MANUAL_IMG03="
 				+ MANUAL_IMG03 + ", MANUAL04=" + MANUAL04 + ", MANUAL_IMG04=" + MANUAL_IMG04 + ", MANUAL05=" + MANUAL05
 				+ ", MANUAL_IMG05=" + MANUAL_IMG05 + ", MANUAL06=" + MANUAL06 + ", MANUAL_IMG06=" + MANUAL_IMG06
-				+ ", RCP_NA_TIP=" + RCP_NA_TIP + "]";
+				+ ", RCP_NA_TIP=" + RCP_NA_TIP + ", RECIPECOUNT=" + RECIPECOUNT + ", IDX=" + IDX + "]";
 	}
 	
-	public RecipeVo(String rCP_NM, String rCP_PARTS_DTLS, String aTT_FILE_NO_MAIN, String aTT_FILE_NO_MK,
-			String hASH_TAG, String iNFO_CAR, String iNFO_FAT, String iNFO_NA, String iNFO_PRO, String iNFO_WGT,
-			String mANUAL01, String mANUAL_IMG01, String mANUAL02, String mANUAL_IMG02, String mANUAL03,
-			String mANUAL_IMG03, String mANUAL04, String mANUAL_IMG04, String mANUAL05, String mANUAL_IMG05,
-			String mANUAL06, String mANUAL_IMG06, String rCP_NA_TIP) {
-		super();
-		RCP_NM = rCP_NM;
-		RCP_PARTS_DTLS = rCP_PARTS_DTLS;
-		ATT_FILE_NO_MAIN = aTT_FILE_NO_MAIN;
-		ATT_FILE_NO_MK = aTT_FILE_NO_MK;
-		HASH_TAG = hASH_TAG;
-		INFO_CAR = iNFO_CAR;
-		INFO_FAT = iNFO_FAT;
-		INFO_NA = iNFO_NA;
-		INFO_PRO = iNFO_PRO;
-		INFO_WGT = iNFO_WGT;
-		MANUAL01 = mANUAL01;
-		MANUAL_IMG01 = mANUAL_IMG01;
-		MANUAL02 = mANUAL02;
-		MANUAL_IMG02 = mANUAL_IMG02;
-		MANUAL03 = mANUAL03;
-		MANUAL_IMG03 = mANUAL_IMG03;
-		MANUAL04 = mANUAL04;
-		MANUAL_IMG04 = mANUAL_IMG04;
-		MANUAL05 = mANUAL05;
-		MANUAL_IMG05 = mANUAL_IMG05;
-		MANUAL06 = mANUAL06;
-		MANUAL_IMG06 = mANUAL_IMG06;
-		RCP_NA_TIP = rCP_NA_TIP;
-	}
-    
+	
 
-	
-	
+
 	}
 	
 	

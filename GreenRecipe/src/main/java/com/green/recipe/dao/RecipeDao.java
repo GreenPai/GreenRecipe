@@ -1,5 +1,6 @@
 package com.green.recipe.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import com.green.recipe.vo.MatarialVo;
@@ -16,5 +17,14 @@ public interface RecipeDao {
 	List<RecipeVo> getRecipeByTitle(String recipeTitle);
 
 	List<RecipeVo> getRecipeByquery(String query);
+	
+	List<RecipeVo> getRecipeList();
+
+	List<RecipeVo> getRecipeByTitle(HashMap<String, Object> map);
+
+	void setCountUpdate(HashMap<String, Object> map);
+
+
+
 
 }

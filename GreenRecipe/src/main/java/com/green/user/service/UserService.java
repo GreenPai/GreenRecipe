@@ -20,5 +20,7 @@ public interface UserService {
 
 	String loginCheck(String userid, String passwd);
 
+	UserVo username(String userid);
+
 
 }

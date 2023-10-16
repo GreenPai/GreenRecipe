@@ -79,6 +79,13 @@ public class UserDaoImpl implements UserDao {
 	}
 
 
+	@Override
+	public UserVo userName(String userid) {
+		UserVo username = sqlSession.selectOne("User.UserName",userid);
+		return username;
+	}
+
+
 	
 
 

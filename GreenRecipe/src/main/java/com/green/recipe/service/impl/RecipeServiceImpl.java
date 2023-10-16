@@ -1,5 +1,6 @@
 package com.green.recipe.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,7 +59,38 @@ public class RecipeServiceImpl implements RecipeService{
 		List<RecipeVo>  recipeList  =  recipeDao.getRecipeByquery(query);
 		return recipeList;
 	}
+	
+	@Override
+	public List<RecipeVo> getRecipeList() {
+		
+		List<RecipeVo> recipeList = recipeDao.getRecipeList();
+		
+		return recipeList;
+	}
 
+
+
+	@Override
+	public List<RecipeVo> getRecipeByTitle(HashMap<String, Object> map) {
+		
+		List<RecipeVo> recipeList = recipeDao.getRecipeByTitle(map);
+
+		return recipeList;
+	}
+
+
+
+	@Override
+	public void setCountUpdate(HashMap<String, Object> map) {
+		
+		recipeDao.setCountUpdate( map );
+		
+		
+	}
+
+
+
+	
 
 
 

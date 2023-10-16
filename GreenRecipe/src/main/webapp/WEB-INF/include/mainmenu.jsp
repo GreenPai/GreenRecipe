@@ -9,6 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
 <link rel="stylesheet"  href="/css/homepage.css" />
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <title>그린 밥상을 부탁해</title>
 
@@ -30,12 +31,27 @@
         	<img class="head_logo"  src="/img/logo.png" >
         </div>
         
-        <div class="header_login">
-           <ul>
-              <li><a href="/User/List">로그인</a></li>
-              <li><a href="/User/Agree">회원가입</a></li>
-           </ul>
-        </div>
+     <div class="header_login">
+    <ul>
+        <li>
+            <c:choose>
+                <c:when test="${not empty sessionScope['loginMember']}">
+                    <div class="left-content">
+                        <img src="/img/user.jpg" alt="" class="left-image" width="40" height="40">
+                        <c:set var="userName" value="${sessionScope['loginMember']}" />
+                        <p>${userName}</p>
+                    </div>
+                    <a href="/logout" class="right-logout">로그아웃</a>
+                </c:when>
+                <c:otherwise>
+                    <!-- 세션이 없을 때, 로그인 링크 -->
+                    <a href="/User/List">로그인</a>
+                    <li><a href="/User/Agree">회원가입</a></li>
+                </c:otherwise>
+            </c:choose>
+        </li>
+    </ul>
+</div>
                
     </header>
 
@@ -44,7 +60,7 @@
         <a href="#">레시피</a>
         <ul class="submenu1">
           <li><a href="/Cook/List">재료등록</a></li>
-          <li><a href="/Cook/Recipe1">추천레시피</a></li>
+          <li><a href="/Cook/SHOW">추천레시피</a></li>
           <li><a href="/Cook/Han">한식레시피</a></li>
           <li><a href="/Cook/Jap">일식레시피</a></li>
           <li><a href="/Cook/Chi">중식레시피</a></li>

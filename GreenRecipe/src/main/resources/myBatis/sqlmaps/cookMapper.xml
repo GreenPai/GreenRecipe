@@ -31,7 +31,9 @@
 		MANUAL_IMG05,
 		MANUAL06,
 		MANUAL_IMG06,
-		RCP_NA_TIP
+		RCP_NA_TIP,
+		RECIPECOUNT,  
+	    IDX
         FROM
         RECIPE
         <foreach collection="list" item="material" index="index" open=" WHERE (" close=")" separator=" or ">
@@ -77,7 +79,9 @@
 			MANUAL_IMG05,
 			MANUAL06,
 			MANUAL_IMG06,
-			RCP_NA_TIP 
+			RCP_NA_TIP,
+			RECIPECOUNT,  
+	        IDX 
             
             
            FROM  RECIPE
@@ -113,7 +117,9 @@
 			MANUAL_IMG05,
 			MANUAL06,
 			MANUAL_IMG06,
-			RCP_NA_TIP 
+			RCP_NA_TIP,
+			RECIPECOUNT,  
+	        IDX
             
             
            FROM  RECIPE
@@ -148,7 +154,9 @@
 			MANUAL_IMG05,
 			MANUAL06,
 			MANUAL_IMG06,
-			RCP_NA_TIP 
+			RCP_NA_TIP,
+			RECIPECOUNT,  
+	        IDX
             
             
            FROM  RECIPE
@@ -156,8 +164,113 @@
                    
     
             </select>
+  
+  
+   	<select id = "RecipeCount"
+   			resultType = "com.green.recipe.vo.RecipeVo">
+   	
+    SELECT 
+    RCP_NM,
+    RCP_PARTS_DTLS,
+    ATT_FILE_NO_MAIN,
+    ATT_FILE_NO_MK,
+    HASH_TAG,
+    INFO_CAR,
+    INFO_FAT,
+    INFO_NA,
+    INFO_PRO,
+    INFO_WGT,
+    MANUAL01,
+    MANUAL_IMG01,
+    MANUAL02,
+    MANUAL_IMG02, 
+	MANUAL03, 
+	MANUAL_IMG03, 
+	MANUAL04, 
+	MANUAL_IMG04, 
+	MANUAL05, 
+	MANUAL_IMG05, 
+	MANUAL06, 
+	MANUAL_IMG06, 
+	RCP_NA_TIP,  
+	RECIPECOUNT,  
+	IDX
+FROM (
+   SELECT
+    ROW_NUMBER() OVER(ORDER BY RECIPECOUNT DESC) AS row_num,
+   	RCP_NM,
+    RCP_PARTS_DTLS,
+    ATT_FILE_NO_MAIN,
+    ATT_FILE_NO_MK,
+    HASH_TAG,
+    INFO_CAR,
+    INFO_FAT,
+    INFO_NA,
+    INFO_PRO,
+    INFO_WGT,
+    MANUAL01,
+    MANUAL_IMG01,
+    MANUAL02,
+    MANUAL_IMG02, 
+	MANUAL03, 
+	MANUAL_IMG03, 
+	MANUAL04, 
+	MANUAL_IMG04, 
+	MANUAL05, 
+	MANUAL_IMG05, 
+	MANUAL06, 
+	MANUAL_IMG06, 
+	RCP_NA_TIP,  
+	RECIPECOUNT,  
+	IDX
+   FROM RECIPE
+    )
+    WHERE row_num BETWEEN 0 AND 12
+    		
+   	</select>
+   	
+   	<select id="CookView"
+   	      resultType="com.green.recipe.vo.RecipeVo">
+   	      
+   	       SELECT 
+	    RCP_NM,
+	    RCP_PARTS_DTLS,
+	    ATT_FILE_NO_MAIN,
+	    ATT_FILE_NO_MK,
+	    HASH_TAG,
+	    INFO_CAR,
+	    INFO_FAT,
+	    INFO_NA,
+	    INFO_PRO,
+	    INFO_WGT,
+	    MANUAL01,
+	    MANUAL_IMG01,
+	    MANUAL02,
+	    MANUAL_IMG02, 
+		MANUAL03, 
+		MANUAL_IMG03, 
+		MANUAL04, 
+		MANUAL_IMG04, 
+		MANUAL05, 
+		MANUAL_IMG05, 
+		MANUAL06, 
+		MANUAL_IMG06, 
+		RCP_NA_TIP,  
+		RECIPECOUNT,  
+		IDX
+		FROM RECIPE
+		WHERE IDX = #{ idx }
+   	      
+   	      
+   	      </select>
 
+ <update id="CountUpdate">
  
+  UPDATE RECIPE
+  SET    RECIPECOUNT = RECIPECOUNT + 1
+  WHERE  IDX = #{ idx }
+ 
+ </update>
  
 </mapper>
 

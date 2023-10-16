@@ -1,4 +1,4 @@
- <%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
    <%@taglib  prefix="c"  uri="http://java.sun.com/jsp/jstl/core" %> 
@@ -21,9 +21,37 @@
 <script src="https://code.jquery.com/jquery.min.js"></script>
 
 <script>   
+    // 추천
+	function goodCheck() {
+	    var idx = $("[name='idx']").val();
+	    $.ajax({
+	        url: "/Pds/BoardBoomUp",
+	        type: "POST",
+	        data: { idx: idx },
+	        success: function(result) {
+	            alert("추천했습니다");
+	            $('#goodCheck').html(result.boardboomup);
+	        }
+	    });
+	}
+	
+    // 비추천
+	function badCheck() {
+		var idx = $("[name='idx']").val();
+	    $.ajax({
+	    	url: "/Pds/BoardBoomDown",
+	        type: "POST",
+	        data: { idx: idx },
+	        success: function(result) {
+	            alert("비추천했습니다.");
+	            $('#badCheck').html(result.boardboomdown);
+	        }
+	    });
+	}
+	 
 	$(function() {
 	    $('.replyEditModal').css('display', 'none');
-	    $('#replybody [name=btn-edit-reply-cancle]').css('display', 'none');
+	    $('.replybody [name=btn-edit-reply-cancle]').css('display', 'none');
 	
 	    let num = 1;
 	    $('#btnAddFile').on('click', function() {
@@ -31,7 +59,8 @@
 	        $('#tdfile').append(tag);
 	        num++;
 	    });
-	   
+
+
 	     // 폼 제출 시 AJAX를 사용하여 댓글 저장
 	  $("#replyForm").submit(function (e) {
 	      e.preventDefault(); // 폼의 기본 동작 방지
@@ -185,7 +214,7 @@
 						        +'<button type="button" name="btn-edit-reply-cancle" class="btn btn-outline-warning" data-dismiss="modal" style="float: right;">취소</button>'
 						        +'</div>'
 						        +'<div class="col-6 replycontent">'
-						        +'<pre>'+ element.reply+'</pre>'
+						        +' 내용 : '+ element.reply
 						        +'</div>'
 		  				});
 		                $('#replyList').html(str);
@@ -209,15 +238,18 @@
   
   <table id="tablereply">   
    <tr>
-     <td class="titlereply" colspan="4" />${ vo.title }</td>    
+     <td class="titlereply" colspan="4">${vo.title}</td>    
    </tr> 
    <tr class="subcontentdata">
-     <td class="writerreply">${ vo.writer }</td>
-     <td></td>
-     <td class="subreply">조회수 : ${ vo.readcount  }   작성일 : ${ vo.regdate }</td>
+     <td class="writerreply">${vo.writer}</td>
+     <td class="boomcheck">
+      <input type="button" value="👍" onclick="goodCheck()"/><label id="goodCheck" >${vo.boardboomup}</label> 
+      <input type="button" value="👎" onclick="badCheck()"/><label id="badCheck" >${vo.boardboomdown}</label>  
+     </td>
+     <td class= "subreply">조회수: ${vo.readcount} 작성일: ${vo.regdate}</td>
    </tr> 
    <tr>
-     <td class="contreply" colspan="4" ><pre>${ vo.cont }</pre></td>
+     <td class= "contreply" colspan= "4"><pre>${ vo.cont }</pre></td>
    </tr>
       
    <tr>
@@ -260,4 +292,3 @@
   </main>
 </body>
 </html>
-

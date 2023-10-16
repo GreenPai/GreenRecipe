@@ -1,142 +1,159 @@
-*{
-	margin:0px;
-	padding: 0px;
-	list-style:none;
-	text-decoration: none;
-	color: black;	
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+    color: black;
 }
 
-body { 
-    background-color: #D6F3ED; 
+body {
+    background-color: #D6F3ED;
 }
 
-
+/* 가운데 정렬 */
+.header_login {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #D6F3ED;
+    color: #fff;
+}
 
 .header {
-	height: 100px;
-	text-align: center;
-	box-sizing: border-box;
-	border-bottom: 1px solid #999;
+    height: 100px;
+    text-align: center;
+    box-sizing: border-box;
+    border-bottom: 1px solid #999;
 }
 
-.header_title h1{
- text-align: left;
+.header_title h1 {
+    text-align: left;
     font: bold 30px 'arial';
     padding-top: 14px;
     letter-spacing: 2px;
     color: #999;
     position: relative;
-    left: 40px; 
+    left: 40px;
 }
 
 .header_login ul {
-    margin-top: 20px; 
-}
-
-.header_login ul{
-    margin-top::;
+    margin-top: 10px;
 }
 
 .header_login ul li {
-	display:inline-block;
+    display: inline-block;
 }
 
-.header_login ul li a{
-    display:block;
+.header_login ul li a {
+    display: block;
     font: bold 14px 'arial';
     color: #999;
-    margin: 0px 16px;
+    margin: 0 16px;
     letter-spacing: 1px;
 }
 
-header{display: flex;justify-content: space-between;}
+.right-logout {
+    color: #fff;
+    text-decoration: none;
+    margin-left: 10px;
+    margin-right: 20px; 
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+}
 
 .menu {
-  width: auto;
-  overflow: hidden;
-  margin: 0px auto;
+    width: auto;
+    overflow: hidden;
+    margin: 0 auto;
 }
-	
+
 .menu > li {
-  width: 25%; /*25*4=100%*/
-  float: left;
-  text-align: center;
-  line-height: 40px;
-  background-color: #9EE0C8;
+    width: 25%;
+    float: left;
+    text-align: center;
+    line-height: 40px;
+    background-color: #9EE0C8;
 }
 
 .menu a {
-  color: #fff;
+    color: #fff;
 }
 
 .menu > li:hover {
-  background-color: #9EE0C8;
-  transition-duration: 0.5s;
+    background-color: #9EE0C8;
+    transition-duration: 0.5s;
 }
 
 .submenu1 {
-  height: 0;
-  overflow: hidden;
+    height: 0;
+    overflow: hidden;
 }
 
 .submenu1 > li {
-  line-height: 50px;
-  background-color: #CBEE99;
+    line-height: 50px;
+    background-color: #CBEE99;
 }
+
 .menu > li:hover .submenu1 {
-  height: 300px;
-  transition-duration: 1s;
+    height: 300px;
+    transition-duration: 1s;
 }
 
 .submenu1 > li:nth-child(6) {
-  height: 50px;
-  background-color: #CBEE99;
+    height: 50px;
+    background-color: #CBEE99;
 }
 
+.submenu1 > li:nth-child(7) {
+    height: 50px;
+    background-color: #CBEE99;
+}
 
 .submenu2 > li {
-  line-height: 50px;
-  background-color: #CBEE99;
+    line-height: 50px;
+    background-color: #CBEE99;
 }
 
 .submenu2 {
-  height: 0; 
-  overflow: hidden;
+    height: 0;
+    overflow: hidden;
 }
 
 .menu > li:hover .submenu2 {
-  height: 50px;
-  transition-duration: 1s;
+    height: 50px;
+    transition-duration: 1s;
 }
 
 .submenu3 > li {
-  line-height: 50px;
-  background-color: #CBEE99;
+    line-height: 50px;
+    background-color: #CBEE99;
 }
 
 .submenu3 {
-  height: 0; /*ul의 높이를 안보이게 처리*/
-  overflow: hidden;
+    height: 0;
+    overflow: hidden;
 }
 
 .menu > li:hover .submenu3 {
-  height: 150px;
-  transition-duration: 1s;
+    height: 150px;
+    transition-duration: 1s;
 }
 
 .submenu4 > li {
-  line-height: 50px;
-  background-color: #CBEE99;
+    line-height: 50px;
+    background-color: #CBEE99;
 }
 
-.submenu4{
-  height: 0; /*ul의 높이를 안보이게 처리*/
-  overflow: hidden;
+.submenu4 {
+    height: 0;
+    overflow: hidden;
 }
 
 .menu > li:hover .submenu4 {
-  height: 100px;
-  transition-duration: 1s;
+    height: 100px;
+    transition-duration: 1s;
 }
-
-

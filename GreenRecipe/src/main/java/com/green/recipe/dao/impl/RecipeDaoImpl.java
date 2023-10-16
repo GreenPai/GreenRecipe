@@ -1,5 +1,6 @@
 package com.green.recipe.dao.impl;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -52,6 +53,30 @@ public class RecipeDaoImpl implements RecipeDao {
 		List<RecipeVo> recipeList = sqlSession.selectList("Cook.RecipeQuery", query);
 		return recipeList;
 	}
+	
+	@Override
+	public List<RecipeVo> getRecipeList() {
+		
+		List<RecipeVo> recipeList = sqlSession.selectList("Cook.RecipeCount");
+		
+		return recipeList;
+	}
+
+	@Override
+	public List<RecipeVo> getRecipeByTitle(HashMap<String, Object> map) {
+		
+		List<RecipeVo> recipeList = sqlSession.selectList("Cook.RecipeTitle", map);
+		
+		return recipeList;
+	}
+
+	@Override
+	public void setCountUpdate(HashMap<String, Object> map) {
+		
+		sqlSession.update("Cook.CountUpdate", map);
+		
+	}
+
 
 
 }
