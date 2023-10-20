@@ -42,7 +42,6 @@ public class CrawlingController {
         mv.addObject("ingredients", result.getIngredients());
         mv.addObject("cont", result.getCont());
         mv.addObject("imageUrl", result.getImageUrl());
-      //  mv.setViewName("crw/list"); // 결과를 보여줄 뷰 이름
         mv.setViewName("crw/list");
         
         return mv;

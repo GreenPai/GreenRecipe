@@ -136,6 +136,15 @@ public class PdsDaoImpl implements PdsDao {
 		return pdsVo;
 	}
 
+	@Override
+	public boolean PdsBoomCheck(int idx, String userid) {
+        int count = sqlSession.selectOne("Pds.PdsBoomCheck", new HashMap<String, Object>() {{
+            put("idx", idx);
+            put("userid", userid);
+        }});
+        return count > 0; 
+    }
+
 
 
 }

@@ -16,50 +16,70 @@
 <link rel="stylesheet"  href="/css/homepage.css" />
 
 <style>
-   .boxMatarial { float:left; width:300px;margin:30px; } 
-   input[type="submit"]::before {
-	  content: '';
-	  display: block;
-	  clear: both;
-	}
-	
-body { 
-    background-color: #D6F3ED; 
+
+ .navbar-light .navbar-collapse {
+        background-color: #D6F3ED; /* 검색창 배경색 */
+    }
+
+.matarialChoice {
+	width: auto;
+	height: auto;
 }
 
+.boxMatarial {
+	float: left;
+	width: 300px;
+	margin: 40px;
+}
 
+input[type="submit"]::before {
+	content: '';
+	display: block;
+	clear: both;
+}
+
+body {
+	background-color: #D6F3ED;
+}
+
+.m1 {
+	background-color: #E0E0E0;
+}
 </style>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
-  // 체크박스 1개만 체크하기 설정
+/*
+// 체크박스 1개만 체크하기 설정
   function input_check(mat){
 	  let  radiocheck = document.querySelectorAll("[name=" + mat + "]:checked")
 	  if(radiocheck.length>1) return false;
 	  
 	  return true;
   }
-  
+  */
   // 채소 항목 2개 체크하기 설정
-  function input_chk(veg){
+ /*  function input_chk(veg){
 	  let  vegcheck   = document.querySelectorAll("[name=" + veg + "]:checked")
 	  if(vegcheck.length>2) return false;
 	  
 	  return true;
-  }
+  } */
   
   window.onload = function() {   
 	   //  alert('formEl');
-	     const   formEl        = document.querySelector('#form');
-	     let     chkList       = null;
-         const   meatsEl       = document.querySelector('#meats');
-         const   madesEl       = document.querySelector('#mades');
-         const   grainsEl      = document.querySelector('#grains');
-         const   seefoodsEl    = document.querySelector('#seefoods');
-         const   vegitablesEl  = document.querySelector('#vegitables');
-        //const   noodelsEl     = document.querySelector('#noodels');
+	     const   formEl         = document.querySelector('#form');
+	     let     chkList        = null;
+         const   meatsEl        = document.querySelector('#meats');
+         const   madesEl        = document.querySelector('#mades');
+         const   grainsEl       = document.querySelector('#grains');
+         const   seefoodsEl     = document.querySelector('#seefoods');
+         const   squidsEl       = document.querySelector('#squids');
+         const   greenssEl      = document.querySelector('#greenss');
+         const   vegitabledsEl  = document.querySelector('#vegitableds');
+         const   noodlesEl      = document.querySelector('#noodles');
 	       
 	     formEl.addEventListener('submit', (e) => {
-            // 항목별로 1개씩만 선택하기 구현
+           /*  // 항목별로 1개씩만 선택하기 구현
 	    	 let result = input_check('meat');
 	    	 	if(result == false) {
 	    	 	alert('1개만 체크해 주세요')
@@ -82,18 +102,43 @@ body {
 	    	 		alert('1개만 체크해 주세요')
 	    	 		e.preventDefault();
 	    	 	}
+	    	    
+	    	    result = input_check('squid')
+	    	 	if(result == false) {
+	    	 		alert('1개만 체크해 주세요')
+	    	 		e.preventDefault();
+	    	 	}
+	    	    
+	    	    result = input_check('noodle')
+	    	 	if(result == false) {
+	    	 		alert('1개만 체크해 주세요')
+	    	 		e.preventDefault();
+	    	 	}
+	    	    
+	    	    result = input_check('greens')
+	    	 	if(result == false) {
+	    	 		alert('1개만 체크해 주세요')
+	    	 		e.preventDefault();
+	    	 	}
+	    	    
+	    	    result = input_check('vegitabled')
+	    	 	if(result == false) {
+	    	 		alert('1개만 체크해 주세요')
+	    	 		e.preventDefault();
+	    	 	}
+ 
  
 	    	   else {
 	    	 }
-	    	
-	    	let results = input_chk('vegitable');
+	    	   
+	    	/* let results = input_chk('vegitable');
 	    	   if(results == false){
 	    		   alert('2개만 체크해 주세요')
 	    		   e.preventDefault();
 	    	   }
 	    	   else {
 	    		   
-	    	   }
+	    	   }*/ 
 	    	
 	        let  arrData = [];	    	        
 	        meatList = document.querySelectorAll('input[name="meat"]:checked');	        
@@ -130,23 +175,39 @@ body {
 	      
 	        //-----------------------------------------
 	        
+	        arrData = [];
+	        squidList = document.querySelectorAll('input[name="squid"]:checked');
+	        for(let i=0;i<squidList.length;i++) {
+	           arrData.push( squidList[i].value );
+	        }   
+	        squidsEl.value = arrData;
+	      
+	        //-----------------------------------------
+	        
 	        
 			arrData = [];
-	        vegitableList = document.querySelectorAll('input[name="vegitable"]:checked');
-	        for(let i=0;i<vegitableList.length;i++) {
-	           arrData.push( vegitableList[i].value );
+			greensList = document.querySelectorAll('input[name="greens"]:checked');
+	        for(let i=0;i<greensList.length;i++) {
+	           arrData.push( greensList[i].value );
 	        }   
-	        vegitablesEl.value = arrData;
+	        greenssEl.value = arrData;
+	        //-----------------------------------------
+	        
+	        arrData = [];
+	        vegitabledList = document.querySelectorAll('input[name="vegitabled"]:checked');
+	        for(let i=0;i<vegitabledList.length;i++) {
+	           arrData.push( vegitabledList[i].value );
+	        }   
+	        vegitabledsEl.value = arrData;
 	        //-----------------------------------------
 	        
 	               
-	         /*arrData = [];
+	         arrData = [];
 	         noodleList = document.querySelectorAll('input[name="noodle"]:checked');
 	        for(let i=0;i<noodleList.length;i++) {
 	           arrData.push( noodleList[i].value );
 	        }   
-	        noodleEl.value = arrData;
-	        alert(noodleEl.value); */
+	        noodleSEl.value = arrData;
 	        //-----------------------------------------
 	     });
   }
@@ -158,18 +219,26 @@ body {
 </head> 
 <body> 
 
- <header class="header">
+       
+    <header class="header" style="display: flex;">
     
         <div class="header_title">      
         <h1> 그린 밥상을 부탁해~!</h1> 
         </div>
-        
+	  
     
+
         <div class="header_logo">
-           <a href="/"><img class="head_logo"  src="/img/logo.png" ></a>
+        	<a href="/"><img class="head_logo"  src="/img/logo.png" ></a>
         </div>
+       
+          <div class="header_write">
+        	<a href="/"><img class="head_write"  src="/img/write.png" ></a>
+        </div> 
+       
+
         
-      <div class="header_login">
+          <div class="header_login">
     <ul>
         <li>
             <c:choose>
@@ -217,6 +286,7 @@ body {
           <li><a href="/Pds/List?menu_id=MENU01">자랑 게시판</a></li>
           <li><a href="/Pds/List?menu_id=MENU02">자유 게시판</a></li>
           <li><a href="/Pds/List?menu_id=MENU03">공유 게시판</a></li>
+          <li><a href="/Cook/User">유저 레시피</a></li>
         </ul>
       </li>
       <li>
@@ -228,84 +298,133 @@ body {
       </li>
     </ul>
  
-      <br><br><br><br><br>
+      <br><br><br>
 
   
      <h2 style="text-align: center;">재료를 선택하세요</h2>
      <br>
      <form action="/Cook/Test" method="POST" id="form">
-       <input type="hidden"   id="meats"      name="meats"/>
-       <input type="hidden"   id="mades"      name="mades"/> 
-       <input type="hidden"   id="grains"     name="grains"/>
-       <input type="hidden"   id="seefoods"   name="seefoods"/> 
-       <input type="hidden"   id="spices"     name="spices"/> 
-       <input type="hidden"   id="vegitables" name="vegitables"/>
+       <input type="hidden"   id="meats"       name="meats"/>
+       <input type="hidden"   id="mades"       name="mades"/> 
+       <input type="hidden"   id="grains"      name="grains"/>
+       <input type="hidden"   id="seefoods"    name="seefoods"/> 
+       <input type="hidden"   id="spices"      name="spices"/> 
+       <input type="hidden"   id="greenss"     name="greenss"/>
+       <input type="hidden"   id="vegitableds" name="vegitableds"/>
         
        <div id="matarialChoice"> 
        <div class="boxMatarial">     
-	   <h3>육류</h3>
+	   <h3 style="background-color: #42BC9C">육류</h3>
        <hr>
+       	<div class="m1" >
        <c:forEach var="meat" items="${ meatList }">
          <input type="checkbox" name="meat" value="${ meat.menu_name }" id="${ meat.menu_id }"/>
          <label for="${ meat.menu_id }">${ meat.menu_name }</label>
          <br>
        </c:forEach>
        </div>
-       <div class="boxMatarial">
-       <h3> 가공식품 </h3>
-       <hr>
-       <c:forEach var="made" items="${ madeList }">
-         <input type="checkbox" name="made" value="${ made.menu_name }" id="${ made.menu_id }" />
-         <label for="${ made.menu_id }">${ made.menu_name }</label>
-         <br>
-       </c:forEach>
        </div>
-       <div class="boxMatarial">
-       <h3> 곡물류 </h3>
+       <!-- ////////////////////////////////////////////// -->
+        <div class="boxMatarial">
+       <h3 style="background-color: #42BC9C"> 곡물류 </h3>
        <hr>
+       <div class="m1" style="background-color: #E0E0E0;" >
        <c:forEach var="grain" items="${ grainList }">
          <input type="checkbox" name="grain" value="${ grain.menu_name }" id="${ grain.menu_id }" />
          <label for="${ grain.menu_id }">${ grain.menu_name }</label>
          <br>
        </c:forEach>
        </div>
+       </div>
+       <!-- ////////////////////////////////////////////// -->
+       
        <div class="boxMatarial">
-       <h3>해산물</h3>
+       <h3 style="background-color: #42BC9C">면류</h3>
        <hr>
+       <div class="m1">
+       <c:forEach var="noodle" items="${ noodleList }">
+         <input type="checkbox" name="noodle" value="${ noodle.menu_name }" id="${ noodle.menu_id }" />
+         <label for="${ noodle.menu_id }">${noodle.menu_name }</label>
+         <br>
+       </c:forEach>
+       </div> 
+       </div>
+       
+        <!-- ////////////////////////////////////////////// -->
+       
+       <div class="boxMatarial"> 
+       <h3 style="background-color: #42BC9C">채소Ⅰ</h3>
+       <hr>
+       <div class="m1">
+       <c:forEach var="greens" items="${ greensList }">
+         <input type="checkbox" name="greens" value="${ greens.menu_name }" id="${ greens.menu_id }" />
+         <label for="${ greens.menu_id }">${ greens.menu_name }</label>
+         <br>
+       </c:forEach>
+       </div>
+       </div>
+       
+          <!-- ////////////////////////////////////////////// -->
+          
+       <div class="boxMatarial"> 
+       <h3 style="background-color: #42BC9C">채소Ⅱ</h3>
+       <hr>
+       <div class="m1">
+       <c:forEach var="vegitabled" items="${ vegitabledList }">
+         <input type="checkbox" name="vegitabled" value="${ vegitabled.menu_name }" id="${ vegitabled.menu_id }" />
+         <label for="${ vegitabled.menu_id }">${ vegitabled.menu_name }</label>
+         <br>
+       </c:forEach>
+       </div>
+       </div>
+       
+          <!-- ////////////////////////////////////////////// -->
+           
+       <div class="boxMatarial">
+       <h3 style="background-color: #42BC9C">해산물Ⅰ</h3>
+       <hr>
+       <div class="m1" >
        <c:forEach var="seefood" items="${ seefoodList }">
          <input type="checkbox" name="seefood" value="${ seefood.menu_name }" id="${ seefood.menu_id }" />
          <label for="${ seefood.menu_id }">${ seefood.menu_name }</label>
          <br>
        </c:forEach>
        </div>
-      
-       <div class="boxMatarial"> 
-       <h3>채소</h3>
+       </div>
+       
+       <!-- ////////////////////////////////////////////// -->
+       
+       <div class="boxMatarial">
+       <h3 style="background-color: #42BC9C">해산물Ⅱ</h3>
        <hr>
-       <c:forEach var="vegitable" items="${ vegitableList }">
-         <input type="checkbox" name="vegitable" value="${ vegitable.menu_name }" id="${ vegitable.menu_id }" />
-         <label for="${ vegitable.menu_id }">${ vegitable.menu_name }</label>
+       <div class="m1" >
+       <c:forEach var="squid" items="${ squidList }">
+         <input type="checkbox" name="squid" value="${ squid.menu_name }" id="${ squid.menu_id }" />
+         <label for="${ squid.menu_id }">${ squid.menu_name }</label>
          <br>
        </c:forEach>
        </div>
+       </div>
        
-       <%-- <div class="boxMatarial">
-       <h3>면 종류</h3>
+       <!-- ////////////////////////////////////////////// -->
+       
+       <div class="boxMatarial">
+       <h3 style="background-color: #42BC9C"> 가공식품 </h3>
        <hr>
-       <c:forEach var="noodle" items="${ noodleList }">
-         <input type="checkbox" name="noodle" value="${ noodle.menu_name }" id="${ noodle.menu_id }" />
-         <label for="${ noodle.menu_id }">${noodle.menu_name }</label>
+       <div class="m1">
+       <c:forEach var="made" items="${ madeList }">
+         <input type="checkbox" name="made" value="${ made.menu_name }" id="${ made.menu_id }" />
+         <label for="${ made.menu_id }">${ made.menu_name }</label>
          <br>
        </c:forEach>
-       </div>  --%>
+       </div>
+       </div>
        
-       
+       <!-- ////////////////////////////////////////////// -->
        </div> 
+       
     <input type="submit" value="선택 완료" style="width: 100px; height: 50px; position: fixed; bottom: 20px; left: 46%; text-align: center; border-radius: 5px;" />
      </form> 
- 
-    
-  
 </body>
 </html> 
   

@@ -63,16 +63,24 @@
 </head>
 <body>
       
-    <header class="header">
+          
+    <header class="header" style="display: flex;">
     
         <div class="header_title">      
+        <h1> 그린 밥상을 부탁해~!</h1> 
         </div>
-        
+	  
     
-    
+
         <div class="header_logo">
-        	<img class="head_logo"  src="img/logo.png" >
+        	<a href="/"><img class="head_logo"  src="/img/logo.png" ></a>
         </div>
+       
+          <div class="header_write">
+        	<a href="/"><img class="head_write"  src="/img/write.png" ></a>
+        </div> 
+       
+
         
           <div class="header_login">
     <ul>
@@ -113,7 +121,7 @@
       <li>
         <a href="#">리빙팁</a>
         <ul class="submenu2">
-          <li><a href="https://ottogi.okitchen.co.kr/category/tip.asp">계량팁</a></li>        
+          <li><a href="/Tip">계량팁</a></li>       
         </ul>
       </li>
       <li>
@@ -122,6 +130,7 @@
           <li><a href="/Pds/List?menu_id=MENU03">자랑 게시판</a></li>
           <li><a href="/Pds/List?menu_id=MENU05">자유 게시판</a></li>
           <li><a href="/Pds/List?menu_id=MENU04">공유 게시판</a></li>
+          <li><a href="/Cook/User">유저 레시피</a></li>
         </ul>
       </li>
       <li>

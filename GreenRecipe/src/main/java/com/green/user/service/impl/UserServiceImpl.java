@@ -52,6 +52,13 @@ public class UserServiceImpl implements UserService {
 		
 		return  cnt;
 	}
+	
+	@Override
+	public int nickDupCheck(UserVo vo) {
+		int cnt = userDao.nickDupCheck(vo);
+		
+		return  cnt;
+	}
 
 	@Override
 	public void userUpdate(UserVo vo) {

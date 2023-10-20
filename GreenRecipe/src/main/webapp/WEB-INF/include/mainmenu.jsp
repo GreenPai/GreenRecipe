@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
-   
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,7 +14,18 @@
 <title>그린 밥상을 부탁해</title>
 
 <style>
+/*  사용자 레시피 중간으로  */
+.header_write {
+    text-align: center; 
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
 
+.head_write {
+    display: inline-block;
+}
 
 </style>
 
@@ -27,10 +38,13 @@
         <h1> 그린 밥상을 부탁해~!</h1>
         </div>
     
-        <div class="header_logo">
-        	<img class="head_logo"  src="/img/logo.png" >
-        </div>
+       <div class="header_logo">
+        	<a href="/"><img class="head_logo"  src="/img/logo.png" ></a>
+        </div>  
         
+        <div class="header_write">
+        	<a href="/"><img class="head_write"  src="/img/write.png" ></a>
+        </div> 
      <div class="header_login">
     <ul>
         <li>
@@ -60,7 +74,7 @@
         <a href="#">레시피</a>
         <ul class="submenu1">
           <li><a href="/Cook/List">재료등록</a></li>
-          <li><a href="/Cook/SHOW">추천레시피</a></li>
+          <li><a href="/Cook/Show">추천레시피</a></li>
           <li><a href="/Cook/Han">한식레시피</a></li>
           <li><a href="/Cook/Jap">일식레시피</a></li>
           <li><a href="/Cook/Chi">중식레시피</a></li>
@@ -79,6 +93,7 @@
           <li><a href="/Pds/List?menu_id=MENU01">자랑 게시판</a></li>
           <li><a href="/Pds/List?menu_id=MENU02">자유 게시판</a></li>
           <li><a href="/Pds/List?menu_id=MENU03">공유 게시판</a></li>
+          <li><a href="/Cook/User">유저 레시피</a></li>
         </ul>
       </li>
       <li>

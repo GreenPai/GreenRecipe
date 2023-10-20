@@ -22,5 +22,7 @@ public interface UserService {
 
 	UserVo username(String userid);
 
+	int nickDupCheck(UserVo vo);
+
 
 }

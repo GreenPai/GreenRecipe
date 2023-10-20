@@ -135,6 +135,13 @@ public class PdsServiceImpl implements PdsService {
 		PdsVo    pdsVo = pdsDao.boardBoomDown(vo);
 		return pdsVo;
 	}
+
+	@Override
+	public boolean PdsBoomCheck(int idx, String userid) {
+        boolean isDuplicate = pdsDao.PdsBoomCheck(idx, userid);
+        return isDuplicate;
+	}
+
 }
 
 

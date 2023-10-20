@@ -37,7 +37,18 @@ body {
     margin-top: 5px; /* 원하는 여백을 조정하세요 */
   }
   
-
+	/*  사용자 레시피 중간으로  */
+	.header_write {
+	    text-align: center; 
+	    display: flex; 
+	    justify-content: center;
+	    align-items: center;
+	    height: 100%;
+	}
+	
+	.head_write {
+	    display: inline-block;
+	}
 </style>
 
 <script>
@@ -70,17 +81,30 @@ for (let i = 0; i < manualImages.length; i++) {
 </head>
 <body>
       
-    <header class="header">
+     <header class="header" style="display: flex;">
     
         <div class="header_title">      
-        <h1><a href="/">그린 밥상을 부탁해~!</a></h1>
+        <h1> 그린 밥상을 부탁해~!</h1> 
         </div>
-        
+	  
+    
+    <nav class="navbar">
+  <div class="container-fluid">
+    <form class="d-flex" action="/Cook/Search" method="get">
+      <input class="form-control me-2" type="search" name="query" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success" type="submit">Search</button>
+    </form>
+  </div>
+</nav>
     
         <div class="header_logo">
-           <a href="/"><img class="head_logo"  src="/img/logo.png" ></a>
+        	<a href="/"><img class="head_logo"  src="/img/logo.png" ></a>
         </div>
         
+        
+           <div class="header_write">
+        	<a href="/"><img class="head_write"  src="/img/write.png" ></a>
+        </div> 
          <div class="header_login">
     <ul>
         <li>
@@ -129,6 +153,7 @@ for (let i = 0; i < manualImages.length; i++) {
           <li><a href="/Pds/List?menu_id=MENU01">자랑 게시판</a></li>
           <li><a href="/Pds/List?menu_id=MENU02">자유 게시판</a></li>
           <li><a href="/Pds/List?menu_id=MENU03">공유 게시판</a></li>
+          <li><a href="/Cook/User">유저 레시피</a></li>
         </ul>
       </li>
       <li>
@@ -181,68 +206,88 @@ for (let i = 0; i < manualImages.length; i++) {
     </div>
 </div> 
 	<div class="container mt-8 rounded-container">
-	 <div class="row"> 
-	  <div style="margin-bottom: 20px; width:100%;"> 
-                <h2 style="text-align: center;">${recipeList[0].RCP_NM} 조리 방법</h2>
-      </div>
-     <div id="imageContainer">         
-     <div style="display: flex; align-items: center; width:100%;" >     	
-     <!-- 이미지 출력 -->
-     <img id="stepImage" src="${recipeList[0].MANUAL_IMG01}" alt="Step 1"  width="200" height="150" style="float: left; margin-right: 10px; border-radius: 10px;" />
-     
-     <!-- 설명 출력 -->
-     <p id="stepDescription">${recipeList[0].MANUAL01}</p>
-     </div>
-     <br><br>
-     
-     <div style="display: flex; align-items: center; width:100%;">  
-      <!-- 이미지 출력 --> 
-     <img id="stepImage" src="${recipeList[0].MANUAL_IMG02}" alt="Step 2" width="200" height="150" style="float: left; margin-right: 10px; border-radius: 10px; "/>
-     
-     <!-- 설명 출력 --> 
-     <p id="stepDescription">${recipeList[0].MANUAL02}</p>
-     </div>
-     <br><br>
-     
-     <div style="display: flex; align-items: center; width:100%;">  
-      <!-- 이미지 출력 -->
-     <img id="stepImage" src="${recipeList[0].MANUAL_IMG03}" alt="Step 3" width="200" height="150" style="float: left; margin-right: 10px; border-radius: 10px;"/>
-     
-     <!-- 설명 출력 -->
-     <p id="stepDescription">${recipeList[0].MANUAL03}</p>
-     </div>
-    <br><br>
-    
-     <div style="display: flex; align-items: center; width:100%;">  
-      <!-- 이미지 출력 -->
-     <img id="stepImage" src="${recipeList[0].MANUAL_IMG04}" alt="Step 4" width="200" height="150" style="float: left; margin-right: 10px; border-radius: 10px;"/>
-     
-     <!-- 설명 출력 -->
-     <p id="stepDescription">${recipeList[0].MANUAL04}</p>
-     </div> 
-     <br><br>
-     
-     <div style="display: flex; align-items: center; width:100%;">   
-      <!-- 이미지 출력 -->
-     <img id="stepImage" src="${recipeList[0].MANUAL_IMG05}" alt="Step 5" width="200" height="150" style="float: left; margin-right: 10px; border-radius: 10px;"/>
-       
-     <!-- 설명 출력 -->
-     <p id="stepDescription">${recipeList[0].MANUAL05}</p>
-     </div>
-     <br><br>
-      
-     <div style="display: flex; align-items: center; width:100%;">        
-      <!-- 이미지 출력 -->
-     <img id="stepImage" src="${recipeList[0].MANUAL_IMG06}" alt="Step 6"  width="200" height="150" style="float: left; margin-right: 10px; border-radius: 10px;"/>
-     
-     <!-- 설명 출력 -->
-     <p id="stepDescription">${recipeList[0].MANUAL06}</p>
-     </div>
-      </div>
-     <br><br> 
-	 </div>
+    <div class="row">
+        <div style="margin-bottom: 20px; width: 100%;">
+            <h2 style="text-align: center;">${recipeList[0].RCP_NM} 조리 방법</h2>
+        </div>
+        <div id="imageContainer">
 
-	</div>
+            <c:choose>
+                <c:when test="${not empty recipeList[0].MANUAL_IMG01}">
+                    <div style="display: flex; align-items: center; width: 100%; margin-bottom: 20px;">
+                        <!-- 이미지 출력 -->
+                        <img id="stepImage" src="${recipeList[0].MANUAL_IMG01}" alt="Step 1" width="200" height="150" style="float: left; margin-right: 10px; border-radius: 10px;" />
+
+                        <!-- 설명 출력 -->
+                        <p id="stepDescription">${recipeList[0].MANUAL01}</p>
+                    </div>
+                </c:when>
+            </c:choose>
+
+            <c:choose>
+                <c:when test="${not empty recipeList[0].MANUAL_IMG02}">
+                    <div style="display: flex; align-items: center; width: 100%; margin-bottom: 20px;">
+                        <!-- 이미지 출력 -->
+                        <img id="stepImage" src="${recipeList[0].MANUAL_IMG02}" alt="Step 2" width="200" height="150" style="float: left; margin-right: 10px; border-radius: 10px;" />
+
+                        <!-- 설명 출력 -->
+                        <p id="stepDescription">${recipeList[0].MANUAL02}</p>
+                    </div>
+                </c:when>
+            </c:choose>
+
+            <c:choose>
+                <c:when test="${not empty recipeList[0].MANUAL_IMG03}">
+                    <div style="display: flex; align-items: center; width: 100%; margin-bottom: 20px;">
+                        <!-- 이미지 출력 -->
+                        <img id="stepImage" src="${recipeList[0].MANUAL_IMG03}" alt="Step 3" width="200" height="150" style="float: left; margin-right: 10px; border-radius: 10px;" />
+
+                        <!-- 설명 출력 -->
+                        <p id="stepDescription">${recipeList[0].MANUAL03}</p>
+                    </div>
+                </c:when>
+            </c:choose>
+
+            <c:choose>
+                <c:when test="${not empty recipeList[0].MANUAL_IMG04}">
+                    <div style="display: flex; align-items: center; width: 100%; margin-bottom: 20px;">
+                        <!-- 이미지 출력 -->
+                        <img id="stepImage" src="${recipeList[0].MANUAL_IMG04}" alt="Step 4" width="200" height="150" style="float: left; margin-right: 10px; border-radius: 10px;" />
+
+                        <!-- 설명 출력 -->
+                        <p id="stepDescription">${recipeList[0].MANUAL04}</p>
+                    </div>
+                </c:when>
+            </c:choose>
+
+            <c:choose>
+                <c:when test="${not empty recipeList[0].MANUAL_IMG05}">
+                    <div style="display: flex; align-items: center; width: 100%; margin-bottom: 20px;">
+                        <!-- 이미지 출력 -->
+                        <img id="stepImage" src="${recipeList[0].MANUAL_IMG05}" alt="Step 5" width="200" height="150" style="float: left; margin-right: 10px; border-radius: 10px;" />
+
+                        <!-- 설명 출력 -->
+                        <p id="stepDescription">${recipeList[0].MANUAL05}</p>
+                    </div>
+                </c:when>
+            </c:choose>
+
+            <c:choose>
+                <c:when test="${not empty recipeList[0].MANUAL_IMG06}">
+                    <div style="display: flex; align-items: center; width: 100%; margin-bottom: 20px;">
+                        <!-- 이미지 출력 -->
+                        <img id="stepImage" src="${recipeList[0].MANUAL_IMG06}" alt="Step 6" width="200" height="150" style="float: left; margin-right: 10px; border-radius: 10px;" />
+
+                        <!-- 설명 출력 -->
+                        <p id="stepDescription">${recipeList[0].MANUAL06}</p>
+                    </div>
+                </c:when>
+            </c:choose>
+        </div>
+    </div>
+</div>
+
+
 
 
     

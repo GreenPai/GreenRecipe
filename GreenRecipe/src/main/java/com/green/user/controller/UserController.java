@@ -70,6 +70,14 @@ public class UserController {
 			model.addAttribute("cnt", cnt);
 		  return "user/dupcheck";		  
 	  }
+	 
+	// 닉네임중복체크
+	 @RequestMapping("/User/NickDupCheck")
+	  public String nicDupCheck( UserVo vo, Model model) {		  
+			int cnt = userService.nickDupCheck( vo );
+			model.addAttribute("cnt", cnt);
+		  return "user/nickdupcheck";		  
+	  }
 	
 	// 회원정보보기  
 	@RequestMapping("/User/View")
@@ -146,7 +154,7 @@ public class UserController {
 	        session.setAttribute("userid", userid); // 아이디
 	        session.setAttribute("userpw", passwd); // 비밀번호
 	        session.setAttribute("loginMember", name); // 유저이름
-	        session.setAttribute("useremail", email); // 이메일
+	        session.setAttribute("useremail", email); // 이메일        
 	        return mv;
 	        
 	        

@@ -89,6 +89,15 @@
         
    </select>
    
+   <select id="PdsBoomCheck"
+           resultType="int" parameterType="java.util.HashMap">
+      SELECT COUNT(*) 
+        FROM C_REPLY
+       WHERE IDX = #{idx} 
+         AND USERID = #{userid}
+   </select>
+
+   
    <insert id="PdsInsert">
       
       INSERT  INTO   BOARD (
@@ -121,6 +130,18 @@
       
    </insert>
    
+   <insert id="insertc_reply">
+	   INSERT INTO C_REPLY (
+	   BNO
+	 , IDX
+	 , USERID
+	) VALUES ( 
+	  (SELECT NVL(MAX(BNO),0)+1 FROM C_REPLY)
+	 , #{ idx }
+	 , #{ userid   }
+	)
+   </insert>
+   
    <update  id="StepUpdate">
    
       UPDATE   BOARD
@@ -150,15 +171,16 @@
    </update>
    
    <update id="BoardBoomUp">
-     UPDATE   BOARD
-        SET   BOARDBOOMUP  = BOARDBOOMUP +1
-      WHERE   IDX          = #{idx}
-   </update>
+	   UPDATE  BOARD
+	    SET    READCOUNT = READCOUNT + 1
+	    WHERE  IDX = #{ idx }
+    </update>
+   
    
    <update id="BoardBoomDown">
-     UPDATE   BOARD
-        SET   BOARDBOOMDOWN  = BOARDBOOMDOWN +1
-      WHERE   IDX          = #{idx}
+	UPDATE BOARD
+	SET BOARDBOOMDOWN = BOARDBOOMDOWN +1
+	WHERE IDX = #{idx}
    </update>
    
    <insert id="PdsReply">

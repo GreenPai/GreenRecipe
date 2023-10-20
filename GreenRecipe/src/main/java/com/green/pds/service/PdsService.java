@@ -32,5 +32,7 @@ public interface PdsService {
 
 	PdsVo boardBoomDown(PdsVo vo);
 
+	boolean PdsBoomCheck(int idx, String userid);
+
 
 }

@@ -31,6 +31,18 @@ $(function() {
 	    }
 	  });
 	});
+	
+$(function() {
+	  $("#nickdup").on('click',function(e) {
+	    var nickname = $("#nickname").val();	    
+	    if (nickname === "" || nickname.length < 0) {
+	      alert("닉네임을 먼저 입력해주세요");
+	      $("#nickname").focus();
+	    } else {
+	      window.open("/User/NickDupCheck?nickname=" + nickname, 'nickdupcheck' ,"width=500, height=300");
+	    }
+	  });
+	});
 </script>
 <script>
 $(function() {
@@ -79,6 +91,9 @@ $(function() {
      </tr> 
      <tr>
        <td><input type="email" name="email" placeholder="이메일: 예시 : funweb@funweb.com (@포함기입)" required/></td>
+     </tr> 
+     <tr>
+       <td><input type="text" name="nickname" id="nickname" placeholder="닉네임 : 2자 이상입력" minlength="2" maxlength="20"  required/>  <input type="button" value="중복확인" id="nickdup" ></td>    
      </tr> 
      <tr>     
        <td colspan="2">

@@ -22,29 +22,69 @@ body {
     background-color: #D6F3ED; 
 }
 
+/*  사용자 레시피 중간으로  */
+.header_write {
+    text-align: center; 
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
 
+.head_write {
+    display: inline-block;
+}
 
 </style>
 
 </head>
 <body>
       
-    <header class="header">
+     <header class="header" style="display: flex;">
     
-        <div class="header_title">
-        <h1>그린 밥상을 부탁해~!</h1> 
+        <div class="header_title">      
+        <h1> 그린 밥상을 부탁해~!</h1> 
         </div>
-        
+	  
+    
+    <nav class="navbar">
+  <div class="container-fluid">
+    <form class="d-flex" action="/Cook/Search" method="get">
+      <input class="form-control me-2" type="search" name="query" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success" type="submit">Search</button>
+    </form>
+  </div>
+</nav>
+    
         <div class="header_logo">
-           <a href="/"><img class="head_logo"  src="/img/logo.png" ></a>
+        	<a href="/"><img class="head_logo"  src="/img/logo.png" ></a>
         </div>
         
-        <div class="header_login">
-           <ul>
-              <li><a href="/User/List">로그인</a></li>
-              <li><a href="/User/Agree">회원가입</a></li>
-           </ul>
-        </div>
+        
+           <div class="header_write">
+        	<a href="/"><img class="head_write"  src="/img/write.png" ></a>
+        </div> 
+         <div class="header_login">
+    <ul>
+        <li>
+            <c:choose>
+                <c:when test="${not empty sessionScope['loginMember']}">
+                    <div class="left-content">
+                        <img src="/img/user.jpg" alt="" class="left-image" width="40" height="40">
+                        <c:set var="userName" value="${sessionScope['loginMember']}" />
+                        <p>${userName}</p>
+                    </div>
+                    <a href="/logout" class="right-logout">로그아웃</a>
+                </c:when>
+                <c:otherwise>
+                    <!-- 세션이 없을 때, 로그인 링크 -->
+                    <a href="/User/List">로그인</a>
+                    <li><a href="/User/Agree">회원가입</a></li>
+                </c:otherwise>
+            </c:choose>
+        </li>
+    </ul>
+</div>
                
     </header>
 
@@ -72,6 +112,7 @@ body {
           <li><a href="/Pds/List?menu_id=MENU01">자랑 게시판</a></li>
           <li><a href="/Pds/List?menu_id=MENU02">자유 게시판</a></li>
           <li><a href="/Pds/List?menu_id=MENU03">공유 게시판</a></li>
+          <li><a href="/Cook/User">유저 레시피</a></li>
         </ul>
       </li>
       <li>

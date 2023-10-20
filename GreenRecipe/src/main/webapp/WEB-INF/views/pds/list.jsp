@@ -42,8 +42,10 @@
       </caption>
       <tr>
       	<td colspan="6" style="text-align:right">
-      	  <a href="/Pds/WriteForm?menu_id=${ map.menu_id }&bnum=0">[새 글 쓰기]</a>
-      	  <a href="/">[Home]</a>
+      	  <c:if test="${sessionScope.userid != null}">
+      	    <a href="/Pds/WriteForm?menu_id=${ map.menu_id }&bnum=0">[새 글 쓰기]</a>
+      	  </c:if>
+      	    <a href="/">[Home]</a>
       	</td>
       </tr>
    	  <tr>

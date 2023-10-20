@@ -13,10 +13,10 @@
 	            <button name="btn_reply_delete" type="button" class="btn btn-outline-danger" style="float: right;">삭제</button>
                 <button name="btn_reply_edit" type="button" class="btn btn-outline-info btn-edit-reply" style="float: right;"
                     data-rno="${reply.rno}" data-reply="${reply.reply}">수정</button>
-	            <button type='button' name="btn-edit-reply-cancle" class='btn btn-outline-warning' data-dismiss='modal' style="float: right;">취소</button>
+	            <button type="button" name="btn-edit-reply-cancle" class="btn btn-outline-warning" data-dismiss="modal" style="float: right;">취소</button>
 	        </div>
 	        <div class="col-sm-6 replycontent"> 
-	            <pre>${ reply.reply}</pre>
+	            <pre class="replyreplyrerere">${ reply.reply}</pre>
 	        </div>    
 	        
 	        <!-- 댓글 수정 -->
@@ -29,10 +29,10 @@
 			                </div>
 			                <div class="modal-body">
 			                    <input type="hidden" class="editRno" name="rno" value="${ reply.rno }" />
-			                    <textarea rows="3" class="editReply" name="editreply" class="form-control"></textarea>
+			                    <textarea rows="3" class="editreply" name="reply" class="form-control"></textarea>
 			                </div>
 			                <div class="modal-footer">
-			                    <button type='submit' name="editSave" class='btn btn-primary'>저장</button>
+			                    <button name="btn_reply_edit_save" type="button" class="btn btn-primary">저장</button>
 			                </div>
 			           </div>
 			       </form>
@@ -47,12 +47,12 @@
   <table id="replytable">
    <tr>
     <th style="width: 5%; height: 20px;">작성자</th>
-    <td><input type="text" name="replywriter" style="float: left; height:25px; width: 50%"/><input type="submit"  value="등록" style="float: right;" /></td>
+    <td><input type="text" name="replywriter" style="float: left; height:25px; width: 50%"/><c:if test="${sessionScope.userid != null}"><input type="submit"  value="등록" style="float: right;" /></c:if></td>
    </tr>
    <tr>
-    <td colspan="2"><textarea name="reply"></textarea></td>
+    <td colspan="2"><textarea name="reply" placeholder="로그인 후 이용해주세요."></textarea></td>
    </tr> 
-  </table>
-  </form>   
+  </table>  
+  </form> 
   
 </section>

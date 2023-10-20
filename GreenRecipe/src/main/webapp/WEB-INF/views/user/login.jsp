@@ -29,6 +29,65 @@
         #tableinfo {
             background-color: white;
         }
+        
+        
+              
+              /*  사용자 레시피 중간으로  */
+      .header_write {
+          text-align: center; 
+          display: flex; 
+          justify-content: center;
+          align-items: center;
+          height: 100%;
+      }
+      
+      .head_write {
+          display: inline-block;
+      }
+      
+      #loginlayoutbim {
+          position: relative;
+          top: 50%;
+          left: 50%;
+         transform: translate(-50%, -50%);
+      }
+      
+      .input-box{
+         position:relative;
+         margin:10px 100px;
+        }
+      .input-box > input{
+        background:white;
+        border:none;
+        border-bottom: solid 1px #ccc;
+        padding:20px 0px 5px 0px;
+        font-size:14pt;
+        width:100%;
+      }
+      input::placeholder{
+       color:transparent;
+        }
+        input:placeholder-shown + label{
+        color:#aaa;
+        font-size:14pt;
+        top:15px;
+      }
+      input:focus + label, label{
+        color:#8aa1a1;
+        font-size:10pt;
+        pointer-events: none;
+        position: absolute;
+        left:0px;
+        top:0px;
+        transition: all 0.2s ease ;
+        -webkit-transition: all 0.2s ease;
+        -moz-transition: all 0.2s ease;
+        -o-transition: all 0.2s ease;
+      }
+      input:focus, input:not(:placeholder-shown){
+        border-bottom: solid 1px #8aa1a1;
+        outline:none;
+      }
     </style>
 
     <script src="//code.jquery.com/jquery.min.js"></script>
@@ -117,6 +176,7 @@
             <li><a href="/Pds/List?menu_id=MENU01">자랑 게시판</a></li>
             <li><a href="/Pds/List?menu_id=MENU02">자유 게시판</a></li>
             <li><a href="/Pds/List?menu_id=MENU03">공유 게시판</a></li>
+            <li><a href="/Cook/User">유저 레시피</a></li>
         </ul>
     </li>
     <li>
@@ -130,38 +190,32 @@
 
 <br><br><br><br><br><br><br>
 
-<h2 style="text-align: center;">로그인</h2>
 <br>
 
-<div style="text-align: center;">
-  <form name="form1" method="post">
-    <table border="1" width="300px" id="tableinfo" style="display: inline-block;">
-        <tr>
-            <td>아이디</td>
-            <td><input id="userid" name="userid"></td>
-        </tr>
-        <tr>
-            <td>비밀번호</td>
-            <td><input type="password" id="passwd" name="passwd"></td>
-        </tr>
-        <tr>
-            <td colspan="2" align="center">
+<div style="text-align: center; width: 60%;" id="loginlayoutbim">
+        <form name="form1" method="post">
+<h2 style="text-align: center;">로그인</h2>
+
+            <div class="input-box">
+                <input id="userid" type="text" name="userid" placeholder="아이디">
+                <label for="userid">아이디</label>
+            </div>
+
+            <div class="input-box">
+                <input id="passwd" type="password" name="passwd" placeholder="비밀번호">
+                <label for="password">비밀번호</label>
+            </div>
                 <button type="button" id="btnLogin">로그인</button>
                 <a href="/User/Agree"><button type="button" >회원가입</button></a>
-              
+            <div>
                 <c:if test="${loginError == '비밀번호가 일치하지 않습니다.'}">
                     <div style="color: red;">비밀번호가 일치하지 않습니다.</div>
                 </c:if>
                 <c:if test="${loginError == '사용자를 찾을 수 없습니다.'}">
                     <div style="color: red;">사용자를 찾을 수 없습니다.</div>
                 </c:if>
-                
-            </td>
-        </tr>
-    
-    </table>
-  </form>
-    
+            </div>
+        </form>
 </div>
 
 </body>

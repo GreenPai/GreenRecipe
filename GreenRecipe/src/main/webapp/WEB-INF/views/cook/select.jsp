@@ -37,7 +37,18 @@ body {
     margin-top: 5px; /* 원하는 여백을 조정하세요 */
   }
   
-
+	/*  사용자 레시피 중간으로  */
+	.header_write {
+	    text-align: center; 
+	    display: flex; 
+	    justify-content: center;
+	    align-items: center;
+	    height: 100%;
+	}
+	
+	.head_write {
+	    display: inline-block;
+	}
 </style>
 
 <script>
@@ -70,18 +81,34 @@ for (let i = 0; i < manualImages.length; i++) {
 </head>
 <body>
       
-    <header class="header">
+          
+    <header class="header" style="display: flex;">
     
         <div class="header_title">      
-        <h1><a href="/">그린 밥상을 부탁해~!</a></h1>
+        <h1> 그린 밥상을 부탁해~!</h1> 
         </div>
-        
+	  
+    
+    <nav class="navbar">
+  <div class="container-fluid">
+    <form class="d-flex" action="/Cook/Search" method="get">
+      <input class="form-control me-2" type="search" name="query" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success" type="submit">Search</button>
+    </form>
+  </div>
+</nav>
     
         <div class="header_logo">
-           <a href="/"><img class="head_logo"  src="/img/logo.png" ></a>
+        	<a href="/"><img class="head_logo"  src="/img/logo.png" ></a>
         </div>
+       
+          <div class="header_write">
+        	<a href="/"><img class="head_write"  src="/img/write.png" ></a>
+        </div> 
+       
+
         
-         <div class="header_login">
+          <div class="header_login">
     <ul>
         <li>
             <c:choose>
@@ -129,6 +156,7 @@ for (let i = 0; i < manualImages.length; i++) {
           <li><a href="/Pds/List?menu_id=MENU01">자랑 게시판</a></li>
           <li><a href="/Pds/List?menu_id=MENU02">자유 게시판</a></li>
           <li><a href="/Pds/List?menu_id=MENU03">공유 게시판</a></li>
+          <li><a href="/Cook/User">유저 레시피</a></li>
         </ul>
       </li>
       <li>

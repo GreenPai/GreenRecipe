@@ -45,6 +45,10 @@
     <td>${ user.indate }</td>
    </tr>
    <tr>
+    <td>닉네임</td>
+    <td>${ user.nickname }</td>
+   </tr>
+   <tr>
     <td colspan="2">
       <a  class="btn btn-primary btn-sm" 
            href="/User/WriteForm" >회원추가</a>

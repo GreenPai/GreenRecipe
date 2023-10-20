@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
     
    <%@taglib  prefix="c"  uri="http://java.sun.com/jsp/jstl/core" %> 
+   
     
 <!DOCTYPE html>
 <html>
@@ -42,7 +43,9 @@
   <main>
   
   <!-- 메뉴 목록 -->
-  <%@include file="/WEB-INF/include/pdsmenus.jsp" %>
+	<%@include file="/WEB-INF/include/mainmenu.jsp" %>
+	
+    <c:set var="userNickname" value="${sessionScope.nickname}" />
 
    <c:choose>
     <c:when test="${  map.bnum eq 0 }">    
@@ -67,7 +70,7 @@
    <caption>
      <c:choose>
       <c:when test="${ map.bnum == 0 }">
-  	    <h2>${ map.menuname } 자료실 새글 등록</h2>
+  	    <h2>${ map.menuname } 새글 등록</h2>
   	  </c:when>
   	  <c:otherwise>  	     
   	    <h2>답글 등록</h2>
@@ -80,7 +83,7 @@
    </tr> 
    <tr>
      <th>글쓴이</th>
-     <td><input type="text" name="writer" value="${ vo.writer }" /></td>
+     <td><input type="text" name="writer" readonly value="${sessionScope.nickname}"></td>
    </tr> 
    <tr>
      <th>내용</th>

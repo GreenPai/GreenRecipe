@@ -3,8 +3,13 @@ package com.green.recipe.dao;
 import java.util.HashMap;
 import java.util.List;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import com.green.recipe.vo.MatarialVo;
 import com.green.recipe.vo.RecipeVo;
+import com.green.recipe.vo.RecipecntVo;
+import com.green.recipe.vo.User_RecipeVo;
+import com.green.recipe.vo.User_RecipeVo2;
 
 public interface RecipeDao {
 
@@ -23,6 +28,28 @@ public interface RecipeDao {
 	List<RecipeVo> getRecipeByTitle(HashMap<String, Object> map);
 
 	void setCountUpdate(HashMap<String, Object> map);
+
+	void userRecipe(User_RecipeVo vo);
+
+	List<User_RecipeVo2> getUserRecipe();
+
+	List<User_RecipeVo2> getUserRecipeByTitle(String recipeTitle);
+
+	List<RecipeVo> getRecipeList2(String mat);
+
+	List<RecipecntVo> getTitle();
+
+	void insertTitle1(String recipeTitle);
+
+	List<RecipecntVo> FinalList();
+
+	List<RecipeVo> getFinalRecipe(String rCP_NM);
+
+	void insertTitle2(String recipeTitle, String userId);
+
+	void deleteRecipe(String userId);
+
+
 
 
 

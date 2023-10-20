@@ -12,6 +12,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -101,16 +102,18 @@ public class PdsController {
 	@RequestMapping("/Write")
 	public  ModelAndView   write(
 		@RequestParam  HashMap<String, Object> map,    // String 정보
-		HttpServletRequest   request                   // String + File(Binary)
+		HttpServletRequest   request    , HttpSession session               // String + File(Binary)
 			) {
 		
 		pdsService.setWrite(map, request);		
 		
 		String  menu_id =  String.valueOf( map.get("menu_id") );
+		String  writer  =  String.valueOf(session.getAttribute("nickname"));
 		
 		ModelAndView  mv  =  new ModelAndView();
 		mv.setViewName("redirect:/Pds/List?menu_id=" + menu_id);
 		mv.addObject("map", map);
+		mv.addObject("writer",writer);
 		return  mv;
 	}
 	
@@ -214,7 +217,17 @@ public class PdsController {
 		return  mv;
 		
 	}
-		
+    
+    @RequestMapping("/PdsBoomCheck")
+    @ResponseBody
+    public boolean checkRecommend(
+        @RequestParam("idx") int idx,
+        @RequestParam("userid") String userid
+    	    ) {
+    // 여기에서 Service 메서드 호출하여 중복 확인 수행
+        boolean isDuplicate = pdsService.PdsBoomCheck(idx, userid);
+        return isDuplicate;
+    }
 	// 추천
 	@RequestMapping("/BoardBoomUp")
 	@ResponseBody

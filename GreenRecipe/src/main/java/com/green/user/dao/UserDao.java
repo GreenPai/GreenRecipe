@@ -22,6 +22,8 @@ public interface UserDao {
 
 	UserVo userName(String userid);
 
+	int nickDupCheck(UserVo vo);
+
 
 
 }

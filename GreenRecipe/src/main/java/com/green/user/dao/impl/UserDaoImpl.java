@@ -69,6 +69,13 @@ public class UserDaoImpl implements UserDao {
 		
 		return  cnt;
 	}
+	
+	@Override
+	public int nickDupCheck(UserVo vo) {
+		int cnt  =  sqlSession.selectOne("User.NickDupCheck", vo);
+		
+		return  cnt;
+	}
 
 
 	@Override

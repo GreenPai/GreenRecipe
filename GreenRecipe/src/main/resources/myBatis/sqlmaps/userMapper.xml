@@ -14,14 +14,16 @@
 		    USERNAME,
 		    USERBIRTH,
 		    EMAIL,
-		    INDATE
+		    INDATE,
+		    NICKNAME
 		) VALUES (
 		    #{ userid    },
 		    #{ passwd    },
 		    #{ username  },
 		    #{ userbirth  },
 		    #{ email     },
-		    SYSDATE
+		    SYSDATE,
+		    #{nickname}
 		)       
    
    </insert>
@@ -60,6 +62,13 @@
 	WHERE USERID = #{ userid }
    </select>
    
+   <select id="NickDupCheck"
+           resultType="int" >
+   
+   	SELECT COUNT(*) FROM GREENUSERS
+	WHERE NICKNAME = #{ nickname }
+   </select>
+   
    <!-- 회원삭제 -->
    <delete id="UserDelete">
       
@@ -73,8 +82,9 @@
    <update id="UserUpdate">
    
    	   UPDATE  GREENUSERS
-   	     SET   PASSWD =  #{ passwd },
-   	           EMAIL    =  #{ email }   	     
+   	     SET   PASSWD   =  #{ passwd },
+   	           EMAIL    =  #{ email },
+   	           NICKNAME =  #{ nickname } 	     
    	    WHERE  USERID   =  #{ userid } 
    	    AND    PASSWD   =  #{ passwd } 
    
@@ -98,14 +108,6 @@
    
    
    </select>
- 
- 
- 
- 
- 
- 
- 
- 
  
  
 </mapper>

@@ -12,21 +12,34 @@
 
 <script>
 $(function() {
-	  $("#pwd2").on('blur',function(e) {
-	    var pwd1   = $("#pwd1").val();	    
-	    var pwd2   = $("#pwd2").val();
-	    var configMSG = document.getElementById("configMSG");
+     $("#pwd2").on('blur',function(e) {
+       var pwd1   = $("#pwd1").val();       
+       var pwd2   = $("#pwd2").val();
+       var configMSG = document.getElementById("configMSG");
         var correctColor = "#00ff00";
         var wrongColor ="#ff0000";    
         if (pwd1 === pwd2) {
-      		configMSG.style.color = '#00ff00';
-      		configMSG.innerHTML = "비밀번호 일치";
-      	} else {
-      		configMSG.style.color = '#ff0000';
-      		configMSG.innerHTML = "비밀번호 불일치";
-      	}
-	  });
-	});
+            configMSG.style.color = '#00ff00';
+            configMSG.innerHTML = "비밀번호 일치";
+         } else {
+            configMSG.style.color = '#ff0000';
+            configMSG.innerHTML = "비밀번호 불일치";
+         }
+     });
+   });
+</script>
+<script>
+$(function() {
+     $("#nickdup").on('click',function(e) {
+       var nickname = $("#nickname").val();       
+       if (nickname === "" || nickname.length < 0) {
+         alert("닉네임을 먼저 입력해주세요");
+         $("#nickname").focus();
+       } else {
+         window.open("/User/NickDupCheck?nickname=" + nickname, 'nickdupcheck' ,"width=500, height=300");
+       }
+     });
+   });   
 </script>
 
 <title>회원수정</title>
@@ -67,6 +80,10 @@ $(function() {
     <td><input type="text" name="indate" value="${ user.indate }" readonly /></td>
    </tr>
    <tr>
+    <td>닉네임</td>
+    <td><input type="text" name="nickname" value="${ user.nickname }" />  <input type="button" value="중복확인" id="nickdup" ></td>
+   </tr>
+   <tr>
     <td colspan="2">
       <a href="/User/Update" class="btn btn-primary" id="aUpdate">수정</a>
       <a  class="btn btn-success btn" href="/User/List">취소</a>
@@ -80,12 +97,12 @@ $(function() {
   
   <script>
      const  aUpdateEl = document.querySelector('#aUpdate');     
-     aUpdateEl.addEventListener('click', function(e) {    	 
-    	 e.preventDefault() ; // 기본이벤트를 동작하지 못하게 한다
-    	 e.stopPropagation();
-    	 const updateFormEl  = document.querySelector('#updateForm');
-    	 updateFormEl.action = aUpdateEl.href;
-    	 updateFormEl.submit();
+     aUpdateEl.addEventListener('click', function(e) {        
+        e.preventDefault() ; // 기본이벤트를 동작하지 못하게 한다
+        e.stopPropagation();
+        const updateFormEl  = document.querySelector('#updateForm');
+        updateFormEl.action = aUpdateEl.href;
+        updateFormEl.submit();
      });
      
      
@@ -94,5 +111,3 @@ $(function() {
   
 </body>
 </html>
-
-
