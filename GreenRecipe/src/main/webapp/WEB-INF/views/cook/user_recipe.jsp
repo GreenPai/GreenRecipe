@@ -198,7 +198,8 @@ function addRecipeStep() {
       <li>
         <a href="#">리빙팁</a>
         <ul class="submenu2">
-          <li><a href="/Tip">계량팁</a></li>        
+          <li><a href="/Tip">계량팁</a></li>
+          <li><a href="/Kcal">칼로리</a></li>        
         </ul>
       </li>
       <li>

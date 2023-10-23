@@ -142,9 +142,10 @@ public class UserController {
         
 	    String name=username.getUsername();
 	    String email=username.getEmail();
+	    String nickname=username.getNickname();
 	    System.out.println(name);
 	    System.out.println(email);
-        
+        System.out.println(nickname);
 	    if ("login_success".equals(loginResult)) {
 	        // 로그인 성공 처리 
 	        ModelAndView mv = new ModelAndView();
@@ -154,7 +155,9 @@ public class UserController {
 	        session.setAttribute("userid", userid); // 아이디
 	        session.setAttribute("userpw", passwd); // 비밀번호
 	        session.setAttribute("loginMember", name); // 유저이름
-	        session.setAttribute("useremail", email); // 이메일        
+	        session.setAttribute("useremail", email); // 이메일      
+	        session.setAttribute("nickname", nickname); // 이메일      
+	        
 	        return mv;
 	        
 	        

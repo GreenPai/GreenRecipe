@@ -57,7 +57,7 @@
            resultType="com.green.pds.vo.FilesVo">
       
       SELECT   
-          FILE_NUM,  IDX,  FILENAME,  FILEEXT,  SFILENAME
+          FILE_NUM,  IDX,  FILENAME,  FILEEXT,  SFILENAME, WRITER, TITLE
        FROM
           FILES
        WHERE   
@@ -230,6 +230,9 @@
 		, #{ file.filename   }     
 		, #{ file.fileext    }     
 		, #{ file.sfilename  }     
+		, #{ writer  }     
+		, #{ title  }     
+		
      )   
      
      </foreach>     

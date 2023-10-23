@@ -142,6 +142,7 @@
           SELECT  RCP_NM, RECIPE_ID, CNT   
           FROM    RECIPE_CNT   
           WHERE   CNT >= 3          
+          ORDER BY CNT DESC
           </select>  
            
 
@@ -159,8 +160,17 @@
  		   )
  		   VALUES (   
   	      #{recipeTitle}, 1 , #{userId}     
- 		   ) 
+ 		   )
+ 		   
 		</insert> 
+		
+		 <update id="Cook.star">
+ 
+           UPDATE USER_RECIPE
+           SET    IDX = IDX + 1,
+           SET    RECIPECOUNT + #{ rating }
+ 
+           </update>
           
           
           

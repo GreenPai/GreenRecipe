@@ -21,6 +21,13 @@ public class CrawlingController {
     	return mv;
     }
     
+    @RequestMapping("/Kcal")
+    public ModelAndView kcal() {
+    	ModelAndView mv = new ModelAndView();
+    	mv.setViewName("crw/kcal");
+    	return mv;
+    }
+    
     @RequestMapping("/Crw")
     public ModelAndView crawl() {
     	ModelAndView mv = new ModelAndView();

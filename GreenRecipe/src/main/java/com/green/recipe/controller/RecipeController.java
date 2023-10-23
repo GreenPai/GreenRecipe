@@ -253,6 +253,12 @@ public class RecipeController {
 			 HttpSession session = request.getSession();
 		     String userId = (String) session.getAttribute("loginMember");
 			 
+		     if(userId == null) {
+		    	 userId = "익명";
+		     }
+		     
+		     
+             System.err.println(userId);		     
 			 List<String> mList = new ArrayList<>();
 			 for (String mat : materials.split(",")) {
 				 if(  !mat.equals("") )
@@ -562,6 +568,7 @@ public class RecipeController {
 			    @RequestMapping("/Cook/Review2")
 			    public ModelAndView reView2(@RequestParam(value = "rating", required = false) String rating) {
 			        System.out.println("별점: " + rating);
+			        recipeService.star(rating);
 			        ModelAndView mv = new ModelAndView();
 			        mv.setViewName("review/review");
 			        return mv;

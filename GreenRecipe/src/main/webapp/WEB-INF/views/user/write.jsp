@@ -16,6 +16,14 @@ rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3
    td      { width : 60%;  text-align: left;}  
    input[type=text] ,  input[type=password], input[type=email]   { width:80%; } 
    div {text-align: center;}
+   
+   
+   table { width: 60%; margin: 0 auto; }
+   td { text-align: left; padding: 10px; }
+   input[type=text], input[type=password], input[type=email] { width: 100%; padding: 5px; }
+   div { text-align: center; }
+   body { background-color: #D6F3ED; }
+     
 </style>
 <script src="//code.jquery.com/jquery.min.js"></script>
 

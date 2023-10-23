@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+   pageEncoding="UTF-8"%>
 <%@taglib  prefix="c"  uri="http://java.sun.com/jsp/jstl/core" %>     
 
 <!DOCTYPE html>
@@ -18,68 +18,68 @@
   margin-right: 50px;  
 */
 .submenu1>li {
-	line-height: 50px;
-	background-color: #CBEE99;
+   line-height: 50px;
+   background-color: #CBEE99;
 }
 
 .menu>li:hover .submenu1 {
-	height: 300px;
-	transition-duration: 1s;
+   height: 300px;
+   transition-duration: 1s;
 }
 
 .submenu1>li:nth-child(6) {
-	height: 50px;
-	background-color: #CBEE99;
+   height: 50px;
+   background-color: #CBEE99;
 }
 
 footer {
-	text-align: center;
-	background-color: #CAE0D1;
-	padding: 1rem 0;
-	margin: 1rem 0;
+   text-align: center;
+   background-color: #CAE0D1;
+   padding: 1rem 0;
+   margin: 1rem 0;
 }
 
 .listinfo {
-	width: 250px;
-	display: inline-block;
-	vertical-align: top;
-	text-align: center;
-	background: #fff;
-	margin-right: 20px;
-	border-radius: 15px;
-	padding: 30px 20px;
-	-webkit-box-shadow: 3px 2px 15px 2px rgba(0, 0, 0, 0.41);
-	box-shadow: 3px 2px 15px 2px rgba(0, 0, 0, 0.21);
-	color: #666666;
+   width: 250px;
+   display: inline-block;
+   vertical-align: top;
+   text-align: center;
+   background: #fff;
+   margin-right: 20px;
+   border-radius: 15px;
+   padding: 30px 20px;
+   -webkit-box-shadow: 3px 2px 15px 2px rgba(0, 0, 0, 0.41);
+   box-shadow: 3px 2px 15px 2px rgba(0, 0, 0, 0.21);
+   color: #666666;
 }
 
 .simple {
-	font-size: 20px;
-	font-weight: 600;
-	background: #9cbb28;
-	border-radius: 20px;
-	text-align: center;
-	color: #fff;
-	display: inline-block;
-	padding: 2px 20px;
+   font-size: 20px;
+   font-weight: 600;
+   background: #9cbb28;
+   border-radius: 20px;
+   text-align: center;
+   color: #fff;
+   display: inline-block;
+   padding: 2px 20px;
 }
 
 .comment {
-	font-size: 16px;
-	line-height: 150%;
+   font-size: 16px;
+   line-height: 150%;
 }
 /* 움직이는 텍스트 */
 .animated-title {
-	font-size: 60px;
-	font-family: 'Raleway', Sans-serif;
-	font-weight: 300;
-	position: relative;
-	width: 100%;
-	max-width: 100%;
-	height: auto;
-	padding: 100px 0;
-	overflow-x: hidden;
-	overflow-y: hidden;
+   font-size: 60px;
+   font-family: 'Raleway', Sans-serif;
+   font-weight: 300;
+   position: relative;
+   width: 100%;
+   max-width: 100%;
+   height: auto;
+   padding: 100px 0;
+   overflow-x: hidden;
+   overflow-y: hidden;
 }
 
 /* 움직이는 텍스트 */
@@ -96,25 +96,25 @@ footer {
                  }
                  
 .animated-title .track {
-				position: absolute; 
-				white-space: nowrap;
-				will-change: transform;
-				animation: marquee 60s linear infinite; 
-				}
-				
+            position: absolute; 
+            white-space: nowrap;
+            will-change: transform;
+            animation: marquee 60s linear infinite; 
+            }
+            
 @keyframes marquee {
- 				from { 
- 				 transform: translateX(0); 
- 				 }
-  				to {  
-  				transform: translateX(-50%); 
-  				}
+             from { 
+              transform: translateX(0); 
+              }
+              to {  
+              transform: translateX(-50%); 
+              }
 }
 
 @media (hover: hover) and (min-width: 700px){
 .animated-title .content {
-				-webkit-transform: translateY(calc(100% - 8rem)); 
-				transform: translateY(calc(100% - 8rem));}
+            -webkit-transform: translateY(calc(100% - 8rem)); 
+            transform: translateY(calc(100% - 8rem));}
 }
 
 .container_v1 {
@@ -199,26 +199,26 @@ footer {
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
  $(document).ready(function() {
-	  $('#btnClick').click(function() {
-	    var customerMessage = $("#customerSend").val();
+     $('#btnClick').click(function() {
+       var customerMessage = $("#customerSend").val();
 
-	    // AJAX 요청으로 서버에 이메일 전송 요청 보내기
-	    $.ajax({
-	      url: "/sendMail?email=childhong@naver.com",
-	      method: "POST",
-	      data: {
-	    	  message: customerMessage  
-	      },
-	      success: function(response) {
-	        alert("의견이 성공적으로 제출되었습니다.");
-	      },
-	      error: function(xhr, status, error) {
-	        alert("오류가 발생했습니다. 다시 시도해주세요." + xhr.status + ':' + xhr.testStatus);
-	        console.log(error);
-	      }
-	    });
-	  });
-	}); 
+       // AJAX 요청으로 서버에 이메일 전송 요청 보내기
+       $.ajax({
+         url: "/sendMail?email=childhong@naver.com",
+         method: "POST",
+         data: {
+            message: customerMessage  
+         },
+         success: function(response) {
+           alert("의견이 성공적으로 제출되었습니다.");
+         },
+         error: function(xhr, status, error) {
+           alert("오류가 발생했습니다. 다시 시도해주세요." + xhr.status + ':' + xhr.testStatus);
+           console.log(error);
+         }
+       });
+     });
+   }); 
 </script>
 
 
@@ -226,15 +226,15 @@ footer {
 </head>
 <body>
 
-	<header class="header">
+   <header class="header">
 
-		<div class="header_title">
-			<h1>그린 밥상을 부탁해~!</h1>
-		</div>
+      <div class="header_title">
+         <h1>그린 밥상을 부탁해~!</h1>
+      </div>
 
 
-	     <div class="header_logo">
-        	<a href="/"><img class="head_logo"  src="/img/logo.png" ></a>
+        <div class="header_logo">
+           <a href="/"><img class="head_logo"  src="/img/logo.png" ></a>
         </div>  
         
          <div class="header_login">
@@ -259,140 +259,141 @@ footer {
     </ul>
 </div>
 
-	</header>
+   </header>
 
-	<ul class="menu">
-		<li><a href="#">레시피</a>
-			<ul class="submenu1">
-				<li><a href="/Cook/View">재료등록</a></li>
-				<li><a href="/Cook/Show">추천레시피</a></li>
-				<li><a href="/Cook/Han">한식레시피</a></li>
-				<li><a href="/Cook/Jap">일식레시피</a></li>
-				<li><a href="/Cook/Chi">중식레시피</a></li>
-				<li><a href="/Cook/Yang">양식레시피</a></li>
-			</ul></li>
-		<li><a href="#">리빙팁</a>
-			<ul class="submenu2">
-				<li><a href="/Tip">계량팁</a></li>
-			</ul></li>
-		<li><a href="#">커뮤니티</a>
-			<ul class="submenu3">
-				<li><a href="/Pds/List?menu_id=MENU03">자랑 게시판</a></li>
-				<li><a href="/Pds/List?menu_id=MENU05">자유 게시판</a></li>
-				<li><a href="/Pds/List?menu_id=MENU04">공유 게시판</a></li>
-				<li><a href="/Cook/User">유저 레시피</a></li>
-			</ul></li>
-		<li><a href="#">공지사항</a>
-			<ul class="submenu4">
-				<li><a href="/Pds/List?menu_id=MENU06">공지사항</a></li>
-				<li><a href="#">이벤트</a></li>
-			</ul></li>
-	</ul>
-
-
-	<br>
-	<br>
-	<br>
-	<br>
-	<img src="/img/pot2.png" alt="Pot Image"
-		style="display: block; margin: 0 auto;">
-	<div class="animated-title">
-		<div class="track">
-			<div class="content" style="color: #D9D9D9">&nbsp;Green Simple
-				Recipe&nbsp;&nbsp;Green Simple Recipe&nbsp;&nbsp;Green Simple
-				Recipe&nbsp;&nbsp;Green Simple Recipe&nbsp;&nbsp;Green Simple Recipe</div>
-		</div>
-	</div>
-
-	<br>
-	<br>
-	<br>
-	<br>
-
-	<div class="container">
-		<div class="row">
-			<div class="introduce">
-				<p class="main">
-					<span class="symbol"> <img src="/img/greenLogo.png"	alt="logo" style="margin-left: 180px;">
-					<img alt="food" src="/img/food.png" style="position:relative; float: right; margin-right:300px;"></span>
-					<br>
-					<b style="font-size: 40px; margin-left: 180px;">프로젝트 소개</b>
-				</p>
-				<br>
-				<p class="mcomt" style="color: gray; margin-left: 180px;">
-					그린레시피는 자취생들의 집밥 걱정을 <br class="none"> 덜어줄 간단 레시피 프로젝트 입니다. <br
-						class="none"> 일상요리도 간단하게 만들어 보세요.
-						
-				</p> 
-				<br>
-				<br>
-				<br>
-				<ul class="view" style="margin-left: 180px;">
-					<li class="listinfo">
-						<p class="mt10">
-							<img src="/img/logo.png" alt="로고">
-						</p>
-						<p class="simple">간단하게!</p>
-						<br>
-						<p class="comment">
-							간단한 재료를 이용해 <br> 레시피를 완성하세요!
-						</p>
-					</li>
-					<li class="listinfo">
-						<p class="mt10">
-							<img src="/img/logo.png" alt="로고">
-						</p>
-						<p class="simple">어디서나!</p>
-						<br>
-						<p class="comment">
-							장소에 상관없이 <br> 간편하게 요리하세요!
-						</p>
-					</li>
-					<li class="listinfo">
-						<p class="mt10">
-							<img src="/img/logo.png" alt="로고">
-						</p>
-						<p class="simple">누구나!</p>
-						<br>
-						<p class="comment">
-							요리를 못해도 OK <br> 레시피만 보고 따라하세요!
-						</p>
-					</li>
-					<li class="listinfo">
-						<p class="mt10">
-							<img src="/img/logo.png" alt="로고">
-						</p>
-						<p class="simple">신속하게!</p>
-						<br>
-						<p class="comment">
-							시간이 없어도 <br> 단번에 완성!
-						</p>
-					</li>
-					<li class="listinfo">
-						<p class="mt10">
-							<img src="/img/logo.png" alt="로고">
-						</p>
-						<p class="simple">맛있게!</p>
-						<br>
-						<p class="comment">
-							재료는 간편해도 <br> 훨씬 맛있게!
-						</p>
-					</li>
+   <ul class="menu">
+      <li><a href="#">레시피</a>
+         <ul class="submenu1">
+            <li><a href="/Cook/View">재료등록</a></li>
+            <li><a href="/Cook/Show">추천레시피</a></li>
+            <li><a href="/Cook/Han">한식레시피</a></li>
+            <li><a href="/Cook/Jap">일식레시피</a></li>
+            <li><a href="/Cook/Chi">중식레시피</a></li>
+            <li><a href="/Cook/Yang">양식레시피</a></li>
+         </ul></li>
+      <li><a href="#">리빙팁</a>
+         <ul class="submenu2">
+            <li><a href="/Tip">계량팁</a></li>
+            <li><a href="/Kcal">칼로리</a></li>
+         </ul></li>
+      <li><a href="#">커뮤니티</a>
+         <ul class="submenu3">
+            <li><a href="/Pds/List?menu_id=MENU01">자랑 게시판</a></li>
+            <li><a href="/Pds/List?menu_id=MENU02">자유 게시판</a></li>
+            <li><a href="/Pds/List?menu_id=MENU03">공유 게시판</a></li>
+            <li><a href="/Cook/User">유저 레시피</a></li>
+         </ul></li>
+      <li><a href="#">공지사항</a>
+         <ul class="submenu4">
+            <li><a href="/Pds/List?menu_id=MENU06">공지사항</a></li>
+            <li><a href="/Pds/List?menu_id=MENU04">이벤트</a></li>
+         </ul></li>
+   </ul>
 
 
-				</ul>
-			</div>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			</div>
-		</div>
-			<div class="foot" style="background-color:#D9FFFF;">
-				<div class="container_v1" >
-					<div class="row_v1">
-					<div class="col-xs-4 intro" style="width: 500px; float: left;">
+   <br>
+   <br>
+   <br>
+   <br>
+   <img src="/img/pot2.png" alt="Pot Image"
+      style="display: block; margin: 0 auto;">
+   <div class="animated-title">
+      <div class="track">
+         <div class="content" style="color: #D9D9D9">&nbsp;Green Simple
+            Recipe&nbsp;&nbsp;Green Simple Recipe&nbsp;&nbsp;Green Simple
+            Recipe&nbsp;&nbsp;Green Simple Recipe&nbsp;&nbsp;Green Simple Recipe</div>
+      </div>
+   </div>
+
+   <br>
+   <br>
+   <br>
+   <br>
+
+   <div class="container">
+      <div class="row">
+         <div class="introduce">
+            <p class="main">
+               <span class="symbol"> <img src="/img/greenLogo.png"   alt="logo" style="margin-left: 180px;">
+               <img alt="food" src="/img/food.png" style="position:relative; float: right; margin-right:300px;"></span>
+               <br>
+               <b style="font-size: 40px; margin-left: 180px;">프로젝트 소개</b>
+            </p>
+            <br>
+            <p class="mcomt" style="color: gray; margin-left: 180px;">
+               그린레시피는 자취생들의 집밥 걱정을 <br class="none"> 덜어줄 간단 레시피 프로젝트 입니다. <br
+                  class="none"> 일상요리도 간단하게 만들어 보세요.
+                  
+            </p> 
+            <br>
+            <br>
+            <br>
+            <ul class="view" style="margin-left: 180px;">
+               <li class="listinfo">
+                  <p class="mt10">
+                     <img src="/img/gandan.png" alt="로고" style="width: 150px; height: 100px;">
+                  </p>
+                  <p class="simple">간단하게!</p>
+                  <br>
+                  <p class="comment">
+                     간단한 재료를 이용해 <br> 레시피를 완성하세요!
+                  </p>
+               </li>
+               <li class="listinfo">
+                  <p class="mt10">
+                     <img src="/img/place.png" alt="로고" style="width: 150px; height: 100px;">
+                  </p>
+                  <p class="simple">어디서나!</p>
+                  <br>
+                  <p class="comment">
+                     장소에 상관없이 <br> 간편하게 요리하세요!
+                  </p>
+               </li>
+               <li class="listinfo">
+                  <p class="mt10">
+                     <img src="/img/bibimbab.png" alt="로고" style="width: 150px; height: 100px;">
+                  </p>
+                  <p class="simple">누구나!</p>
+                  <br>
+                  <p class="comment">
+                     요리를 못해도 OK <br> 레시피만 보고 따라하세요! 	
+                  </p>
+               </li>
+               <li class="listinfo">
+                  <p class="mt10">
+                     <img src="/img/gamja.png" alt="로고" style="width: 150px; height: 100px;">
+                  </p>
+                  <p class="simple">신속하게!</p>
+                  <br>
+                  <p class="comment">
+                     시간이 없어도 <br> 단번에 완성!
+                  </p>
+               </li>
+               <li class="listinfo">
+                  <p class="mt10">
+                     <img src="/img/chicken.png" alt="로고" style="width: 150px; height: 100px;">
+                  </p>
+                  <p class="simple">맛있게!</p>
+                  <br>
+                  <p class="comment">
+                     재료는 간편해도 <br> 훨씬 맛있게!
+                  </p>
+               </li>
+
+
+            </ul>
+         </div>
+         <br>
+         <br>
+         <br>
+         <br>
+         <br>
+         </div>
+      </div>
+         <div class="foot" style="background-color:#D9FFFF;">
+            <div class="container_v1" >
+               <div class="row_v1">
+               <div class="col-xs-4 intro" style="width: 500px; float: left;">
                 <p class="f_link" style="margin:10px;">
                     <a target="_blank">회사소개 </a><span>|</span>
                     <a target="_blank">광고문의 </a><span>|</span>
@@ -421,35 +422,34 @@ footer {
                </p>
             </div>
              <div class="col-xs-3 comment" style="width:500px; margin:20px; float: right;  ">
-				<textarea
-					id="custormerSend" name="board_text" class="form-control"
-					placeholder="     불편사항이나 제안사항이 있으신가요?        그린 레시피에 전하고 싶은 의견을 남겨주세요"></textarea>
-					<br>
-				<button id="btnClick" style="float: right; margin-right: 65%;">의견
-					제출</button>
-			</div> 
-		</div>
-	</div>
+            <textarea
+               id="custormerSend" name="board_text" class="form-control"
+               placeholder="     불편사항이나 제안사항이 있으신가요?        그린 레시피에 전하고 싶은 의견을 남겨주세요"></textarea>
+               <br>
+            <button id="btnClick" style="float: right; margin-right: 65%;">의견
+               제출</button>
+         </div> 
+      </div>
+   </div>
 </div>
-	
-	<!-- container end -->
+   
+   <!-- container end -->
 
-	<footer style="clear: both;">
-		<p class="footer-message"
-			style="font-weight: bold; font-size: 15px; align-content: center;">오시는길
-			: 부산광역시 부산진구 중앙대로 749</p>
-		<p class="footer-contact" style="font-size: 12px; color: #545e6f;">컨택:
-			dream@fun-coding.org</p>
-		<p class="footer-copyright" style="fontz-size: 12px; color: #545e6f;"><b>Fist Recipe Since:
-		2023</b></p>
+   <footer style="clear: both;">
+      <p class="footer-message"
+         style="font-weight: bold; font-size: 15px; align-content: center;">오시는길
+         : 부산광역시 부산진구 중앙대로 749</p>
+      <p class="footer-contact" style="font-size: 12px; color: #545e6f;">컨택:
+         dream@fun-coding.org</p>
+      <p class="footer-copyright" style="fontz-size: 12px; color: #545e6f;"><b>Fist Recipe Since:
+      2023</b></p>
 
-	</footer>
+   </footer>
 
 
 
 </body>
 </html>
-
 
 
 

@@ -52,10 +52,15 @@
          transform: translate(-50%, -50%);
       }
       
-      .input-box{
-         position:relative;
-         margin:10px 100px;
-        }
+     .input-box {
+    position: relative;
+    margin: 10px auto; /* auto를 사용하여 가로 중앙 정렬 */
+    width: 500px;
+}
+        
+        
+        
+        
       .input-box > input{
         background:white;
         border:none;
@@ -190,14 +195,14 @@
 
 <br><br><br><br><br><br><br>
 
-<br>
+<br><br><br>
 
 <div style="text-align: center; width: 60%;" id="loginlayoutbim">
         <form name="form1" method="post">
 <h2 style="text-align: center;">로그인</h2>
 
             <div class="input-box">
-                <input id="userid" type="text" name="userid" placeholder="아이디">
+                <input id="userid" type="text" name="userid" placeholder="아이디" >
                 <label for="userid">아이디</label>
             </div>
 

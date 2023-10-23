@@ -175,6 +175,14 @@ public class RecipeServiceImpl implements RecipeService{
 
 
 
+	@Override
+	public void star(String rating) {
+		recipeDao.star( rating);
+		
+	}
+
+
+
 
 
 

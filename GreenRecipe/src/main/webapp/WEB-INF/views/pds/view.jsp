@@ -261,7 +261,9 @@ function fn_reply_list() {
      <td class= "subreply">조회수: ${vo.readcount} 작성일: ${vo.regdate}</td>
    </tr> 
    <tr>
-     <td class= "contreply" colspan= "4"><pre>${ vo.cont }</pre></td>
+     <td class= "contreply" colspan= "4">
+     
+     <pre>${ vo.cont }</pre></td>
    </tr>
       
    <tr>

@@ -48,15 +48,15 @@ body {
 </style>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
-/*
+
 // 체크박스 1개만 체크하기 설정
   function input_check(mat){
 	  let  radiocheck = document.querySelectorAll("[name=" + mat + "]:checked")
-	  if(radiocheck.length>1) return false;
+	  if(radiocheck.length<1) return false;
 	  
 	  return true;
   }
-  */
+  
   // 채소 항목 2개 체크하기 설정
  /*  function input_chk(veg){
 	  let  vegcheck   = document.querySelectorAll("[name=" + veg + "]:checked")
@@ -79,66 +79,33 @@ body {
          const   noodlesEl      = document.querySelector('#noodles');
 	       
 	     formEl.addEventListener('submit', (e) => {
-           /*  // 항목별로 1개씩만 선택하기 구현
-	    	 let result = input_check('meat');
+	    	// 항목별로 1개씩만 선택하기 구현
+	    	  let result = input_check('meat');
 	    	 	if(result == false) {
-	    	 	alert('1개만 체크해 주세요')
+	    	 	alert('육류를 1개 이상 체크해 주세요')
 	    		 e.preventDefault();
 	    	 }
 	    	    result = input_check('made')
 	    	 	if(result == false) {
-	    	 		alert('1개만 체크해 주세요')
+	    	 		alert('가공식품류를 1개 이상 체크해 주세요')
 	    	 		e.preventDefault();
 	    	 	}
 
 	    	    result = input_check('grain')
 	    	 	if(result == false) {
-	    	 		alert('1개만 체크해 주세요')
-	    	 		e.preventDefault();
-	    	 	}
-
-	    	    result = input_check('seefood')
-	    	 	if(result == false) {
-	    	 		alert('1개만 체크해 주세요')
-	    	 		e.preventDefault();
-	    	 	}
-	    	    
-	    	    result = input_check('squid')
-	    	 	if(result == false) {
-	    	 		alert('1개만 체크해 주세요')
-	    	 		e.preventDefault();
-	    	 	}
-	    	    
-	    	    result = input_check('noodle')
-	    	 	if(result == false) {
-	    	 		alert('1개만 체크해 주세요')
+	    	 		alert('곡물류를 1개 이상 체크해 주세요')
 	    	 		e.preventDefault();
 	    	 	}
 	    	    
 	    	    result = input_check('greens')
 	    	 	if(result == false) {
-	    	 		alert('1개만 체크해 주세요')
+	    	 		alert('채소류를 1개 이상 체크해 주세요')
 	    	 		e.preventDefault();
 	    	 	}
 	    	    
-	    	    result = input_check('vegitabled')
-	    	 	if(result == false) {
-	    	 		alert('1개만 체크해 주세요')
-	    	 		e.preventDefault();
-	    	 	}
- 
- 
-	    	   else {
-	    	 }
-	    	   
-	    	/* let results = input_chk('vegitable');
-	    	   if(results == false){
-	    		   alert('2개만 체크해 주세요')
-	    		   e.preventDefault();
-	    	   }
 	    	   else {
 	    		   
-	    	   }*/ 
+	    	   } 
 	    	
 	        let  arrData = [];	    	        
 	        meatList = document.querySelectorAll('input[name="meat"]:checked');	        
@@ -207,7 +174,7 @@ body {
 	        for(let i=0;i<noodleList.length;i++) {
 	           arrData.push( noodleList[i].value );
 	        }   
-	        noodleSEl.value = arrData;
+	        noodlesEl.value = arrData;
 	        //-----------------------------------------
 	     });
   }
@@ -278,6 +245,7 @@ body {
         <a href="#">리빙팁</a>
         <ul class="submenu2">
           <li><a href="/Tip">계량팁</a></li>        
+          <li><a href="/Kcal">칼로리</a></li>
         </ul>
       </li>
       <li>
@@ -308,9 +276,10 @@ body {
        <input type="hidden"   id="mades"       name="mades"/> 
        <input type="hidden"   id="grains"      name="grains"/>
        <input type="hidden"   id="seefoods"    name="seefoods"/> 
-       <input type="hidden"   id="spices"      name="spices"/> 
+       <input type="hidden"   id="squids"      name="squids"/> 
        <input type="hidden"   id="greenss"     name="greenss"/>
        <input type="hidden"   id="vegitableds" name="vegitableds"/>
+       <input type="hidden"   id="noodles" name="noodles"/>
         
        <div id="matarialChoice"> 
        <div class="boxMatarial">     

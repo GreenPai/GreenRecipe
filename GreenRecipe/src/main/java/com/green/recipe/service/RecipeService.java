@@ -49,6 +49,8 @@ public interface RecipeService {
 
 	void deleteRecipe(String userId);
 
+	void star(String rating);
+
 
 
 

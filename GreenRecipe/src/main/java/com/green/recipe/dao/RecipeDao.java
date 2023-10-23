@@ -49,6 +49,8 @@ public interface RecipeDao {
 
 	void deleteRecipe(String userId);
 
+	void star(String rating);
+
 
 
 

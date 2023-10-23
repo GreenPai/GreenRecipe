@@ -76,22 +76,25 @@ function newTabClick() {
 </head>
 <body>
       
-    <header class="header">
+   <header class="header" style="display: flex;">
     
         <div class="header_title">      
-        <h1><a href="/">그린 밥상을 부탁해~!</a></h1>
+        <h1> 그린 밥상을 부탁해~!</h1> 
         </div>
-        
+	  
     
+
         <div class="header_logo">
-           <a href="/"><img class="head_logo"  src="/img/logo.png" ></a>
+        	<a href="/"><img class="head_logo"  src="/img/logo.png" ></a>
         </div>
- 
- 
-   		 <div class="header_write">
+       
+          <div class="header_write">
         	<a href="/"><img class="head_write"  src="/img/write.png" ></a>
-        </div>        
-         <div class="header_login">
+        </div> 
+       
+
+        
+          <div class="header_login">
     <ul>
         <li>
             <c:choose>
@@ -115,6 +118,7 @@ function newTabClick() {
                
     </header>
 
+
     <ul class="menu">
       <li>
         <a href="#">레시피</a>
@@ -130,7 +134,8 @@ function newTabClick() {
       <li>
         <a href="#">리빙팁</a>
         <ul class="submenu2">
-          <li><a href="/Tip">계량팁</a></li>        
+          <li><a href="/Tip">계량팁</a></li>  
+          <li><a href="/Kcal">칼로리</a></li>      
         </ul>
       </li>
       <li>
@@ -270,7 +275,6 @@ function newTabClick() {
         </div>
     </div>
 </div>
-
 
 <div class="review-div">  
   <button class="review-button" onclick="newTabClick()"> 별점 리뷰하기 </button>

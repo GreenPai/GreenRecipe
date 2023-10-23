@@ -195,6 +195,12 @@ public class RecipeDaoImpl implements RecipeDao {
 		
 	}
 
+	@Override
+	public void star(String rating) {
+		sqlSession.update("Cook.star", rating);
+		
+	}
+
 	
    
 

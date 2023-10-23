@@ -1,17 +1,22 @@
 package com.green.board.controller;
 
+import java.io.IOException;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.green.board.service.BoardService;
 import com.green.board.vo.BoardVo;
 import com.green.menu.service.MenuService;
 import com.green.menu.vo.MenuVo;
-import com.green.reply.service.ReplyService;
 
 @Controller
 @RequestMapping("/Board")

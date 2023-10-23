@@ -129,7 +129,7 @@ header {
 }
 
 .menu > li:hover .submenu2 {
-    height: 50px;
+    height: 100px;
     transition-duration: 1s;
 }
 
@@ -149,6 +149,14 @@ header {
     overflow: hidden;
 }
 
+.submenu4 {
+    height: 0;
+    overflow: hidden;
+}
+.menu > li:hover .submenu4 {
+    height: 150px;
+    transition-duration: 1s;
+}
 
 
 .submenu4 > li {
@@ -156,15 +164,8 @@ header {
     background-color: #CBEE99;
 }
 
-.submenu4 {
-    height: 0;
-    overflow: hidden;
-}
 
-.menu > li:hover .submenu4 {
-    height: 100px;
-    transition-duration: 1s;
-}
+
 
 
 

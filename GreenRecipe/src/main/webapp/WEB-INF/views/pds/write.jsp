@@ -28,12 +28,12 @@
 <script>
    
    $( function() {
-	   let num = 1;
-	   $('#btnAddFile').on('click', function() {		   
-		   let tag = '<input type="file" name="upfile' + num + '" class="upfile" /><br>';
-		   $('#tdfile').append( tag );
-		   num++;
-	   })
+      let num = 1;
+      $('#btnAddFile').on('click', function() {         
+         let tag = '<input type="file" name="upfile' + num + '" class="upfile" /><br>';
+         $('#tdfile').append( tag );
+         num++;
+      })
    })
 
 </script>
@@ -43,17 +43,15 @@
   <main>
   
   <!-- 메뉴 목록 -->
-	<%@include file="/WEB-INF/include/mainmenu.jsp" %>
-	
-    <c:set var="userNickname" value="${sessionScope.nickname}" />
+   <%@include file="/WEB-INF/include/mainmenu.jsp" %>
 
    <c:choose>
     <c:when test="${  map.bnum eq 0 }">    
-	  <h2>${ map.menuname } 자료실 새글 등록</h2>
-	</c:when>
-	<c:otherwise>    
-	  <h2>${ map.menuname } 자료실 답글 등록</h2>
-	</c:otherwise>  
+     <h2>${ map.menuname } 자료실 새글 등록</h2>
+   </c:when>
+   <c:otherwise>    
+     <h2>${ map.menuname } 자료실 답글 등록</h2>
+   </c:otherwise>  
    </c:choose>
 
   <form action="/Pds/Write" method="POST" 
@@ -70,12 +68,12 @@
    <caption>
      <c:choose>
       <c:when test="${ map.bnum == 0 }">
-  	    <h2>${ map.menuname } 새글 등록</h2>
-  	  </c:when>
-  	  <c:otherwise>  	     
-  	    <h2>답글 등록</h2>
-  	  </c:otherwise>
-  	 </c:choose>   	     
+         <h2>${ map.menuname } 새글 등록</h2>
+       </c:when>
+       <c:otherwise>          
+         <h2>답글 등록</h2>
+       </c:otherwise>
+      </c:choose>           
    </caption>
    <tr>
      <th>제목</th>
@@ -83,7 +81,7 @@
    </tr> 
    <tr>
      <th>글쓴이</th>
-     <td><input type="text" name="writer" readonly value="${sessionScope.nickname}"></td>
+     <td><input type="text" name="writer" value="<%= session.getAttribute("nickname") %>"></td>
    </tr> 
    <tr>
      <th>내용</th>
@@ -108,5 +106,4 @@
   </main>
 </body>
 </html>
-
 
