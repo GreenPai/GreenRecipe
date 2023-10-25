@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.green.pds.vo.FilesVo;
 import com.green.recipe.dao.RecipeDao;
 import com.green.recipe.vo.MatarialVo;
 import com.green.recipe.vo.RecipeVo;
@@ -27,7 +28,6 @@ public class RecipeDaoImpl implements RecipeDao {
 
 	@Override
 	public List<MatarialVo> getMetarialList(String key) {
-		// TODO Auto-generated method stub
 		List<MatarialVo> matarialList = sqlSession.selectList("Cook.MatarialList", key);  
 		return matarialList;
 	}
@@ -111,24 +111,24 @@ public class RecipeDaoImpl implements RecipeDao {
 		    } 
 		 
 		 
-		 System.out.println("vo값" + vo);
-		 System.out.println("USERID값" + vo.getUSERID());
-		 System.out.println("RCP_NM값" + vo.getRCP_NM());
-		 System.out.println("RCP_PARTS_DTLS값" + vo.getRCP_PARTS_DTLS());
-		 System.out.println("ATT_FILE_NO_MAIN값" + vo.getATT_FILE_NO_MAIN());
-		 System.out.println("USERID값" + vo.getUSERID());
-		 System.out.println("MANUAL01값" + vo.getMANUAL01());
-		 System.out.println("MANUAL02값" + vo.getMANUAL02());
-		 System.out.println("MANUAL03값" + vo.getMANUAL03());
-		 System.out.println("MANUAL04값" + vo.getMANUAL04());
-		 System.out.println("MANUAL05값" + vo.getMANUAL05());
-		 System.out.println("MANUAL06값" + vo.getMANUAL06());
-		 System.out.println("MANUAL01값" + vo.getMANUAL_IMG01());
-		 System.out.println("MANUAL02값" + vo.getMANUAL_IMG02());
-		 System.out.println("MANUAL03값" + vo.getMANUAL_IMG03());
+	//	 System.out.println("vo값" + vo);
+	//	 System.out.println("USERID값" + vo.getUSERID());
+	//	 System.out.println("RCP_NM값" + vo.getRCP_NM());
+	//	 System.out.println("RCP_PARTS_DTLS값" + vo.getRCP_PARTS_DTLS());
+	//	 System.out.println("ATT_FILE_NO_MAIN값" + vo.getATT_FILE_NO_MAIN());
+	//	 System.out.println("USERID값" + vo.getUSERID());
+	//	 System.out.println("MANUAL01값" + vo.getMANUAL01());
+	//	 System.out.println("MANUAL02값" + vo.getMANUAL02());
+	//	 System.out.println("MANUAL03값" + vo.getMANUAL03());
+	//	 System.out.println("MANUAL04값" + vo.getMANUAL04());
+	//	 System.out.println("MANUAL05값" + vo.getMANUAL05());
+	//	 System.out.println("MANUAL06값" + vo.getMANUAL06());
+	//	 System.out.println("MANUAL01값" + vo.getMANUAL_IMG01());
+	//	 System.out.println("MANUAL02값" + vo.getMANUAL_IMG02());
+	//	 System.out.println("MANUAL03값" + vo.getMANUAL_IMG03());
 	
 
-		System.out.println(sqlId);
+	//	System.out.println(sqlId);
 		    if (sqlId != null) {
 		        sqlSession.update(sqlId, vo);
 		    }
@@ -139,7 +139,7 @@ public class RecipeDaoImpl implements RecipeDao {
 	@Override
 	public List<User_RecipeVo2> getUserRecipe() {
         List<User_RecipeVo2> recipeList = sqlSession.selectList("Cook.UserRecipe");
-        System.out.println( "다오 :" + recipeList);
+   //     System.out.println( "다오 :" + recipeList);
 		return recipeList;
 	}
 
@@ -201,7 +201,7 @@ public class RecipeDaoImpl implements RecipeDao {
 		
 	}
 
-	
+
    
 
 }

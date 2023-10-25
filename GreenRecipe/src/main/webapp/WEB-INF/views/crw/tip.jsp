@@ -14,6 +14,12 @@
 
 <style>
 
+.header_write{
+    margin-left: 645px;
+    margin-top: 20px;
+}
+
+
 .tip-title {
     text-align: center;
     margin-top: 70px;    
@@ -66,10 +72,11 @@
           
     <header class="header" style="display: flex;">
     
-        <div class="header_title">      
-        <h1> 그린 밥상을 부탁해~!</h1> 
-        </div>
-	  
+         <div class="header_title">
+      <br>
+         <img src="/img/greenRecipeLogo.png"   alt="logo" style="width: 400px; height: 60px;">
+      </div> 
+
     
 
         <div class="header_logo">
@@ -77,7 +84,7 @@
         </div>
        
           <div class="header_write">
-        	<a href="/"><img class="head_write"  src="/img/write.png" ></a>
+        	<a href="/Cook/UserWrite"><img class="head_write"  src="/img/write.png" ></a>
         </div> 
        
 
@@ -122,22 +129,22 @@
         <a href="#">리빙팁</a>
         <ul class="submenu2">
           <li><a href="/Tip">계량팁</a></li>       
+          <li><a href="/Kcal">칼로리</a></li>       
         </ul>
       </li>
       <li>
         <a href="#">커뮤니티</a>
         <ul class="submenu3">
-          <li><a href="/Pds/List?menu_id=MENU03">자랑 게시판</a></li>
-          <li><a href="/Pds/List?menu_id=MENU05">자유 게시판</a></li>
-          <li><a href="/Pds/List?menu_id=MENU04">공유 게시판</a></li>
+          <li><a href="/Pds/List?menu_id=MENU01&&nowpage=1">자랑 게시판</a></li>
+          <li><a href="/Pds/List?menu_id=MENU02&&nowpage=1">자유 게시판</a></li>
           <li><a href="/Cook/User">유저 레시피</a></li>
         </ul>
       </li>
       <li>
         <a href="#">공지사항</a>
         <ul class="submenu4">
-          <li><a href="/Pds/List?menu_id=MENU06">공지사항</a></li>
-          <li><a href="#">이벤트</a></li>
+          <li><a href="/Pds/List?menu_id=MENU06&&nowpage=1">공지사항</a></li>
+          <li><a href="/Pds/List?menu_id=MENU04&&nowpage=1">이벤트</a></li>
           </ul>
       </li>
     </ul>

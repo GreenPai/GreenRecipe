@@ -13,13 +13,15 @@
 </head>
 <body>
 
-    <div id="main">
+    <div id="main" style="text-align: center; margin-top: 50px;" >
         <c:choose>
             <c:when test="${cnt eq 1}">
-                <p>사용 중인 아이디입니다.</p>
+                <img class="NONONO" src="/img/nonono.gif"><br>
+                <b  style="color:red;">사용 중인</b><b> 아이디입니다.</b>
             </c:when>
             <c:otherwise>
-                <p>사용 가능한 아이디입니다.</p>
+                <img class="NONONO" src="/img/yesyesyes.gif"><br>
+                <b  style="color:green;">사용가능한</b><b> 아이디입니다.</b>
             </c:otherwise>
         </c:choose>
 

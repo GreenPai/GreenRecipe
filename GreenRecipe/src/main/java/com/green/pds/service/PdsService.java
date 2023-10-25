@@ -10,11 +10,11 @@ import com.green.pds.vo.PdsVo;
 
 public interface PdsService {
 
-	List<PdsVo> getPdsList(String menu_id);
-
-	void setWrite(HashMap<String, Object> map, HttpServletRequest request);
+	List<PdsVo> getPdsList(HashMap<String, Object> map);
 
 	PdsVo getView(HashMap<String, Object> map);
+
+	void setWrite(HashMap<String, Object> map, HttpServletRequest request);
 
 	List<FilesVo> getFileList(HashMap<String, Object> map);
 
@@ -31,6 +31,8 @@ public interface PdsService {
 	PdsVo boardBoomUp(PdsVo vo);
 
 	PdsVo boardBoomDown(PdsVo vo);
+
+	List<FilesVo> getFileName(HashMap<String, Object> map);
 
 	boolean PdsBoomCheck(int idx, String userid);
 

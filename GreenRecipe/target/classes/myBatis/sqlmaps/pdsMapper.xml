@@ -6,28 +6,52 @@
 <mapper namespace="Pds">  
    <select  id         = "PdsList"   
             resultType = "com.green.pds.vo.PdsVo">
-      
+  SELECT  * FROM
+   (   
       SELECT
+            ROW_NUMBER() OVER(ORDER BY NREF DESC, STEP ASC)  RNUM,
 		    IDX,
 		    MENU_ID,
 		    TITLE, 
 		    WRITER,
 		    READCOUNT,
-		    (  SELECT   COUNT(FILE_NUM) 
-		         FROM   FILES  F
-		         WHERE  F.IDX   =  B.IDX  )  FILESCOUNT,
+		    (
+		      SELECT   COUNT(RNO) 
+		         FROM   G_REPLY  G
+		         WHERE  G.IDX   =  B.IDX
+		    )  REPLYCOUNT,
 		    TO_CHAR(REGDATE, 'YYYY-MM-DD HH24:MI:SS')  REGDATE,
 		    BNUM,
 		    LVL,
 		    STEP,
-		    NREF
-		FROM
-		    BOARD  B
-		WHERE 
-		    MENU_ID  = #{ menu_id  }
-		ORDER  BY   NREF  DESC,  STEP ASC         
+	        NREF,
+	        BOARDBOOMUP,
+	        BOARDBOOMDOWN
+		    FROM BOARD  B
+       <if test="menu_id != null and menu_id !=''">  
+       WHERE     
+          MENU_ID  =  #{menu_id}
+       </if>         
+    )  T
+       WHERE  T.RNUM  
+       BETWEEN  #{startnum}  AND  #{endnum}  
+	   ORDER  BY   NREF  DESC,  STEP ASC         
 		  
    </select>
+   
+   <select   id             = "GetTotalCount"
+             parameterType  = "hashmap"
+             resultType     = "_int">
+                          
+      SELECT
+         COUNT( IDX )  AS   TOTALCOUNT
+       FROM   
+         BOARD
+       <if test="menu_id != null and menu_id != ''"> 
+         WHERE   MENU_ID = #{ menu_id }
+       </if>
+       
+    </select>
    
    <select id="PdsView"
            resultType="com.green.pds.vo.PdsVo">
@@ -65,7 +89,7 @@
         
    </select>
    
-   <select id="PdsGetBoom"
+    <select id="PdsGetBoom"
            resultType="com.green.pds.vo.PdsVo">
       
       SELECT   
@@ -96,6 +120,25 @@
        WHERE IDX = #{idx} 
          AND USERID = #{userid}
    </select>
+   
+    
+   <select id="FileName"
+            resultType="com.green.pds.vo.FilesVo">
+      SELECT FILENAME 
+        FROM FILES
+       WHERE 
+        IDX = #{idx}
+   </select>
+
+   <select id="FileName2"
+            resultType="com.green.pds.vo.FilesVo">
+      SELECT FILENAME 
+        FROM FILES
+       WHERE 
+        IDX = #{idx}
+   </select>
+   
+   
 
    
    <insert id="PdsInsert">
@@ -142,48 +185,7 @@
 	)
    </insert>
    
-   <update  id="StepUpdate">
-   
-      UPDATE   BOARD
-        SET    STEP     =  STEP + 1
-        WHERE  MENU_ID  =  #{ menu_id }
-	    AND    NREF     =  #{ nref    }
-	    AND    STEP     >  #{ step }  
-   
-   </update>
-   
-      <update id="PdsUpdate">
-      
-      UPDATE  BOARD
-       SET    TITLE  =  #{ title },
-              CONT   =  #{ cont }
-       WHERE  IDX    =  #{ idx } 	 
-   
-   </update>
-
-   
-   <update id="ReadcountUpdate">
-   
-   UPDATE  BOARD
-    SET    READCOUNT = READCOUNT + 1
-    WHERE  IDX = #{ idx }
-   
-   </update>
-   
-   <update id="BoardBoomUp">
-	   UPDATE  BOARD
-	    SET    READCOUNT = READCOUNT + 1
-	    WHERE  IDX = #{ idx }
-    </update>
-   
-   
-   <update id="BoardBoomDown">
-	UPDATE BOARD
-	SET BOARDBOOMDOWN = BOARDBOOMDOWN +1
-	WHERE IDX = #{idx}
-   </update>
-   
-   <insert id="PdsReply">
+      <insert id="PdsReply">
     
       INSERT  INTO   BOARD (
            IDX
@@ -257,6 +259,48 @@
      </foreach>     
    
    </insert>
+   
+   <update  id="StepUpdate">
+   
+      UPDATE   BOARD
+        SET    STEP     =  STEP + 1
+        WHERE  MENU_ID  =  #{ menu_id }
+	    AND    NREF     =  #{ nref    }
+	    AND    STEP     >  #{ step }  
+   
+   </update>
+   
+      <update id="PdsUpdate">
+      
+      UPDATE  BOARD
+       SET    TITLE  =  #{ title },
+              CONT   =  #{ cont }
+       WHERE  IDX    =  #{ idx } 	 
+   
+   </update>
+
+   
+   <update id="ReadcountUpdate">
+   
+   UPDATE  BOARD
+    SET    READCOUNT = READCOUNT + 1
+    WHERE  IDX = #{ idx }
+   
+   </update>
+   
+   <update id="BoardBoomUp">
+	   UPDATE  BOARD
+	    SET    BOARDBOOMUP = BOARDBOOMUP + 1
+	    WHERE  IDX = #{ idx }
+    </update>
+   
+   
+   <update id="BoardBoomDown">
+	UPDATE BOARD
+	SET BOARDBOOMDOWN = BOARDBOOMDOWN +1
+	WHERE IDX = #{idx}
+   </update>
+   
    
    <delete id="PdsDelete">
      

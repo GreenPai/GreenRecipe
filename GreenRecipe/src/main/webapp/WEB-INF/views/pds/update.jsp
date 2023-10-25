@@ -87,7 +87,7 @@
   <!-- 메뉴 목록 -->
   <%@include file="/WEB-INF/include/pdsmenus.jsp" %>
   
-  <h2>${ map.menuname } 자료실 내용 보기</h2>
+  <h2>${ map.menuname }</h2>
   
   <form  action="/Pds/Update" method="POST"
          enctype="multipart/form-data" >

@@ -21,7 +21,7 @@ public class PdsVo {
 	private int      bno;
 	
 	// File 정보 - 파일 자료수
-	private  int      filescount;
+	private  int      replycount;
 	
 	// 메뉴 정보
 	private  String   menu_id;
@@ -43,13 +43,23 @@ public class PdsVo {
 	private String indate;
 	private String nickname;
 	
+	// sql 문을 위한 변수
+	private  int      nowpage;          // 현재 페이지
+	private  int      pagecount;        // 현재 페이지에 보여줄 row 수
+	private  int      totalcount;       // 전체 자료(row)수
+	
+	// paging.jsp 가 쓸 변수
+	private  int      totalpagecount;   // 화면에 보여줄 페이지 수
+	private  int      pagestartnum;     // 페이지 시작 번호
+	private  int      pageendnum;       // 페이지 끝   번호
+	
 	public PdsVo() {}
 
 	public PdsVo(int idx, String title, String cont, String writer, String regdate, int readcount, int bnum, int lvl,
-			int step, int nref, int boardboomup, int boardboomdown, int bno, int filescount,
-			String menu_id, String menu_name, int menu_seq, int rno, String replywriter, String reply, String replydate,
-			String userid, String passwd, String username, String userbirth, String email, String indate,
-			String nickname) {
+			int step, int nref, int boardboomup, int boardboomdown, int bno, int replycount, String menu_id,
+			String menu_name, int menu_seq, int rno, String replywriter, String reply, String replydate, String userid,
+			String passwd, String username, String userbirth, String email, String indate, String nickname, int nowpage,
+			int pagecount, int totalcount, int totalpagecount, int pagestartnum, int pageendnum) {
 		super();
 		this.idx = idx;
 		this.title = title;
@@ -64,7 +74,7 @@ public class PdsVo {
 		this.boardboomup = boardboomup;
 		this.boardboomdown = boardboomdown;
 		this.bno = bno;
-		this.filescount = filescount;
+		this.replycount = replycount;
 		this.menu_id = menu_id;
 		this.menu_name = menu_name;
 		this.menu_seq = menu_seq;
@@ -79,6 +89,12 @@ public class PdsVo {
 		this.email = email;
 		this.indate = indate;
 		this.nickname = nickname;
+		this.nowpage = nowpage;
+		this.pagecount = pagecount;
+		this.totalcount = totalcount;
+		this.totalpagecount = totalpagecount;
+		this.pagestartnum = pagestartnum;
+		this.pageendnum = pageendnum;
 	}
 
 	public int getIdx() {
@@ -185,13 +201,12 @@ public class PdsVo {
 		this.bno = bno;
 	}
 
-
-	public int getFilescount() {
-		return filescount;
+	public int getReplycount() {
+		return replycount;
 	}
 
-	public void setFilescount(int filescount) {
-		this.filescount = filescount;
+	public void setReplycount(int replycount) {
+		this.replycount = replycount;
 	}
 
 	public String getMenu_id() {
@@ -306,18 +321,68 @@ public class PdsVo {
 		this.nickname = nickname;
 	}
 
+	public int getNowpage() {
+		return nowpage;
+	}
+
+	public void setNowpage(int nowpage) {
+		this.nowpage = nowpage;
+	}
+
+	public int getPagecount() {
+		return pagecount;
+	}
+
+	public void setPagecount(int pagecount) {
+		this.pagecount = pagecount;
+	}
+
+	public int getTotalcount() {
+		return totalcount;
+	}
+
+	public void setTotalcount(int totalcount) {
+		this.totalcount = totalcount;
+	}
+
+	public int getTotalpagecount() {
+		return totalpagecount;
+	}
+
+	public void setTotalpagecount(int totalpagecount) {
+		this.totalpagecount = totalpagecount;
+	}
+
+	public int getPagestartnum() {
+		return pagestartnum;
+	}
+
+	public void setPagestartnum(int pagestartnum) {
+		this.pagestartnum = pagestartnum;
+	}
+
+	public int getPageendnum() {
+		return pageendnum;
+	}
+
+	public void setPageendnum(int pageendnum) {
+		this.pageendnum = pageendnum;
+	}
+
 	@Override
 	public String toString() {
 		return "PdsVo [idx=" + idx + ", title=" + title + ", cont=" + cont + ", writer=" + writer + ", regdate="
 				+ regdate + ", readcount=" + readcount + ", bnum=" + bnum + ", lvl=" + lvl + ", step=" + step
 				+ ", nref=" + nref + ", boardboomup=" + boardboomup + ", boardboomdown=" + boardboomdown + ", bno="
-				+ bno + ", filescount=" + filescount + ", menu_id=" + menu_id + ", menu_name=" + menu_name
+				+ bno + ", replycount=" + replycount + ", menu_id=" + menu_id + ", menu_name=" + menu_name
 				+ ", menu_seq=" + menu_seq + ", rno=" + rno + ", replywriter=" + replywriter + ", reply=" + reply
 				+ ", replydate=" + replydate + ", userid=" + userid + ", passwd=" + passwd + ", username=" + username
 				+ ", userbirth=" + userbirth + ", email=" + email + ", indate=" + indate + ", nickname=" + nickname
+				+ ", nowpage=" + nowpage + ", pagecount=" + pagecount + ", totalcount=" + totalcount
+				+ ", totalpagecount=" + totalpagecount + ", pagestartnum=" + pagestartnum + ", pageendnum=" + pageendnum
 				+ "]";
 	}
-	
+
 }
 	
 	

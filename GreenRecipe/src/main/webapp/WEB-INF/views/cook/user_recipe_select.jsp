@@ -78,9 +78,11 @@ function newTabClick() {
       
    <header class="header" style="display: flex;">
     
-        <div class="header_title">      
-        <h1> 그린 밥상을 부탁해~!</h1> 
-        </div>
+        <div class="header_title">
+      <br>
+         <img src="/img/greenRecipeLogo.png"   alt="logo" style="width: 400px; height: 60px;">
+      </div> 
+
 	  
     
 
@@ -88,9 +90,10 @@ function newTabClick() {
         	<a href="/"><img class="head_logo"  src="/img/logo.png" ></a>
         </div>
        
-          <div class="header_write">
-        	<a href="/"><img class="head_write"  src="/img/write.png" ></a>
+         <div class="header_write">
+        	<a href="/Cook/UserWrite"><img class="head_write"  src="/img/write.png" ></a>
         </div> 
+       
        
 
         
@@ -141,17 +144,16 @@ function newTabClick() {
       <li>
         <a href="#">커뮤니티</a>
         <ul class="submenu3">
-          <li><a href="/Pds/List?menu_id=MENU01">자랑 게시판</a></li>
-          <li><a href="/Pds/List?menu_id=MENU02">자유 게시판</a></li>
-          <li><a href="/Pds/List?menu_id=MENU03">공유 게시판</a></li>
+          <li><a href="/Pds/List?menu_id=MENU01&&nowpage=1">자랑 게시판</a></li>
+          <li><a href="/Pds/List?menu_id=MENU02&&nowpage=1">자유 게시판</a></li>
           <li><a href="/Cook/User">유저 레시피</a></li>
         </ul>
       </li>
       <li>
         <a href="#">공지사항</a>
         <ul class="submenu4">
-          <li><a href="/Pds/List?menu_id=MENU06">공지사항</a></li>
-          <li><a href="#">이벤트</a></li>
+          <li><a href="/Pds/List?menu_id=MENU06&&nowpage=1">공지사항</a></li>
+          <li><a href="/Pds/List?menu_id=MENU04&&nowpage=1">이벤트</a></li>
           </ul>
       </li>
     </ul>

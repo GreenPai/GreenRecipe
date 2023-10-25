@@ -1,5 +1,6 @@
 package com.green.pds.dao.impl;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -18,9 +19,12 @@ public class PdsDaoImpl implements PdsDao {
 	private  SqlSession   sqlSession;
 	
 	@Override
-	public List<PdsVo> getPdsList(String menu_id) {
+	public List<PdsVo> getPdsList(HashMap<String, Object> map) {
 		
-		List<PdsVo>  pdsList  =  sqlSession.selectList("Pds.PdsList", menu_id );  
+		int      totalcount              =  sqlSession.selectOne("Pds.GetTotalCount", map);
+		map.put("totalcount",  totalcount);
+		
+		List<PdsVo>  pdsList  =  sqlSession.selectList("Pds.PdsList", map );  
 		return   pdsList;
 	}
 
@@ -75,15 +79,11 @@ public class PdsDaoImpl implements PdsDao {
 	@Override
 	public void setDelete(HashMap<String, Object> map) {
 
-		System.out.println("1111---------------");
 		List<FilesVo> fileList = sqlSession.selectList("Pds.FileList", map); 
 		map.put("fileList", fileList);
 		
-		System.out.println("2222---------------");
 		sqlSession.delete("Pds.FileDelete", map);   // 게시글 관련 파일들 삭제
-		System.out.println("3333---------------");
 		sqlSession.delete("Pds.PdsDelete",  map);   // 게시글 삭제
-		System.out.println("4444---------------");
 				
 	}
 
@@ -123,30 +123,50 @@ public class PdsDaoImpl implements PdsDao {
 
 	@Override
 	public PdsVo boardBoomUp(PdsVo vo) {
-		sqlSession.update("Pds.BoardBoomUp", vo);
+		sqlSession.update("Pds.BoardBoomUp", vo);	
+		sqlSession.insert("Pds.insertc_reply", vo);
 		PdsVo  pdsVo = sqlSession.selectOne("Pds.PdsGetBoom", vo);
-		
 		return pdsVo;
 	}
 
 	@Override
 	public PdsVo boardBoomDown(PdsVo vo) {
 		sqlSession.update("Pds.BoardBoomDown", vo);
+		sqlSession.insert("Pds.insertc_reply", vo);
 		PdsVo pdsVo = sqlSession.selectOne("Pds.PdsLostBoom",vo);
 		return pdsVo;
 	}
 
+	@Override 
+	public boolean PdsBoomCheck(int idx , String userid ) { 
+		int count = sqlSession.selectOne( "Pds.PdsBoomCheck" , new HashMap<String,Object>() {{
+		    put( "idx", idx); 
+		    put( "userid", userid); 
+		}});
+		return count > 0; 
+	}
+
 	@Override
-	public boolean PdsBoomCheck(int idx, String userid) {
-        int count = sqlSession.selectOne("Pds.PdsBoomCheck", new HashMap<String, Object>() {{
-            put("idx", idx);
-            put("userid", userid);
-        }});
-        return count > 0; 
-    }
-
-
-
+	public List<FilesVo> PdsfileName(HashMap<String, Object> map) {
+    	
+		// 답글의 경우에는  idx, menu_id 가 들어오고
+		// 새 글의 경우에는 idx가 들어오고 menu_id가 안들어오는걸 확인해서 만듬.
+		
+		// 제목의 경우에는 [답글]이 붙어있는 경우에는 특수문자 사용으로 사용이 안되길래 제목은 뺐음.
+		
+		List<FilesVo> filename=new ArrayList<>();
+		if (  map.get("menu_id") == null) {
+		      filename = sqlSession.selectList("Pds.FileName", map);
+		}else {
+			 filename = sqlSession.selectList("Pds.FileName2", map);
+		}
+		 
+	//	PdsVo   pdsVo  =  sqlSession.selectOne("Pds.PdsView", map);
+	//	String  menu_name =  sqlSession.selectOne("Menus.MenuName", menu_id)
+	//	System.out.println(filename);
+		return filename;
+	}
+	
 }
 
 

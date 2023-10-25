@@ -14,19 +14,11 @@
 <title>그린 밥상을 부탁해</title>
 
 <style>
-/*  사용자 레시피 중간으로  */
-.header_write {
-    text-align: center; 
-    display: flex; 
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-}
 
-.head_write {
-    display: inline-block;
+.header_write{
+    margin-left: 645px;
+    margin-top: 20px;
 }
-
 </style>
 
 </head>
@@ -34,17 +26,20 @@
       
     <header class="header">
     
-        <div class="header_title">      
-        <h1> 그린 밥상을 부탁해~!</h1>
-        </div>
+         <div class="header_title">
+      <br>
+         <img src="/img/greenRecipeLogo.png"   alt="logo" style="width: 400px; height: 60px;">
+      </div> 
+
     
        <div class="header_logo">
         	<a href="/"><img class="head_logo"  src="/img/logo.png" ></a>
         </div>  
         
-        <div class="header_write">
-        	<a href="/"><img class="head_write"  src="/img/write.png" ></a>
+       <div class="header_write">
+        	<a href="/Cook/UserWrite"><img class="head_write"  src="/img/write.png" ></a>
         </div> 
+       
      <div class="header_login">
     <ul>
         <li>
@@ -53,7 +48,7 @@
                     <div class="left-content">
                         <img src="/img/user.jpg" alt="" class="left-image" width="40" height="40">
                         <c:set var="userName" value="${sessionScope['loginMember']}" />
-                        <p>${userName}</p>
+                        <p name="userid" value="${sessionScope.userid}">${userName}</p>
                     </div>
                     <a href="/logout" class="right-logout">로그아웃</a>
                 </c:when>
@@ -73,7 +68,7 @@
       <li>
         <a href="#">레시피</a>
         <ul class="submenu1">
-          <li><a href="/Cook/List">재료등록</a></li>
+          <li><a href="/Cook/View">재료등록</a></li>
           <li><a href="/Cook/Show">추천레시피</a></li>
           <li><a href="/Cook/Han">한식레시피</a></li>
           <li><a href="/Cook/Jap">일식레시피</a></li>
@@ -85,23 +80,23 @@
         <a href="#">리빙팁</a>
         <ul class="submenu2">
           <li><a href="/Tip">계량팁</a></li>        
+          <li><a href="/Kcal">칼로리</a></li>              
         </ul>
       </li>
       <li>
         <a href="#">커뮤니티</a>
         <ul class="submenu3">
-          <li><a href="/Pds/List?menu_id=MENU01">자랑 게시판</a></li>
-          <li><a href="/Pds/List?menu_id=MENU02">자유 게시판</a></li>
-          <li><a href="/Pds/List?menu_id=MENU03">공유 게시판</a></li>
+          <li><a href="/Pds/List?menu_id=MENU01&&nowpage=1">자랑 게시판</a></li>
+          <li><a href="/Pds/List?menu_id=MENU02&&nowpage=1">자유 게시판</a></li>
           <li><a href="/Cook/User">유저 레시피</a></li>
         </ul>
       </li>
       <li>
         <a href="#">공지사항</a>
         <ul class="submenu4">
-          <li><a href="/Pds/List?menu_id=MENU06">공지사항</a></li>
-          <li><a href="#">이벤트</a></li>
-          </ul>
+          <li><a href="/Pds/List?menu_id=MENU06&&nowpage=1">공지사항</a></li>
+          <li><a href="/Pds/List?menu_id=MENU04&&nowpage=1">이벤트</a></li>
+           </ul>
       </li>
     </ul>
 

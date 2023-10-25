@@ -12,13 +12,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
-<link rel="stylesheet" href="/css/common.css" />
+<link rel="stylesheet" href="/css/writeform.css" />
 
 <style>
    input  { height: 32px;  }
    
-   #table   th       {  width : 20%;  }  
-   #table   td       {  width : 80%;  }  
+   #table   th       {  width : 20%; background-color: aliceblue; }  
+   #table   td       {  width : 80%; background-color: white; }  
    input[type=text]  {  width : 100%;  }  
    textarea          {  width : 100%; height: 300px; padding:10px; }  
 </style>
@@ -28,31 +28,22 @@
 <script>
    
    $( function() {
-      let num = 1;
-      $('#btnAddFile').on('click', function() {         
-         let tag = '<input type="file" name="upfile' + num + '" class="upfile" /><br>';
-         $('#tdfile').append( tag );
-         num++;
-      })
+	   let num = 1;
+	   $('#btnAddFile').on('click', function() {		   
+		   let tag = '<input type="file" name="upfile' + num + '" class="upfile" /><br>';
+		   $('#tdfile').append( tag );
+		   num++;
+	   })
    })
 
 </script>
 
 </head>
-<body>
+<body style="background-color:#D6F3ED">
   <main>
   
   <!-- 메뉴 목록 -->
-   <%@include file="/WEB-INF/include/mainmenu.jsp" %>
-
-   <c:choose>
-    <c:when test="${  map.bnum eq 0 }">    
-     <h2>${ map.menuname } 자료실 새글 등록</h2>
-   </c:when>
-   <c:otherwise>    
-     <h2>${ map.menuname } 자료실 답글 등록</h2>
-   </c:otherwise>  
-   </c:choose>
+	<%@include file="/WEB-INF/include/mainmenu.jsp" %>
 
   <form action="/Pds/Write" method="POST" 
         enctype="multipart/form-data"   >   
@@ -68,12 +59,12 @@
    <caption>
      <c:choose>
       <c:when test="${ map.bnum == 0 }">
-         <h2>${ map.menuname } 새글 등록</h2>
-       </c:when>
-       <c:otherwise>          
-         <h2>답글 등록</h2>
-       </c:otherwise>
-      </c:choose>           
+  	    <h2>${ map.menuname } 새글 등록</h2>
+  	  </c:when>
+  	  <c:otherwise>  	     
+  	    <h2>답글 등록</h2>
+  	  </c:otherwise>
+  	 </c:choose>   	     
    </caption>
    <tr>
      <th>제목</th>
@@ -106,4 +97,3 @@
   </main>
 </body>
 </html>
-

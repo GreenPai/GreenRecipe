@@ -8,11 +8,11 @@ import com.green.pds.vo.PdsVo;
 
 public interface PdsDao {
 
-	List<PdsVo> getPdsList(String menu_id);
-
-	void setWrite(HashMap<String, Object> map);
+	List<PdsVo> getPdsList(HashMap<String, Object> map);
 
 	PdsVo getView(HashMap<String, Object> map);
+
+	void setWrite(HashMap<String, Object> map);
 
 	List<FilesVo> getFileList(HashMap<String, Object> map);
 
@@ -31,6 +31,8 @@ public interface PdsDao {
 	PdsVo boardBoomDown(PdsVo vo);
 
 	boolean PdsBoomCheck(int idx, String userid);
+
+	List<FilesVo> PdsfileName(HashMap<String, Object> map);
 
 
 }

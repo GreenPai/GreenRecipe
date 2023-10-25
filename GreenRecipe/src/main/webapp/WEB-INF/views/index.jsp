@@ -13,6 +13,13 @@
 <title>그린 밥상을 부탁해</title>
 
 <style>
+
+.header_write{
+    margin-left: 645px;
+    margin-top: 20px;
+}
+
+
 /* 
  float:right;
   margin-right: 50px;  
@@ -226,21 +233,29 @@ footer {
 </head>
 <body>
 
+
    <header class="header">
 
       <div class="header_title">
-         <h1>그린 밥상을 부탁해~!</h1>
-      </div>
+      <br>
+         <img src="/img/greenRecipeLogo.png"   alt="logo" style="width: 400px; height: 60px;">
+      </div> 
 
 
-        <div class="header_logo">
-           <a href="/"><img class="head_logo"  src="/img/logo.png" ></a>
-        </div>  
+        <div class="header_logo"> 
+           <a href="/"><img class="head_logo"  src="/img/logo.png"></a>
+        </div>   
         
-         <div class="header_login">
+        <div class="header_write">
+        	<a href="/Cook/UserWrite"><img class="head_write"  src="/img/write.png" ></a>
+        </div> 
+       
+       
+        
+         <div class="header_login"> 
     <ul>
         <li>
-            <c:choose>
+            <c:choose>	
                 <c:when test="${not empty sessionScope['loginMember']}">
                     <div class="left-content">
                         <img src="/img/user.jpg" alt="" class="left-image" width="40" height="40">
@@ -278,37 +293,20 @@ footer {
          </ul></li>
       <li><a href="#">커뮤니티</a>
          <ul class="submenu3">
-            <li><a href="/Pds/List?menu_id=MENU01">자랑 게시판</a></li>
-            <li><a href="/Pds/List?menu_id=MENU02">자유 게시판</a></li>
-            <li><a href="/Pds/List?menu_id=MENU03">공유 게시판</a></li>
+            <li><a href="/Pds/List?menu_id=MENU01&&nowpage=1">자랑 게시판</a></li>
+            <li><a href="/Pds/List?menu_id=MENU02&&nowpage=1">자유 게시판</a></li>
             <li><a href="/Cook/User">유저 레시피</a></li>
          </ul></li>
       <li><a href="#">공지사항</a>
          <ul class="submenu4">
-            <li><a href="/Pds/List?menu_id=MENU06">공지사항</a></li>
-            <li><a href="/Pds/List?menu_id=MENU04">이벤트</a></li>
+            <li><a href="/Pds/List?menu_id=MENU06&&nowpage=1">공지사항</a></li>
+            <li><a href="/Pds/List?menu_id=MENU04&&nowpage=1">이벤트</a></li>
          </ul></li>
    </ul>
+   
+   <br><br><br><br>
 
 
-   <br>
-   <br>
-   <br>
-   <br>
-   <img src="/img/pot2.png" alt="Pot Image"
-      style="display: block; margin: 0 auto;">
-   <div class="animated-title">
-      <div class="track">
-         <div class="content" style="color: #D9D9D9">&nbsp;Green Simple
-            Recipe&nbsp;&nbsp;Green Simple Recipe&nbsp;&nbsp;Green Simple
-            Recipe&nbsp;&nbsp;Green Simple Recipe&nbsp;&nbsp;Green Simple Recipe</div>
-      </div>
-   </div>
-
-   <br>
-   <br>
-   <br>
-   <br>
 
    <div class="container">
       <div class="row">
@@ -356,7 +354,7 @@ footer {
                   <p class="simple">누구나!</p>
                   <br>
                   <p class="comment">
-                     요리를 못해도 OK <br> 레시피만 보고 따라하세요! 	
+                     요리를 못해도 OK <br> 레시피만 보고 따라하세요!    
                   </p>
                </li>
                <li class="listinfo">
@@ -383,10 +381,16 @@ footer {
 
             </ul>
          </div>
-         <br>
-         <br>
-         <br>
-         <br>
+         
+           <div class="animated-title">
+      <div class="track">
+         <div class="content" style="color: #D9D9D9">&nbsp;Green Simple
+            Recipe&nbsp;&nbsp;Green Simple Recipe&nbsp;&nbsp;Green Simple
+            Recipe&nbsp;&nbsp;Green Simple Recipe&nbsp;&nbsp;Green Simple Recipe</div>
+      </div>
+   </div>
+   
+    
          <br>
          </div>
       </div>
@@ -450,7 +454,6 @@ footer {
 
 </body>
 </html>
-
 
 
 

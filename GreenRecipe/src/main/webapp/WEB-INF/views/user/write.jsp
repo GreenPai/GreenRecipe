@@ -69,6 +69,22 @@ $(function() {
         	}
 	  });
 	});
+	
+chkCharCode(event) {
+	  const keyCode = event.keyCode;
+	  const isValidKey = (
+	    (keyCode >= 48 && keyCode <= 57) || // Numbers
+	    (keyCode >= 97 && keyCode <= 122) || // Numbers, Keypad
+	    (keyCode >= 65 && keyCode <= 90) || // Alphabet
+	    (keyCode === 32) || // Space
+	    (keyCode === 8) || // BackSpace
+	    (keyCode === 189) // Dash
+	  );
+	  if (!isValidKey) {
+	    event.preventDefault();
+	    return false;
+	  }
+	};
 </script>
 </head>
 <body style="background-color:#D6F3ED">
@@ -82,7 +98,7 @@ $(function() {
   <form action="/User/Write" method="POST">
     <table>
      <tr>
-       <td><input type="text" name="userid" id="userid" placeholder="아이디 : 5자 이상입력" minlength="5" maxlength="20"  required/>  <input type="button" value="중복확인" id="dup" ></td>    
+       <td><input type="text" name="userid" id="userid" placeholder="아이디 : 5자 이상입력"  onkeypress="chkCharCode(event)" minlength="5" maxlength="20"  required/>  <input type="button" value="중복확인" id="dup" ></td>    
      </tr> 
      <tr>
        <td><input type="password" name="passwd" id="pwd1"  placeholder="비밀번호 : 영문숫자조합 5자리이상" minlength="5" maxlength="20"  required/></td>

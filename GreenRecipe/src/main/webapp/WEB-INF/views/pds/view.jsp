@@ -16,8 +16,22 @@
 
 
 <style>
-</style>
 
+
+.main-text {
+    padding: 20px; /* 텍스트와 벽(테두리) 사이의 간격을 설정합니다. */
+}
+
+
+.centered-image {
+    display: block;
+    margin: 0 auto; /* 이미지를 가로로 중앙 정렬합니다. */
+}
+
+
+
+
+</style>
 <script src="https://code.jquery.com/jquery.min.js"></script>
 <script>  
 	
@@ -174,26 +188,28 @@ function fn_reply_list() {
 }
 	</script>
 	<script>
+	// 추천
 	function goodCheck() {
 	    var idx = $('[name=idx]').val();
 	    var userid = $('.left-content [name=userid]').val();
-
+	    var sessionUserId = '<%= session.getAttribute("userid") %>'
+	    
 	    // 중복 추천 확인을 위해 checkBoom 함수 호출
 	    checkBoom(idx, userid, function(isDuplicate) {
 	        if (isDuplicate) {
-	            alert("이미 추천한 게시물입니다.");
-	        } else {
+                alert("이미 체크한 글입니다.");
+	        } else {           
 	            // 중복이 아닐 경우 추천 작업 수행
 	            $.ajax({
 	                url: "/Pds/BoardBoomUp",
 	                type: "POST",
 	                data: { 
 	                	idx    : idx,
-	                	userid : '${sessionScope.userid}'
+	                	userid : sessionUserId
 	                },
-	                success: function(result) {
+	                success: function(result) {                	
+	                    $('#goodCheck').html(result.boardboomup);	                    
 	                    alert("추천했습니다");
-	                    $('#goodCheck').html(result.boardboomup);
 	                },
 	                error: function(e) {
 	                    alert("추천 작업 중 오류가 발생했습니다.");
@@ -202,44 +218,60 @@ function fn_reply_list() {
 	        }
 	    });
 	}
-
-	// 중복 추천 확인을 수행하는 함수
-	function checkBoom(idx, userid, callback) {
-	    $.ajax({
-	        url: "/Pds/PdsBoomCheck",
-	        type: "POST",
-	        data: {
-	            idx: idx,
-	            userid: userid
-	        },
-	        success: function(result) {
-	            if (result) {
-	                callback(true);
-	            } else {
-	                callback(false); 
-	            }
-	        },
-	        error: function() {
-	            alert("중복 추천 확인 중 오류가 발생했습니다.");
+	
+	    // 비추천
+	function badCheck() {
+	    var idx = $('[name=idx]').val();
+	    var userid = $('.left-content [name=userid]').val();
+	    var sessionUserId = '<%= session.getAttribute("userid") %>'
+	    
+	    // 중복 추천 확인을 위해 checkBoom 함수 호출
+	    checkBoom(idx, userid, function(isDuplicate) {
+	        if (isDuplicate) {
+                alert("이미 체크한 글입니다.");
+	        } else {           
+	            // 중복이 아닐 경우 추천 작업 수행
+	            $.ajax({
+	                url: "/Pds/BoardBoomDown",
+	                type: "POST",
+	                data: { 
+	                	idx    : idx,
+	                	userid : sessionUserId
+	                },
+	                success: function(result) {                	
+	                    $('#badCheck').html(result.boardboomdown);	                    
+	                    alert("비추했습니다");
+	                },
+	                error: function(e) {
+	                    alert("추천 작업 중 오류가 발생했습니다.");
+	                }
+	            });
 	        }
 	    });
 	}
-
-		
-	    // 비추천
-		function badCheck() {
-			var idx = $("[name='idx']").val();
+	    
+		// 중복 추천 확인을 수행하는 함수
+		function checkBoom(idx, userid, callback) {
 		    $.ajax({
-		    	url: "/Pds/BoardBoomDown",
+		        url: "/Pds/PdsBoomCheck",
 		        type: "POST",
-		        data: { idx: idx },
+		        data: {
+		            idx: idx,
+		            userid : '${sessionScope.userid}'
+		        },
 		        success: function(result) {
-		            alert("비추천했습니다.");
-		            $('#badCheck').html(result.boardboomdown);
+		            if (result) {
+		                callback(true);
+		            } else {
+		                callback(false); 
+		            }
+		        },
+		        error: function() {
+		            alert("중복 추천 확인 중 오류가 발생했습니다.");
 		        }
 		    });
-		    
 		}
+		
 </script>
 </head>
 <body>
@@ -260,10 +292,17 @@ function fn_reply_list() {
      </td>
      <td class= "subreply">조회수: ${vo.readcount} 작성일: ${vo.regdate}</td>
    </tr> 
-   <tr>
-     <td class= "contreply" colspan= "4">
-     
-     <pre>${ vo.cont }</pre></td>
+   
+   
+  <tr>
+     <td class= "contreply" colspan= "4"><pre>
+    <c:forEach items="${filepath}" var="file">
+    <c:if test="${file ne null}">
+        <img src="/data/${file}" alt="이미지" class="centered-image" width="600px" height="500px">
+    </c:if>
+    </c:forEach>
+    </pre>
+     <pre class = "main-text">${ vo.cont }</pre></td>
    </tr>
       
    <tr>
@@ -280,20 +319,18 @@ function fn_reply_list() {
    </tr>   
    <tr>     
      <td colspan="4" class="buttons">
-     <c:if test="${sessionScope.userid != null && sessionScope.userid == vo.writer}">
      <a class="btn btn-primary btn-sm"
         href="/Pds/WriteForm?menu_id=${vo.menu_id}&bnum=0&lvl=0&step=0&nref=0&nowpage=1">새글쓰기</a><span></span>
      <a class="btn btn-primary btn-sm"
         href="/Pds/WriteForm?menu_id=${vo.menu_id}&idx=${vo.idx}&bnum=${vo.bnum}&lvl=${vo.lvl}&step=${vo.step}&nref=${vo.nref}&nowpage=${map.nowpage}">답글쓰기</a><span></span>
+     <c:if test="${sessionScope.userid != null && sessionScope.nickname == vo.writer}">
      <a class="btn btn-primary btn-sm"
         href="/Pds/UpdateForm?menu_id=${vo.menu_id}&idx=${vo.idx}&nowpage=${map.nowpage}">수정</a><span></span>
      <a class="btn btn-primary btn-sm"
         href="/Pds/Delete?menu_id=${vo.menu_id}&idx=${ vo.idx }&nowpage=${map.nowpage}">삭제</a><span></span>
-     <a class="btn btn-primary btn-sm"
-        href="/Pds/List?menu_id=${vo.menu_id}&nowpage=${map.nowpage}">목록으로</a><span></span>
      </c:if>
      <a class="btn btn-primary btn-sm"
-        href="javascript:history.back()">이전으로</a><span></span>
+        href="/Pds/List?menu_id=${vo.menu_id}&nowpage=1">이전으로</a><span></span>
      <a class="btn btn-primary btn-sm"
         href="/">Home</a>
      </td>

@@ -21,11 +21,30 @@ public class PdsServiceImpl implements PdsService {
 	private   PdsDao  pdsDao;
 	
 	@Override
-	public List<PdsVo> getPdsList(String menu_id) {
+	public List<PdsVo> getPdsList(HashMap<String, Object> map) {
 		
-		List<PdsVo>  pdsList  =  pdsDao.getPdsList( menu_id );  
+		List<PdsVo>  pdsList  =  pdsDao.getPdsList( map );  
 		
-		return pdsList;
+		int  pagetotalcount =  5;  // paging.jsp 페이지 번호 출력 갯수
+		//                          pagetotalcount
+		// 1 2 3 4 5 6 7 8 9 10   :  10
+		// 1 2 3 4 5                  5 
+				
+		int        nowpage        =  Integer.parseInt( String.valueOf( map.get("nowpage") ) );    // 현재 페이지
+		int        pagecount      =  Integer.parseInt( String.valueOf( map.get("pagecount")) );  // 한페이지에 보여줄 자료수
+		
+		// menu_id 에 해당되는 전체 자료수 - pdsDaoImpl 가 돌려준 map 에 저장
+		int        totalcount     =  Integer.parseInt( String.valueOf( map.get("totalcount") ) );   
+	
+		String     menu_id  =  String.valueOf(map.get("menu_id")); 
+		BoardPaging   bp    =  new BoardPaging(
+			menu_id, nowpage, pagecount, totalcount, pagetotalcount);
+
+		PdsVo   vo    =  bp.getPdsPagingInfo();
+		
+		map.put("pdsVo", vo );
+		
+		return     pdsList;
 	}
 	
 	@Override
@@ -123,6 +142,7 @@ public class PdsServiceImpl implements PdsService {
 		return pdsVo;
 	}
 
+
 	@Override
 	public PdsVo   boardBoomUp(PdsVo vo) {
 		PdsVo    pdsVo = pdsDao.boardBoomUp(vo);
@@ -138,8 +158,15 @@ public class PdsServiceImpl implements PdsService {
 
 	@Override
 	public boolean PdsBoomCheck(int idx, String userid) {
-        boolean isDuplicate = pdsDao.PdsBoomCheck(idx, userid);
-        return isDuplicate;
+
+		boolean isDuplicate = pdsDao.PdsBoomCheck(idx, userid);
+		return isDuplicate;
+	}
+
+	@Override
+	public List<FilesVo> getFileName(HashMap<String, Object> map) {
+		List<FilesVo> filename = pdsDao.PdsfileName(map);
+		return filename;
 	}
 
 }

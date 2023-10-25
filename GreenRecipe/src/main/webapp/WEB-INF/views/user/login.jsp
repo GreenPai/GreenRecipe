@@ -173,22 +173,22 @@
         <a href="#">리빙팁</a>
         <ul class="submenu2">
             <li><a href="/Tip">계량팁</a></li>
+            <li><a href="/Kcal">칼로리</a></li> 	
         </ul>
     </li>
     <li>
         <a href="#">커뮤니티</a>
         <ul class="submenu3">
-            <li><a href="/Pds/List?menu_id=MENU01">자랑 게시판</a></li>
-            <li><a href="/Pds/List?menu_id=MENU02">자유 게시판</a></li>
-            <li><a href="/Pds/List?menu_id=MENU03">공유 게시판</a></li>
+            <li><a href="/Pds/List?menu_id=MENU01&&nowpage=1">자랑 게시판</a></li>
+            <li><a href="/Pds/List?menu_id=MENU02&&nowpage=1">자유 게시판</a></li>
             <li><a href="/Cook/User">유저 레시피</a></li>
         </ul>
     </li>
     <li>
         <a href="#">공지사항</a>
         <ul class="submenu4">
-            <li><a href="/Pds/List?menu_id=MENU06">공지사항</a></li>
-            <li><a href="#">이벤트</a></li>
+            <li><a href="/Pds/List?menu_id=MENU06&&nowpage=1">공지사항</a></li>
+            <li><a href="/Pds/List?menu_id=MENU04&&nowpage=1">이벤트</a></li>
         </ul>
     </li>
 </ul>
