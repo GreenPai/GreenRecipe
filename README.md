@@ -26,8 +26,11 @@
 
 ![image](https://github.com/GreenPai/GreenRecipe/assets/145432813/57085087-08dd-416e-bf10-de66634cd374)
 
+<br><br>
 
+📍
 # 주요 기능
+
 ### 데이터 베이스
 - 레시피 데이터베이스 생성- 식약처 api 이용
 - 재료 데이터베이스 생성
@@ -51,39 +54,85 @@
 - 자랑 게시판, 공유 게시판등 로그인 후 게시판 이용 가능
 - 계랑 팁, 건강 팁 페이지 구현하여 사용자가 계량하며 계산기를 통해 칼로리를 계산하는데 도움을 줌 
 
+<br><br>
 
+📍
 # 레시피 기능
 
 ### 재료 입력
 
 ![image](https://github.com/GreenPai/GreenRecipe/assets/145432813/7cd9094a-0642-4c23-89ab-b2bf429c36f3)
 
+<br>
+<br>
+
+
+
+
 ### 하나라도 선택을 하지 않는다면 1개 이상 선택하도록 안내문구 구현
 ![image](https://github.com/GreenPai/GreenRecipe/assets/145432813/92ae398e-ac11-4016-bd0d-52b4b3355119)
 
+<br>
+<br>
+
+
 ### 관련 레시피 출력
+
 ![image](https://github.com/GreenPai/GreenRecipe/assets/145432813/aa720e05-adc7-4812-b3c8-2f358b01bb57)
+
+<br>
+<br>
+
 
 ### 레시피 상세 페이지
 ![image](https://github.com/GreenPai/GreenRecipe/assets/145432813/ba79ba7d-b0f0-4573-8a75-7251a2ae0c92)
 ![image](https://github.com/GreenPai/GreenRecipe/assets/145432813/8b5de16e-567f-46cd-b7ba-ff77eeb4d215)
 
+<br>
+<br>
+
 ### 유저 레시피 (레시피 관련 정보를 입력 후 다음 단계 버튼을 눌러서 Step을 증가)
 ![image](https://github.com/GreenPai/GreenRecipe/assets/145432813/6af9cb39-dfb7-4aa1-9c4c-a28192ba8fa8)
 ![image](https://github.com/GreenPai/GreenRecipe/assets/145432813/527f780d-be34-461c-bf53-7ed791c0bd7c)
 
+<br>
+<br>
 
-### 추천 레시피(500 여개의 레시피 중 조회수가 많은 순서대로 출력)
+## 추천 레시피(500 여개의 레시피 중 조회수가 많은 순서대로 출력)
 ![image](https://github.com/GreenPai/GreenRecipe/assets/145432813/fe9d8953-53b6-4a09-8bff-b4d37f775121)
 
-### 나라 별 레시피(한식, 중식, 일식, 양식)
+<br>
+<br>
+
+## 나라 별 레시피(한식, 중식, 일식, 양식)
+### 한식
 ![image](https://github.com/GreenPai/GreenRecipe/assets/145432813/213b0008-5fdc-47ec-9101-9713697fd1ac)
+### 일식
 ![image](https://github.com/GreenPai/GreenRecipe/assets/145432813/16a77833-1a1a-4627-8c82-e26d2d3dc346)
+### 양식
 ![image](https://github.com/GreenPai/GreenRecipe/assets/145432813/e4f77497-48cf-4f53-8b4e-97578b3595d3)
+### 중식
 ![image](https://github.com/GreenPai/GreenRecipe/assets/145432813/bf9ea34b-1c37-4db9-9e01-d0a105faa718)
+<br><br>
+📍
+# 회원가입
 
+### 아이디 중복체크와 비밀번호 중보체크 등을 이용한 회원가입 구현
 
+![image](https://github.com/GreenPai/GreenRecipe/assets/145432813/22a03b58-06b0-470b-812a-6794b6b1c1cf)
 
+<br><br>
 
+📍
+# 게시판
+
+### 게시판 목록
+![image](https://github.com/GreenPai/GreenRecipe/assets/145432813/c120db83-5848-4244-a935-181f90709a6d)
+
+### 게시판
+![image](https://github.com/GreenPai/GreenRecipe/assets/145432813/0b6f7d5e-91c7-4887-b537-501cf765d05b)
+
+### 댓글창
+![image](https://github.com/GreenPai/GreenRecipe/assets/145432813/a7cd0aa2-be17-45cf-aa0a-b48f55a355a7)
 
 
