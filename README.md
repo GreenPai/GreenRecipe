@@ -14,8 +14,11 @@
 - 홍지원(팀원): 데이터 베이스,  재료등록 페이지 및 기능 구현, 조회수 기능, 이메일 전송 기능 구현
 - 고상현(팀원): 데이터 베이스,  회원가입 기능 구현, CRUD 기능, 추천 & 비추천 기능 구현
 
-
-
+## 시연 영상
+- 레시피 관련:
+https://www.youtube.com/watch?v=wVVvXESHYRM
+- 게시판 관련:
+https://www.youtube.com/watch?v=BGyfey8oV2k
 ## 기술 스택
 - Front-end: HTML, CSS, JavaScript, jQuery, bootstrap, Ajax
 - Back-end: Spring(STS3), JAVA
